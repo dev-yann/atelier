@@ -11,6 +11,5 @@ namespace presentapp\control;
 
 class PresentController extends \mf\control\AbstractController
 {
-
     
 }
