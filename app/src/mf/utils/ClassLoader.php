@@ -30,7 +30,7 @@ class ClassLoader{
         $mynewpath = str_replace("\\",DIRECTORY_SEPARATOR , $path);
         $mynewpath = $this->prefix.DIRECTORY_SEPARATOR.$mynewpath.'.php';
 
-        
+
         if(file_exists($mynewpath)){
 
             require_once ($mynewpath);

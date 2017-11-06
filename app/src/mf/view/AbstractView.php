@@ -4,7 +4,7 @@ namespace mf\view;
 
 abstract class AbstractView {
 
-    static protected $style_sheets = ['src/mf/html/style.css']; /* un tableau de fichiers style */
+    static protected $style_sheets = ['style.css','font-awesome/css/font-awesome.min.css']; /* un tableau de fichiers style */
     static protected $app_title    = "MF app Title"; /* un titre de document */
     
     protected $app_root    = null; /* répertoire racine de l'application */
@@ -24,6 +24,7 @@ abstract class AbstractView {
      *   d'instances de modèles.
      *
      */
+
     public function __construct( $data ){
         $http = new \mf\utils\HttpRequest();
         
@@ -82,7 +83,7 @@ abstract class AbstractView {
         /* les feuilles de style */
         $styles = '';
         foreach ( self::$style_sheets as $file )
-            $styles .= '<link rel="stylesheet" href="'.$this->app_root.'/'.$file.'"> ';
+            $styles .= '<link rel="stylesheet" href="'.$this->app_root.'/html/'.$file.'"> ';
 
         /* on appele la methode renderBody de la sous classe */
         $body = $this->renderBody($selector);
@@ -99,6 +100,7 @@ abstract class AbstractView {
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        
         <title>${title}</title>
 	    ${styles}
     </head>
