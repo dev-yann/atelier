@@ -14,7 +14,7 @@ class Liste extends \Illuminate\Database\Eloquent\Model
 
     protected 	$table		= 'Liste';
     protected 	$primaryKey	= 'id';
-    public		$timestamps	= true;
+    public		$timestamps	= false;
 
     public function createur()
     {
