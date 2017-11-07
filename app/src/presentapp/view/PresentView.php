@@ -42,11 +42,20 @@ EOT;
     }
 
     // FORM
-    private  function renderViewForm(){
+    private  function renderViewSignUp(){
         $html = <<<EOT
-
-<h1>form</h1>
-
+        
+        <section>
+                <form method="post" action="$this->script_name/check_signup/">
+                    <input type="text" name="fullname" placeholder="Prénom"/>
+                    <input type="text" name="username" placeholder="Nom"/>
+                    <input type="email" name="mail" placeholder="mail"/>
+                    <input type="password" name="pw" placeholder="password"/>
+                    <input type="password" name="pw_repeat" placeholder="Repeat password"/>
+                   
+                    <input type="submit" value="create"/>
+                </form>
+        </section>
 EOT;
         return $html;
 
@@ -80,17 +89,32 @@ EOT;
         </section>
 EOT;
         return $html;
-
-
     }
 	
-	
-		
-		
+    public function renderLogin(){
+        $html =
+        
+        <<<EOT
+                <section>
+                    <form method="post" action="$this->script_name/check_login/">
+                        <input type="text" name="email" placeholder="email"/>
+                        <input type="password" name="pw" placeholder="password"/>
+                        
+                        <input type="submit" value="login"/>
+                    </form>
+                </section>  
+EOT;
+        
+                return $html;
+    }
+    
     // DEFAULT
     private function renderViewPresent(){
+        echo $_SESSION['user_login'];
+        echo $_SESSION['access_level'];
         $html = <<<EOT
 <h1>Défaut</h1>
+<a href="$this->script_name/logout/">logout</a>
 EOT;
         return $html;
 

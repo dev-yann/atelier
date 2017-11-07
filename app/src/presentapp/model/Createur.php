@@ -14,7 +14,7 @@ class Createur extends \Illuminate\Database\Eloquent\Model
 
     protected 	$table		= 'Createur';
     protected 	$primaryKey	= 'id';
-    public		$timestamps	= true;
+    public		$timestamps	= false;
 
     public function listes(){
         return $this->hasMany('presentapp\model\Liste', 'createur');

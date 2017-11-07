@@ -48,19 +48,19 @@ class PresentAuthentification extends \mf\auth\Authentification {
 	* 
 	*/
 
-	public function createUser($username, $pass, $fullname,
+	public function createUser($username, $pass, $fullname,$email,
 				$level=self::ACCESS_LEVEL_USER) {
 
-		$utilisateur=Createur::select('username')->where('username','=',$username)->first();
+		$utilisateur=Createur::select('email')->where('email','=',$email)->first();
 		if(isset($utilisateur->username)){ //S'il y a déjà un utilisateur
 			throw new \Exception(" Un utilisateur avec ce nom utilisateur éxiste déja.");
 		}else{//Sinon tout va bien !
 			$user=new Createur();
-			$user->username=$username;
+			$user->nom=$username;
 			$user->password=$this->hashPassword($pass);
-			$user->fullname=$fullname;
+			$user->prenom=$fullname;
 			$user->level=$level;
-			$user->followers=0;
+			$user->email=$email;
 			$user->save();
 		}
 	}
@@ -85,13 +85,13 @@ class PresentAuthentification extends \mf\auth\Authentification {
 	*
 	*/
 
-	public function login($username, $password){
-		$userBDD=user::select('password','level')->where('username','=',$username)->first();
+	public function login($email, $password){
+		$userBDD=Createur::select('password','level')->where('email','=',$email)->first();
 		if(!isset($userBDD)){
 			throw new \Exception(" Login ou mot de pass incorrecte.");
 		}else{
 			if($this->verifyPassword($password, $userBDD->password)){
-				$this->updateSession($username,$userBDD->level);
+				$this->updateSession($email,$userBDD->level);				
 			}else{
 				throw new \Exception(" Login ou mot de pass incorrecte.");
 			}
