@@ -158,5 +158,16 @@ class PresentController extends \mf\control\AbstractController
         }
     }
 
+    public function ViewListeItem(){
+
+        $id = $this->request->get['id'];
+        
+        // recupération de la liste et de ses informations
+
+        $l= Liste::where('id','=',$id)->first();
+
+        $vue = new PresentView($l);
+        $vue->render('renderViewListeItem');
+    }
 
 }
