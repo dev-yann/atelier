@@ -62,6 +62,24 @@ EOT;
 
     }
 
+
+    public function renderLogin(){
+        $html =
+        
+        <<<EOT
+                <section>
+                    <form method="post" action="$this->script_name/check_login/">
+                        <input type="text" name="email" placeholder="email"/>
+                        <input type="password" name="pw" placeholder="password"/>
+                        
+                        <input type="submit" value="login"/>
+                    </form>
+                </section>  
+EOT;
+        
+                return $html;
+    }
+
     // DEFAULT
     private function renderViewPresent(){
         $html = <<<EOT
