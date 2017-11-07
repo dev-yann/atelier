@@ -20,5 +20,6 @@ class Liste extends \Illuminate\Database\Eloquent\Model
     {
         return $this->belongsTo('tweeterapp\model\Createur', 'createur');
     }
+    
 
 }
