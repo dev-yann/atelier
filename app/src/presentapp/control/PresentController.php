@@ -43,26 +43,29 @@ class PresentController extends \mf\control\AbstractController
 
     // Show login form
     public function viewLogin(){
-        $vue = new $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView('');
         $vue->render('renderLogin');
     }
 
     // Throw check login
     // Control login form
-    public function checkLogin(){
-        if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['user']) AND !empty($_POST['pw'])){
-            $user = filter_input(INPUT_POST,'user',FILTER_SANITIZE_SPECIAL_CHARS);
+    public function check_login(){
+        $vue = new \presentapp\view\PresentView('');
+        if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
+            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
             $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
             $connect = new PresentAuthentification();
         
             // Si l'authentification retourne vrai
-            if($connect->login($user,$pass)){
+            try{
+                $connect->login($user,$pass);
                 $this->viewPresent();
-            } else {
-                    $this->viewLogin();
+                //echo $_SESSION['user_login'];
+            }catch(\Exception $e){
+                $this->viewLogin();
             }
         } else {
-                 $this->viewLogin();
+            $this->viewLogin();
         }
         }
 
