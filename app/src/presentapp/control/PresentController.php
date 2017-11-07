@@ -142,7 +142,7 @@ class PresentController extends \mf\control\AbstractController
                     $signUp = new PresentAuthentification();
                     $signUp->createUser($username, $pw, $fullname,$email_a);
 
-                    $this->viewPresent();
+                    $this->viewLogin();
 
                 } else {
 
