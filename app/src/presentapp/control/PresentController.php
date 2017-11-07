@@ -166,7 +166,7 @@ class PresentController extends \mf\control\AbstractController
         }
     }
 
-    public function ViewListeItem(){
+    public function viewListeItem(){
 
         $id = $this->request->get['id'];
         
@@ -174,7 +174,7 @@ class PresentController extends \mf\control\AbstractController
 
         $l= Liste::where('id','=',$id)->first();
 
-        $vue = new PresentView($l);
+        $vue = new \presentapp\view\PresentView($l);
         $vue->render('renderViewListeItem');
     }
 
