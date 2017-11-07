@@ -47,6 +47,25 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderLogin');
     }
 
+    public function viewItems(){
+
+        // On récupere l'id de la liste
+        $id = $this->request->get['id'];
+        // On récupère la liste
+        $items = Liste::select('id', '=', $id)->first();
+
+
+        $vue = new \presentapp\view\PresentView($items);
+        $vue->render('renderViewItems');
+    }
+
+    public function viewAddItem(){
+
+        $vue = new \presentapp\view\PresentView('');
+        $vue->render('renderViewAddItem');
+
+    }
+
 	public function viewListe(){
 		
 		$requeteListe = Liste::select()->get(); /* Faire le where avec variable de session */
@@ -59,23 +78,58 @@ class PresentController extends \mf\control\AbstractController
         $vue = new \presentapp\view\PresentView('');
         $vue->render('renderViewAddListe');
     }
+	
+	public function checkaddliste(){
+	
+        if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale')){
 
-    public function viewItems(){
+            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+            
+            $l = new Liste();
+            $l->nom = $nomListe;
+			$l->date_final = $dateFinal;
+			$l->createur = 1;
+			$l->save();
 
-	    // On récupere l'id de la liste
-        $id = $this->request->get['id'];
-	    // On récupère la liste
-	    $items = Liste::select('id', '=', $id)->first();
+            $this->viewListe();
 
+        } else {
 
-	    $vue = new \presentapp\view\PresentView($items);
-        $vue->render('renderViewItems');
+            $this->checkSignup();
+        }
     }
+	
+
+    public function addItem(){
+
+	    // regarder si ca existe
+        $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+        $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+        $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+
+        $item=new Item();
+
+        if(isset($_POST['url'])){
+            $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+            $item->url=$url;
+        }
+
+
+        $item->nom=$nom;
+        $item->description=$description;
+        $item->tarif=$tarif;
+
+        $item->save();
+    }
+
+
 
 
     public function logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
+        $this->viewListe();
     }
 
     public function check_login(){
@@ -116,7 +170,7 @@ class PresentController extends \mf\control\AbstractController
                     $signUp = new PresentAuthentification();
                     $signUp->createUser($username, $pw, $fullname,$email_a);
 
-                    $this->viewPresent();
+                    $this->viewLogin();
 
                 } else {
 

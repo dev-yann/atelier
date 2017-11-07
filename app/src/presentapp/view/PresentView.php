@@ -84,9 +84,10 @@ EOT;
 		$html .= 
 			<<<EOT
         <section>
-                <form method="post" action="$this->script_name/liste/">
-                    <input type="text" name="NomListe" placeholder="Nom de l'évènement"/>
-					<input type="text" name="DateFinal" placeholder="Date de l'évènement"/>
+                <form method="post" action="$this->script_name/check_addliste/">
+                    <input type="text" name="nomListe" placeholder="Nom de l'évènement"/>
+					<input type="text" name="dateFinale" placeholder="Date de l'évènement"/>
+
                     <input type="submit" value="Ajouter"/>
                 </form>
         </section>
@@ -119,6 +120,25 @@ EOT;
 <h1>Défaut</h1>
 EOT;
         return $html;
+
+    }
+
+    // RENDER ADD ITEM
+    private function renderViewAddItem(){
+
+        $html = <<<EOT
+<section>
+    <form method="post" action="$this->script_name/addItem/">
+    <label for="nom">Nom</label><input id="nom" name="nom"/>
+    <label for="tarif">Tarif</label><input id="Tarif" name="Tarif"/>
+    <textarea placeholder="description" name="description"></textarea>
+    <input type="submit" value="ajouter"/>
+</form>
+</section>
+EOT;
+
+        return $html;
+
 
     }
 
