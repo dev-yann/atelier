@@ -8,6 +8,7 @@
 
 namespace presentapp\control;
 use \presentapp\model\Liste as Liste;
+use \presentapp\model\Item;
 
 use presentapp\auth\PresentAuthentification;
 
@@ -46,28 +47,6 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderLogin');
     }
 
-    // Throw check login
-    // Control login form
-    public function check_login(){
-        $vue = new \presentapp\view\PresentView('');
-        if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
-            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
-            $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
-            $connect = new PresentAuthentification();
-        
-            // Si l'authentification retourne vrai
-            try{
-                $connect->login($user,$pass);
-                $this->viewPresent();
-                echo $_SESSION['user_login'];
-            }catch(\mf\auth\exception\AuthentificationException $e){
-                $this->viewLogin();
-            }
-        } else {
-            $this->viewLogin();
-        }
-    }
-	
 	public function viewListe(){
 		
 		$requeteListe = Liste::select()->get(); /* Faire le where avec variable de session */
@@ -81,12 +60,43 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderViewAddListe');
     }
 
+    public function viewItems(){
+
+	    // On récupere l'id de la liste
+        $id = $this->request->get['id'];
+	    // On récupère la liste
+	    $items = Liste::select('id', '=', $id)->first();
+
+
+	    $vue = new \presentapp\view\PresentView($items);
+        $vue->render('renderViewItems');
+    }
+
+
     public function logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
     }
 
+    public function check_login(){
+        $vue = new \presentapp\view\PresentView('');
+        if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
+            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
+            $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
+            $connect = new PresentAuthentification();
 
+            // Si l'authentification retourne vrai
+            try{
+                $connect->login($user,$pass);
+                $this->viewPresent();
+                echo $_SESSION['user_login'];
+            }catch(\mf\auth\exception\AuthentificationException $e){
+                $this->viewLogin();
+            }
+        } else {
+            $this->viewLogin();
+        }
+    }
     // CONTROL DE L'INSCRIPTION
     public function checkSignup(){
 
@@ -120,6 +130,8 @@ class PresentController extends \mf\control\AbstractController
             }
         }
     }
+
+
 
 
 }

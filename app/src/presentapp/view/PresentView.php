@@ -63,6 +63,7 @@ EOT;
 
 
     }
+
 	 // LISTE
     private  function renderViewListe(){
         $html ="<h1>Liste</h1>";
@@ -122,6 +123,17 @@ EOT;
     }
 
 
+    // Items presentation
+    private function renderViewItems(){
+        $tab = $this->data->items()->get();
+
+        foreach($tab as $key => $value){
+
+            echo "$key => $value";
+
+        }
+
+    }
 
 
     protected function renderBody($selector=null){
