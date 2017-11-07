@@ -27,6 +27,7 @@ $router->addRoute('form','/form/','\presentapp\control\PresentController', 'view
 $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
 $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
 $router->addRoute('addItem','/addItem/','\presentapp\control\PresentController', 'addItem');
+$router->addRoute('viewAddItem','/ViewAddItem/','\presentapp\control\PresentController', 'viewAddItem');
 $router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin');
 $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
 $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');

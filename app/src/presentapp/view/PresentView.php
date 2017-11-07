@@ -22,7 +22,6 @@ class PresentView extends AbstractView
         parent::__construct($data);
     }
 
-
     // HEADER
     private function renderHeader(){
         $html =
@@ -34,7 +33,6 @@ class PresentView extends AbstractView
 EOT;
         return $html;//<a href="$this->script_name//"></a>
     }
-
 
     // FOOTER
     private function renderFooter(){
@@ -63,6 +61,7 @@ EOT;
 
 
     }
+
 	 // LISTE
     private  function renderViewListe(){
         $html ="<h1>Liste</h1>";
@@ -122,19 +121,37 @@ EOT;
 
     }
 
-    private function renderViewListeItem(){
-    $html ="<h1>Liste</h1>";
-    
-         
-        $html .='<div class="unEvenement">'. $this->data->nom . "</br>";
-        $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
-        $html .= $this->data->date_final . "</br></br></br>";
-        $html .= "troloooooolollolo";
-    
-    
-    return $html;
+    // RENDER ADD ITEM
+    private function renderViewAddItem(){
 
- }
+        $html = <<<EOT
+<section>
+    <form method="post" action="$this->script_name/addItem/">
+    <label for="nom">Nom</label><input id="nom" name="nom"/>
+    <label for="tarif">Tarif</label><input id="Tarif" name="Tarif"/>
+    <textarea placeholder="description" name="description"></textarea>
+    <input type="submit" value="ajouter"/>
+</form>
+</section>
+EOT;
+
+        return $html;
+
+
+    }
+
+    // Items presentation
+    private function renderViewItems(){
+        $tab = $this->data->items()->get();
+
+        foreach($tab as $key => $value){
+
+            echo "$key => $value";
+
+        }
+
+    }
+
 
 
     protected function renderBody($selector=null){
