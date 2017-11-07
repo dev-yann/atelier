@@ -29,8 +29,10 @@ class PresentView extends AbstractView
             <<<EOT
 
 <h1>header</h1>
+<a href="$this->script_name/logout/">logout</a>
+
 EOT;
-        return $html;
+        return $html;//<a href="$this->script_name//"></a>
     }
 
 
@@ -81,7 +83,7 @@ EOT;
 		$html .= 
 			<<<EOT
         <section>
-                <form method="post" action="'.$this->script_name.'/liste/">
+                <form method="post" action="$this->script_name/liste/">
                     <input type="text" name="NomListe" placeholder="Nom de l'évènement"/>
 					<input type="text" name="DateFinal" placeholder="Date de l'évènement"/>
                     <input type="submit" value="Ajouter"/>
@@ -110,11 +112,10 @@ EOT;
     
     // DEFAULT
     private function renderViewPresent(){
-        echo $_SESSION['user_login'];
-        echo $_SESSION['access_level'];
+        /*echo $_SESSION['user_login'];
+        echo $_SESSION['access_level'];*/
         $html = <<<EOT
 <h1>Défaut</h1>
-<a href="$this->script_name/logout/">logout</a>
 EOT;
         return $html;
 
