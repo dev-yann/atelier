@@ -48,16 +48,12 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderLogin');
     }
 
-    public function viewItems(){
+    public function viewItem(){
 
-        // On récupere l'id de la liste
-        $id = $this->request->get['id'];
-        // On récupère la liste
-        $items = Liste::select('id', '=', $id)->first();
+        $nada = '';
+        $vue =  new \presentapp\view\PresentView($nada);
+        $vue->render('renderViewLogin');
 
-
-        $vue = new \presentapp\view\PresentView($items);
-        $vue->render('renderViewItems');
     }
 
     public function viewAddItem(){
@@ -190,6 +186,6 @@ class PresentController extends \mf\control\AbstractController
         }
     }
 
-    
+
 
 }
