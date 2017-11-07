@@ -33,15 +33,8 @@ create table Item(
     description varchar (50) not null,
     tarif float,
     url varchar (100),
-    status boolean not null default 0
-);
-
-create table liste_item(
+    status boolean not null default 0,
     id_list int not null,
-    id_item int not null,
-    PRIMARY KEY (id_list, id_item),
-    FOREIGN KEY (id_list) REFERENCES Liste (id),
-    FOREIGN KEY (id_item) REFERENCES Item (id)  
 );
 
 create table participant_item(
