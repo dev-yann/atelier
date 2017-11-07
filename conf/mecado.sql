@@ -34,7 +34,7 @@ create table Item(
     tarif float,
     url varchar (100),
     status boolean not null default 0,
-    id_list int not null,
+    id_list int not null
 );
 
 create table participant_item(
