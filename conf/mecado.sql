@@ -33,7 +33,7 @@ create table Item(
     description varchar (50) not null,
     tarif float,
     url varchar (100),
-    status char (1)
+    status boolean not null default 0
 );
 
 create table liste_item(
