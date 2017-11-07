@@ -121,7 +121,19 @@ EOT;
 
     }
 
+ private function renderViewListeItem(){
+    $html ="<h1>Liste</h1>";
+    
+         
+        $html .='<div class="unEvenement">'. $this->data->nom . "</br>";
+        $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
+        $html .= $this->data->date_final . "</br></br></br>";
+        $html .= "troloooooolollolo";
+    
+    
+    return $html;
 
+ }
 
 
     protected function renderBody($selector=null){
