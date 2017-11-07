@@ -50,7 +50,12 @@ class PresentController extends \mf\control\AbstractController
 
     public function viewItem(){
 
-        $nada = '';
+        $crea = $_SESSION['user_login'];
+        $idCrea = Createur::select()->where('email', '=', $crea)->first();
+        $id = $idCrea->id;
+
+
+        $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
         $vue->render('renderViewLogin');
 
@@ -187,5 +192,18 @@ class PresentController extends \mf\control\AbstractController
     }
 
 
+    public function viewListeItem(){
+        
+                $id = $this->request->get['id'];
+                
+                // recupération de la liste et de ses informations
+        
+                $l= Liste::where('id','=',$id)->first();
+        
+                $vue = new \presentapp\view\PresentView($l);
+                $vue->render('renderViewListeItem');
+        
+                //$idem= Item::where('id','=',$id)->get();    
 
+    }
 }

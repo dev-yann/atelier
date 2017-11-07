@@ -141,7 +141,7 @@ EOT;
 
     }
 
-    // Items presentation
+    // Item presentation
     private function renderViewItem(){
         $tab = $this->data->items()->get();
 
@@ -151,6 +151,16 @@ EOT;
 
         }
 
+    }
+
+    public function renderViewListeItem(){
+        $html ="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
+        $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
+        $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
+        $html .= $this->data->date_final . "</br></br></br> MDRRR";
+
+        return $html;
+        
     }
 
 
