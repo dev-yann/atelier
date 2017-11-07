@@ -31,3 +31,5 @@ $db->addConnection( $config );
 $db->setAsGlobal();
 $db->bootEloquent();
 
+//saluuuut
+
