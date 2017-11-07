@@ -7,7 +7,7 @@
  */
 
 namespace presentapp\control;
-
+use \presentapp\model\Liste as Liste;
 
 use presentapp\auth\PresentAuthentification;
 
@@ -67,6 +67,19 @@ class PresentController extends \mf\control\AbstractController
         } else {
             $this->viewLogin();
         }
+    }
+	
+	public function viewListe(){
+		
+		$requeteListe = Liste::select()->get(); /* Faire le where avec variable de session */
+        $vue = new \presentapp\view\PresentView($requeteListe);
+        $vue->render('renderViewListe');
+    }
+	
+	public function viewaddListe(){
+		
+        $vue = new \presentapp\view\PresentView('');
+        $vue->render('renderViewAddListe');
     }
 
     public function logout(){
