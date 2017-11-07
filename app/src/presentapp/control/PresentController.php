@@ -111,9 +111,24 @@ class PresentController extends \mf\control\AbstractController
     }
 	
 
+    public function addItem(){
+        $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+        $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+        $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+        $url = "/.$nom./";
+
+        $item=new Item();
+        $item->nom=$nom;
+        $item->description=$description;
+        $item->tarif=$tarif;
+        $item->url=$url;
+        $item->save();
+    }
+
     public function logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
+        $this->viewListe();
     }
 
 
@@ -136,7 +151,7 @@ class PresentController extends \mf\control\AbstractController
                     $signUp = new PresentAuthentification();
                     $signUp->createUser($username, $pw, $fullname,$email_a);
 
-                    $this->viewPresent();
+                    $this->viewLogin();
 
                 } else {
 
@@ -151,5 +166,16 @@ class PresentController extends \mf\control\AbstractController
         }
     }
 
+    public function ViewListeItem(){
+
+        $id = $this->request->get['id'];
+        
+        // recupération de la liste et de ses informations
+
+        $l= Liste::where('id','=',$id)->first();
+
+        $vue = new PresentView($l);
+        $vue->render('renderViewListeItem');
+    }
 
 }

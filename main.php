@@ -26,10 +26,12 @@ $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\Presen
 $router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
 $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
 $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
+$router->addRoute('addItem','/addItem/','\presentapp\control\PresentController', 'addItem');
 $router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin');
 $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
 $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
 $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
 $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->run();
 
