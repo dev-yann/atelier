@@ -81,9 +81,9 @@ EOT;
 		$html .= 
 			<<<EOT
         <section>
-                <form method="post" action="'.$this->script_name.'/liste/">
-                    <input type="text" name="NomListe" placeholder="Nom de l'évènement"/>
-					<input type="text" name="DateFinal" placeholder="Date de l'évènement"/>
+                <form method="post" action="$this->script_name/check_addliste/">
+                    <input type="text" name="nomListe" placeholder="Nom de l'évènement"/>
+					<input type="text" name="dateFinale" placeholder="Date de l'évènement"/>
                     <input type="submit" value="Ajouter"/>
                 </form>
         </section>
@@ -119,9 +119,6 @@ EOT;
         return $html;
 
     }
-
-
-
 
     protected function renderBody($selector=null){
 

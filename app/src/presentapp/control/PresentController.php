@@ -81,6 +81,27 @@ class PresentController extends \mf\control\AbstractController
         $vue = new \presentapp\view\PresentView('');
         $vue->render('renderViewAddListe');
     }
+	
+	public function checkaddliste(){
+	
+        if(filter_has_var(INPUT_POST,'nomListe') /*AND filter_has_var(INPUT_POST,'dateFinal')*/){
+
+            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateFinal = filter_input(INPUT_POST,'dateFinal',FILTER_SANITIZE_SPECIAL_CHARS);
+            
+            $l = new Liste();
+            $l->nom = 'papi';
+			$l->date_final = $dateFinal;
+			$l->save();
+
+            $this->viewListe();
+
+        } else {
+
+            $this->checkSignup();
+        }
+    }
+	
 
     public function logout(){
         $logout = new \mf\auth\Authentification();
