@@ -31,3 +31,4 @@ $db->addConnection( $config );
 $db->setAsGlobal();
 $db->bootEloquent();
 
+// modification ouloulou
