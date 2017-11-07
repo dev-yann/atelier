@@ -22,7 +22,7 @@ class Liste extends \Illuminate\Database\Eloquent\Model
     }
 
     public function items(){
-        return $this->hasMany('presentapp\model\Item', 'id');
+        return $this->hasMany('presentapp\model\Item', 'id_list');
     }
     
 

@@ -122,10 +122,16 @@ class PresentController extends \mf\control\AbstractController
             $item->url=$url;
         }
 
+        /*$persCo = $_SESSION['user_login'];
+        $requeteCrea = Createur::select()->where('email', '=', $persCo);
+        $c = $requeteCrea->first();     
+        $idc = $c->id;*/
+
 
         $item->nom=$nom;
         $item->description=$description;
         $item->tarif=$tarif;
+        //$item->id_list
 
         $item->save();
     }
@@ -194,18 +200,7 @@ class PresentController extends \mf\control\AbstractController
         
                 $id = $this->request->get['id'];        
                 $l= Liste::where('id','=',$id)->first();
-
-
-                $tab = $this->data->items()->get();
-
-
-
-
-
-
-
-
-        
+       
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
         
