@@ -80,10 +80,47 @@ class PresentController extends \mf\control\AbstractController
         $vue = new \presentapp\view\PresentView('');
         $vue->render('renderViewAddListe');
     }
+	
+	public function checkaddliste(){
+	
+        if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale')){
+
+            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+            
+            $l = new Liste();
+            $l->nom = $nomListe;
+			$l->date_final = $dateFinal;
+			$l->createur = 1;
+			$l->save();
+
+            $this->viewListe();
+
+        } else {
+
+            $this->checkSignup();
+        }
+    }
+	
+
+    public function addItem(){
+        $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+        $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+        $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+        $url = "/.$nom./";
+
+        $item=new Item();
+        $item->nom=$nom;
+        $item->description=$description;
+        $item->tarif=$tarif;
+        $item->url=$url;
+        $item->save();
+    }
 
     public function logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
+        $this->viewListe();
     }
 
 
@@ -106,7 +143,7 @@ class PresentController extends \mf\control\AbstractController
                     $signUp = new PresentAuthentification();
                     $signUp->createUser($username, $pw, $fullname,$email_a);
 
-                    $this->viewPresent();
+                    $this->viewLogin();
 
                 } else {
 

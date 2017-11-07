@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: yann
- * Date: 07/11/17
- * Time: 14:39
+ * Date: 06/11/17
+ * Time: 17:44
  */
 
 namespace presentapp\model;
@@ -12,6 +12,11 @@ namespace presentapp\model;
 class Item extends \Illuminate\Database\Eloquent\Model
 {
 
+    protected 	$table		= 'item';
+    protected 	$primaryKey	= 'id';
+    public		$timestamps	= false;
+
+    
     public function liste_item(){
 
         return $this->belongsTo('presentapp\model\ListeItem', 'id');
