@@ -68,7 +68,7 @@ EOT;
         $html ="<h1>Liste</h1>";
 		foreach ($this->data as $value){
 			 
-			$html .='<div class="unEvenement"><a href="/listeItem/">'. $value->nom . "</a></br>";
+			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?id=" . $value->id . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
 			$html .= $value->date_final . "</br></br></br>";
 		}
