@@ -8,9 +8,10 @@
 
 namespace presentapp\control;
 use \presentapp\model\Liste as Liste;
+use \presentapp\model\Item;
 use \presentapp\model\Createur as Createur;
-
 use presentapp\auth\PresentAuthentification;
+
 
 class PresentController extends \mf\control\AbstractController
 {
@@ -47,28 +48,25 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderLogin');
     }
 
-    // Throw check login
-    // Control login form
-    public function check_login(){
-        $vue = new \presentapp\view\PresentView('');
-        if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
-            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
-            $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
-            $connect = new PresentAuthentification();
-        
-            // Si l'authentification retourne vrai
-            try{
-                $connect->login($user,$pass);
-                $this->viewPresent();
-                echo $_SESSION['user_login'];
-            }catch(\mf\auth\exception\AuthentificationException $e){
-                $this->viewLogin();
-            }
-        } else {
-            $this->viewLogin();
-        }
+    public function viewItems(){
+
+        // On récupere l'id de la liste
+        $id = $this->request->get['id'];
+        // On récupère la liste
+        $items = Liste::select('id', '=', $id)->first();
+
+
+        $vue = new \presentapp\view\PresentView($items);
+        $vue->render('renderViewItems');
     }
-	
+
+    public function viewAddItem(){
+
+        $vue = new \presentapp\view\PresentView('');
+        $vue->render('renderViewAddItem');
+
+    }
+
 	public function viewListe(){
 		
 		$requeteListe = Liste::select()->get(); /* Faire le where avec variable de session */
@@ -118,16 +116,24 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
+
+	    // regarder si ca existe
         $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
         $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
         $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
-        $url = "/.$nom./";
 
         $item=new Item();
+
+        if(isset($_POST['url'])){
+            $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+            $item->url=$url;
+        }
+
+
         $item->nom=$nom;
         $item->description=$description;
         $item->tarif=$tarif;
-        $item->url=$url;
+
         $item->save();
     }
 
@@ -137,6 +143,25 @@ class PresentController extends \mf\control\AbstractController
         $this->viewListe();
     }
 
+    public function check_login(){
+        $vue = new \presentapp\view\PresentView('');
+        if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
+            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
+            $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
+            $connect = new PresentAuthentification();
+
+            // Si l'authentification retourne vrai
+            try{
+                $connect->login($user,$pass);
+                $this->viewPresent();
+                echo $_SESSION['user_login'];
+            }catch(\mf\auth\exception\AuthentificationException $e){
+                $this->viewLogin();
+            }
+        } else {
+            $this->viewLogin();
+        }
+    }
 
     // CONTROL DE L'INSCRIPTION
     public function checkSignup(){
@@ -172,16 +197,28 @@ class PresentController extends \mf\control\AbstractController
         }
     }
 
-    public function ViewListeItem(){
-
-        $id = $this->request->get['id'];
+    public function viewListeItem(){
         
-        // recupération de la liste et de ses informations
+                $id = $this->request->get['id'];        
+                $l= Liste::where('id','=',$id)->first();
 
-        $l= Liste::where('id','=',$id)->first();
 
-        $vue = new PresentView($l);
-        $vue->render('renderViewListeItem');
-    }
+                $tab = $this->data->items()->get();
+
+
+
+
+
+
+
+
+        
+                $vue = new \presentapp\view\PresentView($l);
+                $vue->render('renderViewListeItem');
+        
+                //$idem= Item::where('id','=',$id)->get();    
+            }
+
+    
 
 }

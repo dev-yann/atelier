@@ -21,4 +21,9 @@ class Liste extends \Illuminate\Database\Eloquent\Model
         return $this->belongsTo('tweeterapp\model\Createur', 'createur');
     }
 
+    public function items(){
+        return $this->hasMany('presentapp\model\Item', 'id');
+    }
+    
+
 }
