@@ -71,9 +71,11 @@ EOT;
 			 
 			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?id=" . $value->id . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
-			$html .= $value->date_final . "</br></br></br>";
+			$html .= $value->date_final."</br>";
+			$html .= '<a href="'.$this->script_name.'/supprliste/?id='.$value->id.'">Supprimer une liste</a></br></br></br>';
 		}
-		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a>';
+		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
+		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer une liste</a>';
         return $html;
     }
 	
@@ -94,6 +96,9 @@ EOT;
 EOT;
         return $html;
     }
+	// SUPPR LISTE
+	
+	
 	
     public function renderLogin(){
         $html =

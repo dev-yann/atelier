@@ -90,9 +90,8 @@ class PresentController extends \mf\control\AbstractController
         
 			//recuperation de l'id de la personne connecté
 			$persCo = $_SESSION['user_login'];
-			$requeteCrea = Createur::select()->where('email', '=', $persCo);
-			$c = $requeteCrea->first();     
-			$idc = $c->id;
+			$requeteCrea = Createur::select()->where('email', '=', $persCo)->first();     
+			$idc = $requeteCrea->id;
 					
             $l = new Liste();
             $l->nom = $nomListe;
@@ -106,6 +105,14 @@ class PresentController extends \mf\control\AbstractController
 
             $this->checkSignup();
         }
+    }
+	
+	public function viewSupprliste(){
+		$idListe = $this->request->get['id'];
+		
+		$affectedRows = Liste::where('id', '=', $idListe)->delete();
+		
+		$this->viewListe();
     }
 
     public function addItem(){
