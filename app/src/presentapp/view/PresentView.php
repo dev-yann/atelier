@@ -32,6 +32,7 @@ class PresentView extends AbstractView
 <a href="$this->script_name/login/">connection</a>
 <a href="$this->script_name/logout/">logout</a>
 <a href="$this->script_name/addliste/">Ajouter une liste</a>
+<a href="$this->script_name/liste/">Mes listes</a>
 
 
 EOT;
@@ -172,17 +173,25 @@ EOT;
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
         $html .= $this->data->date_final . "</br></br></br> MDRRR";
 
-        /*$tab = $this->data->items()->get();
+        //$id_list = $this->data->id;
+
+        $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
 
         foreach ($tab as $key => $value){
+            if($value['status']==0){
+                $status="<a href='#'>reservable</a>";
+            }else{
+                $status="<a href='#'>déjà pris</a>";
+            }
+
             $html .= '<div class="item">';
             
             $html .= '<p>Nom : '.$value['nom'].'</p>';
-            $html .= '<p>Tweet : <a href="'.$this->script_name.'/view/?id='.$value['id'].'">'.$value['text'].'</a></p>';
-            $html .= '<p>Date : '.$value['created_at'].'</p>';
-            $html .= '<p>Followers : '.$this->data->followers.'</p>';
+            $html .= '<p>Description : '.$value['description'].'</a></p>';
+            $html .= '<p>Tarif : '.$value['tarif'].'</p>';
+            $html .= "<p>Status : $status</p>";
             $html .= '</div>';
-        }*/
+        }
         return $html;
     }
 
