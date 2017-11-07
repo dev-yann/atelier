@@ -69,8 +69,11 @@ class PresentController extends \mf\control\AbstractController
     }
 
 	public function viewListe(){
+        $persCo = $_SESSION['user_login'];
+        $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();     
+        $idc = $requeteCrea->id;
 		
-		$requeteListe = Liste::select()->get(); /* Faire le where avec variable de session */
+		$requeteListe = Liste::select()->where('createur', '=', $idc)->get(); /* Faire le where avec variable de session */
         $vue = new \presentapp\view\PresentView($requeteListe);
         $vue->render('renderViewListe');
     }
@@ -91,9 +94,8 @@ class PresentController extends \mf\control\AbstractController
         
 			//recuperation de l'id de la personne connecté
 			$persCo = $_SESSION['user_login'];
-			$requeteCrea = Createur::select()->where('email', '=', $persCo);
-			$c = $requeteCrea->first();     
-			$idc = $c->id;
+			$requeteCrea = Createur::select()->where('email', '=', $persCo)->first();     
+			$idc = $requeteCrea->id;
 					
             $l = new Liste();
             $l->nom = $nomListe;
@@ -107,6 +109,14 @@ class PresentController extends \mf\control\AbstractController
 
             $this->checkSignup();
         }
+    }
+	
+	public function viewSupprliste(){
+		$idListe = $this->request->get['id'];
+		
+		$affectedRows = Liste::where('id', '=', $idListe)->delete();
+		
+		$this->viewListe();
     }
 
     public function addItem(){
@@ -123,10 +133,12 @@ class PresentController extends \mf\control\AbstractController
             $item->url=$url;
         }
 
+        $idListe = $this->request->get['id'];
 
         $item->nom=$nom;
         $item->description=$description;
         $item->tarif=$tarif;
+        $item->id_list = $idListe;
 
         $item->save();
     }
@@ -134,26 +146,41 @@ class PresentController extends \mf\control\AbstractController
     public function logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
-        $this->viewListe();
+
+        // SI DÉCO ALORS PEU PAS AFFICHER VIEWLISTE
+        /*$this->viewListe();*/
+        $this->viewPresent();
     }
 
     public function check_login(){
+
+        // on recharge la vue dans le cas d'une error
         $vue = new \presentapp\view\PresentView('');
+
         if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
             $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
             $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
+
             $connect = new PresentAuthentification();
 
             // Si l'authentification retourne vrai
             try{
+
                 $connect->login($user,$pass);
-                $this->viewPresent();
+                $this->viewListe();
                 echo $_SESSION['user_login'];
+
             }catch(\mf\auth\exception\AuthentificationException $e){
+
                 $this->viewLogin();
+                echo $e->getMessage();
+
             }
+
         } else {
+
             $this->viewLogin();
+
         }
     }
 
@@ -174,32 +201,47 @@ class PresentController extends \mf\control\AbstractController
                 if($pw === $pw_repeat){
 
                     $signUp = new PresentAuthentification();
-                    $signUp->createUser($username, $pw, $fullname,$email_a);
 
-                    $this->viewLogin();
+                    try{
+
+                        $signUp->createUser($username, $pw, $fullname,$email_a);
+
+                        // Si tous se passe bien on renvoie sur les listes
+                        $this->viewListe();
+
+                    }catch (\Exception $e){
+
+                        // si la création du user à échouée
+                        $this->viewSignUp();
+                        echo $e->getMessage();
+
+                    }
 
                 } else {
 
+                    echo "Les mots de passes ne sont pas les mêmes";
                     $this->viewSignUp();
                 }
 
             } else {
 
-                $this->viewSignup();
+                echo "L'adresse email n'a pas le bon format";
 
             }
+
+        } else {
+
+            echo "Certaines données sont manquantes";
+            $this->viewSignup();
         }
     }
 
 
     public function viewListeItem(){
         
-                $id = $this->request->get['id'];
-                
-                // recupération de la liste et de ses informations
-        
+                $id = $this->request->get['id'];        
                 $l= Liste::where('id','=',$id)->first();
-        
+       
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
         

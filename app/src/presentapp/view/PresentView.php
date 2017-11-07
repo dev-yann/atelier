@@ -28,7 +28,11 @@ class PresentView extends AbstractView
             <<<EOT
 
 <h1>header</h1>
+<a href="$this->script_name/signup/">inscription</a>
+<a href="$this->script_name/login/">connection</a>
 <a href="$this->script_name/logout/">logout</a>
+<a href="$this->script_name/addliste/">Ajouter une liste</a>
+
 
 EOT;
         return $html;//<a href="$this->script_name//"></a>
@@ -70,9 +74,11 @@ EOT;
 			 
 			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?id=" . $value->id . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
-			$html .= $value->date_final . "</br></br></br>";
+			$html .= $value->date_final."</br>";
+			$html .= '<a href="'.$this->script_name.'/supprliste/?id='.$value->id.'">Supprimer une liste</a></br></br></br>';
 		}
-		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a>';
+		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
+		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer une liste</a>';
         return $html;
     }
 	
@@ -93,6 +99,9 @@ EOT;
 EOT;
         return $html;
     }
+	// SUPPR LISTE
+	
+	
 	
     public function renderLogin(){
         $html =
@@ -124,12 +133,14 @@ EOT;
 
     // RENDER ADD ITEM
     private function renderViewAddItem(){
-
+        /*$get = new \presentapp\control\PresentController();
+        $idList = $get->request->get['id'];*/
+        $idList = $_GET['id']; //a faire mieux comme en haut mais pb de protected
         $html = <<<EOT
 <section>
-    <form method="post" action="$this->script_name/addItem/">
+    <form method="post" action="$this->script_name/addItem/?id=$idList">
     <label for="nom">Nom</label><input id="nom" name="nom"/>
-    <label for="tarif">Tarif</label><input id="Tarif" name="Tarif"/>
+    <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
     <textarea placeholder="description" name="description"></textarea>
     <input type="submit" value="ajouter"/>
 </form>
@@ -154,13 +165,25 @@ EOT;
     }
 
     public function renderViewListeItem(){
+
         $html ="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
+        $html .= "<a href=".$this->script_name."/ViewAddItem/?id=".$this->data->id.">Ajouter une item</a>";
         $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
         $html .= $this->data->date_final . "</br></br></br> MDRRR";
 
+        /*$tab = $this->data->items()->get();
+
+        foreach ($tab as $key => $value){
+            $html .= '<div class="item">';
+            
+            $html .= '<p>Nom : '.$value['nom'].'</p>';
+            $html .= '<p>Tweet : <a href="'.$this->script_name.'/view/?id='.$value['id'].'">'.$value['text'].'</a></p>';
+            $html .= '<p>Date : '.$value['created_at'].'</p>';
+            $html .= '<p>Followers : '.$this->data->followers.'</p>';
+            $html .= '</div>';
+        }*/
         return $html;
-        
     }
 
 

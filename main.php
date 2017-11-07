@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 use mf\router\Router;
 
@@ -22,6 +21,7 @@ $router = new Router();
 $router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
 $router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp');
 $router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
 $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
@@ -35,5 +35,3 @@ $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentControl
 $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
 $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->run();
-
-
