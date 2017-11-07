@@ -32,7 +32,14 @@ $db->setAsGlobal();
 $db->bootEloquent();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // modification
+//saluuuut
 =======
 // modification
+//saluuuut
 >>>>>>> formulaire
+=======
+// modification
+//saluuuut
+>>>>>>> 274d0f1056f3983b6ff77f3a118977ebdd7e8e54
