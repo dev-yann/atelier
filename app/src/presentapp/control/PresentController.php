@@ -203,8 +203,6 @@ class PresentController extends \mf\control\AbstractController
         
                 $idem= Item::where('id','=',$id)->get();    
             }
-        
-        }
 
     
 
