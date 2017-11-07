@@ -68,8 +68,11 @@ class PresentController extends \mf\control\AbstractController
     }
 
 	public function viewListe(){
+        $persCo = $_SESSION['user_login'];
+        $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();     
+        $idc = $requeteCrea->id;
 		
-		$requeteListe = Liste::select()->get(); /* Faire le where avec variable de session */
+		$requeteListe = Liste::select()->where('createur', '=', $idc)->get(); /* Faire le where avec variable de session */
         $vue = new \presentapp\view\PresentView($requeteListe);
         $vue->render('renderViewListe');
     }
@@ -129,16 +132,12 @@ class PresentController extends \mf\control\AbstractController
             $item->url=$url;
         }
 
-        /*$persCo = $_SESSION['user_login'];
-        $requeteCrea = Createur::select()->where('email', '=', $persCo);
-        $c = $requeteCrea->first();     
-        $idc = $c->id;*/
-
+        $idListe = $this->request->get['id'];
 
         $item->nom=$nom;
         $item->description=$description;
         $item->tarif=$tarif;
-        //$item->id_list
+        $item->id_list = $idListe;
 
         $item->save();
     }
@@ -159,7 +158,7 @@ class PresentController extends \mf\control\AbstractController
             // Si l'authentification retourne vrai
             try{
                 $connect->login($user,$pass);
-                $this->viewPresent();
+                $this->viewListe();
                 echo $_SESSION['user_login'];
             }catch(\mf\auth\exception\AuthentificationException $e){
                 $this->viewLogin();

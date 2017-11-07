@@ -130,10 +130,12 @@ EOT;
 
     // RENDER ADD ITEM
     private function renderViewAddItem(){
-
+        /*$get = new \presentapp\control\PresentController();
+        $idList = $get->request->get['id'];*/
+        $idList = $_GET['id']; //a faire mieux comme en haut mais pb de protected
         $html = <<<EOT
 <section>
-    <form method="post" action="$this->script_name/addItem/">
+    <form method="post" action="$this->script_name/addItem/?id=$idList">
     <label for="nom">Nom</label><input id="nom" name="nom"/>
     <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
     <textarea placeholder="description" name="description"></textarea>
