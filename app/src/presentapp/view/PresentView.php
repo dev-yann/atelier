@@ -52,7 +52,41 @@ EOT;
 
 
     }
+	 // LISTE
+    private  function renderViewListe(){
+        $html ="<h1>Liste</h1>";
+		foreach ($this->data as $value){
+			 
+			$html .='<div class="unEvenement">'. $value->nom . "</br>";
+			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
+			$html .= $value->date_final . "</br></br></br>";
+		}
+		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a>';
+        return $html;
+    }
+	
+	// ADD LISTE
+    private  function renderViewAddListe(){
+        $html ="<h1>Liste</h1>";
+	
+		$html .= 
+			<<<EOT
+        <section>
+                <form method="post" action="'.$this->script_name.'/liste/">
+                    <input type="text" name="NomListe" placeholder="Nom de l'évènement"/>
+					<input type="text" name="DateFinal" placeholder="Date de l'évènement"/>
+                    <input type="submit" value="Ajouter"/>
+                </form>
+        </section>
+EOT;
+        return $html;
 
+
+    }
+	
+	
+		
+		
     // DEFAULT
     private function renderViewPresent(){
         $html = <<<EOT

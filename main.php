@@ -14,14 +14,6 @@ require_once ("app/src/mf/utils/ClassLoader.php");
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
 
-
-// Définition des routes
-$router = new Router();
-$router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
-$router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
-$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->run();
-
 // Connection à la base
 $config = parse_ini_file('conf/config.ini');
 $db = new Illuminate\Database\Capsule\Manager();
@@ -30,3 +22,15 @@ $db = new Illuminate\Database\Capsule\Manager();
 $db->addConnection( $config );
 $db->setAsGlobal();
 $db->bootEloquent();
+
+
+// Définition des routes
+$router = new Router();
+$router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
+$router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
+$router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
+$router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
+
+$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->run();
+
