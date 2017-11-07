@@ -5,6 +5,7 @@
  * Date: 06/11/17
  * Time: 15:16
  */
+session_start();
 use mf\router\Router;
 
 // Require autoload
@@ -25,6 +26,7 @@ $router = new Router();
 $router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
 $router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp');
 $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->run();
 
