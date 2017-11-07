@@ -33,7 +33,6 @@ class PresentController extends \mf\control\AbstractController
 
     }
 
-
     // VUE INSCRIPTION
     public function viewSignUp(){
 
@@ -135,4 +134,6 @@ class PresentController extends \mf\control\AbstractController
             }
         }
     }
+
+
 }

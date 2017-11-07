@@ -17,4 +17,9 @@ class Item extends \Illuminate\Database\Eloquent\Model
     public		$timestamps	= false;
 
     
+    public function liste_item(){
+
+        return $this->belongsTo('presentapp\model\ListeItem', 'id');
+
+    }
 }
