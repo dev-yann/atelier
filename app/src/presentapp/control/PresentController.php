@@ -30,6 +30,7 @@ class PresentController extends \mf\control\AbstractController
         return $vue->render('home');*/
         $vue = new \presentapp\view\PresentView('');
         return $vue->render('renderViewPresent');
+
     }
 
 
@@ -44,9 +45,9 @@ class PresentController extends \mf\control\AbstractController
     // CONTROL DE L'INSCRIPTION
     public function checkSignup(){
 
-        if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'email')){
+        if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
 
-            $email_a = $_POST["email"];
+            $email_a = $_POST["mail"];
 
             if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
 

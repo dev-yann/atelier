@@ -56,10 +56,11 @@ class PresentAuthentification extends \mf\auth\Authentification {
 			throw new \Exception(" Un utilisateur avec ce nom utilisateur éxiste déja.");
 		}else{//Sinon tout va bien !
 			$user=new Createur();
-			$user->username=$username;
+			$user->nom=$username;
 			$user->password=$this->hashPassword($pass);
-			$user->fullname=$fullname;
+			$user->prenom=$fullname;
 			$user->level=$level;
+			$user->email=$email;
 			$user->save();
 		}
 	}
@@ -84,13 +85,13 @@ class PresentAuthentification extends \mf\auth\Authentification {
 	*
 	*/
 
-	public function login($username, $password){
-		$userBDD=user::select('password','level')->where('username','=',$username)->first();
+	public function login($email, $password){
+		$userBDD=user::select('password','level')->where('email','=',$email)->first();
 		if(!isset($userBDD)){
 			throw new \Exception(" Login ou mot de pass incorrecte.");
 		}else{
 			if($this->verifyPassword($password, $userBDD->password)){
-				$this->updateSession($username,$userBDD->level);
+				$this->updateSession($email,$userBDD->level);
 			}else{
 				throw new \Exception(" Login ou mot de pass incorrecte.");
 			}
