@@ -48,10 +48,10 @@ class PresentAuthentification extends \mf\auth\Authentification {
 	* 
 	*/
 
-	public function createUser($username, $pass, $fullname,
+	public function createUser($username, $pass, $fullname,$email,
 				$level=self::ACCESS_LEVEL_USER) {
 
-		$utilisateur=Createur::select('username')->where('username','=',$username)->first();
+		$utilisateur=Createur::select('email')->where('email','=',$email)->first();
 		if(isset($utilisateur->username)){ //S'il y a déjà un utilisateur
 			throw new \Exception(" Un utilisateur avec ce nom utilisateur éxiste déja.");
 		}else{//Sinon tout va bien !
@@ -60,7 +60,6 @@ class PresentAuthentification extends \mf\auth\Authentification {
 			$user->password=$this->hashPassword($pass);
 			$user->fullname=$fullname;
 			$user->level=$level;
-			$user->followers=0;
 			$user->save();
 		}
 	}

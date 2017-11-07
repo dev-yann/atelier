@@ -18,8 +18,9 @@ $loader->register();
 // Définition des routes
 $router = new Router();
 $router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
-$router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
+$router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp');
 $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('check_signup',   '/check_signup/','\presentapp\control\TweeterController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->run();
 
 // Connection à la base
@@ -31,15 +32,3 @@ $db->addConnection( $config );
 $db->setAsGlobal();
 $db->bootEloquent();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-// modification
-//saluuuut
-=======
-// modification
-//saluuuut
->>>>>>> formulaire
-=======
-// modification
-//saluuuut
->>>>>>> 274d0f1056f3983b6ff77f3a118977ebdd7e8e54
