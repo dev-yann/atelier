@@ -8,7 +8,8 @@ create table Createur(
     prenom varchar(50),
     profession varchar(50),
     email varchar(50) not null,
-    password varchar(255) not null
+    password varchar(255) not null,
+    level int not null
 );
 
 create table Liste(
