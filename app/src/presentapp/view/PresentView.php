@@ -22,7 +22,6 @@ class PresentView extends AbstractView
         parent::__construct($data);
     }
 
-
     // HEADER
     private function renderHeader(){
         $html =
@@ -34,7 +33,6 @@ class PresentView extends AbstractView
 EOT;
         return $html;//<a href="$this->script_name//"></a>
     }
-
 
     // FOOTER
     private function renderFooter(){
@@ -69,7 +67,7 @@ EOT;
         $html ="<h1>Liste</h1>";
 		foreach ($this->data as $value){
 			 
-			$html .='<div class="unEvenement">'. $value->nom . "</br>";
+			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?id=" . $value->id . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
 			$html .= $value->date_final . "</br></br></br>";
 		}
@@ -142,7 +140,6 @@ EOT;
 
     }
 
-
     // Items presentation
     private function renderViewItems(){
         $tab = $this->data->items()->get();
@@ -154,6 +151,7 @@ EOT;
         }
 
     }
+
 
 
     protected function renderBody($selector=null){

@@ -9,8 +9,9 @@
 namespace presentapp\control;
 use \presentapp\model\Liste as Liste;
 use \presentapp\model\Item;
-
+use \presentapp\model\Createur as Createur;
 use presentapp\auth\PresentAuthentification;
+
 
 class PresentController extends \mf\control\AbstractController
 {
@@ -80,18 +81,25 @@ class PresentController extends \mf\control\AbstractController
     }
 	
 	public function checkaddliste(){
+		
 	
         if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale')){
 
             $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
             $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
-            
+        
+			//recuperation de l'id de la personne connecté
+			$persCo = $_SESSION['user_login'];
+			$requeteCrea = Createur::select()->where('email', '=', $persCo);
+			$c = $requeteCrea->first();     
+			$idc = $c->id;
+					
             $l = new Liste();
             $l->nom = $nomListe;
 			$l->date_final = $dateFinal;
-			$l->createur = 1;
+			$l->createur = $idc;
 			$l->save();
-
+			
             $this->viewListe();
 
         } else {
@@ -99,7 +107,6 @@ class PresentController extends \mf\control\AbstractController
             $this->checkSignup();
         }
     }
-	
 
     public function addItem(){
 
@@ -122,9 +129,6 @@ class PresentController extends \mf\control\AbstractController
 
         $item->save();
     }
-
-
-
 
     public function logout(){
         $logout = new \mf\auth\Authentification();
@@ -151,6 +155,7 @@ class PresentController extends \mf\control\AbstractController
             $this->viewLogin();
         }
     }
+
     // CONTROL DE L'INSCRIPTION
     public function checkSignup(){
 
@@ -185,7 +190,6 @@ class PresentController extends \mf\control\AbstractController
         }
     }
 
-
-
+    
 
 }

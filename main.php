@@ -32,6 +32,7 @@ $router->addRoute('login','/login/','\presentapp\control\PresentController', 'vi
 $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
 $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
 $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
 $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->run();
 
