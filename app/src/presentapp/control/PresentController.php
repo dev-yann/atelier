@@ -60,14 +60,19 @@ class PresentController extends \mf\control\AbstractController
             try{
                 $connect->login($user,$pass);
                 $this->viewPresent();
-                //echo $_SESSION['user_login'];
-            }catch(\Exception $e){
+                echo $_SESSION['user_login'];
+            }catch(\mf\auth\exception\AuthentificationException $e){
                 $this->viewLogin();
             }
         } else {
             $this->viewLogin();
         }
-        }
+    }
+
+    public function logout(){
+        $logout = new \mf\auth\Authentification();
+        $logout->logout();
+    }
 
 
     // CONTROL DE L'INSCRIPTION

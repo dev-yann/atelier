@@ -79,11 +79,15 @@ EOT;
         
                 return $html;
     }
+    
 
     // DEFAULT
     private function renderViewPresent(){
+        echo $_SESSION['user_login'];
+        echo $_SESSION['access_level'];
         $html = <<<EOT
 <h1>Défaut</h1>
+<a href="$this->script_name/logout/">logout</a>
 EOT;
         return $html;
 
