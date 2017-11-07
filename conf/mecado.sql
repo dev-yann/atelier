@@ -6,8 +6,7 @@ create table Createur(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nom varchar(50) NOT NULL,
     prenom varchar(50),
-    profession varchar(50), 
-    date_naisseance date,
+    profession varchar(50),
     email varchar(50) not null,
     password varchar(255) not null
 );
