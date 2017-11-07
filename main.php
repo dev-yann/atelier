@@ -31,4 +31,8 @@ $db->addConnection( $config );
 $db->setAsGlobal();
 $db->bootEloquent();
 
+<<<<<<< HEAD
 // modification
+=======
+// modification
+>>>>>>> formulaire
