@@ -201,7 +201,7 @@ class PresentController extends \mf\control\AbstractController
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
         
-                $idem= Item::where('id','=',$id)->get();    
+                //$idem= Item::where('id','=',$id)->get();    
             }
 
     
