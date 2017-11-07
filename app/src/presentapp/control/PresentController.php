@@ -192,11 +192,19 @@ class PresentController extends \mf\control\AbstractController
 
     public function viewListeItem(){
         
-                $id = $this->request->get['id'];
-                
-                // recupération de la liste et de ses informations
-        
+                $id = $this->request->get['id'];        
                 $l= Liste::where('id','=',$id)->first();
+
+
+                $tab = $this->data->items()->get();
+
+
+
+
+
+
+
+
         
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
