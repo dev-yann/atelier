@@ -5,9 +5,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php" afterPath="$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" afterPath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/model/Createur.php" afterPath="$PROJECT_DIR$/app/src/presentapp/model/Createur.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" afterPath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/config.ini" afterPath="$PROJECT_DIR$/conf/config.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/mecado.sql" afterPath="$PROJECT_DIR$/conf/mecado.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.php" afterPath="$PROJECT_DIR$/main.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +18,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+            <state relative-caret-position="280">
+              <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractAuthentification.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/mf/auth/AbstractAuthentification.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,8 +61,8 @@
       <file leaf-file-name="Router.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/mf/router/Router.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-120">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="640">
+              <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -62,8 +71,8 @@
       <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="1140">
+              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,18 +81,18 @@
       <file leaf-file-name="PresentAuthentification.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="93" column="43" lean-forward="false" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+            <state relative-caret-position="114">
+              <caret line="83" column="39" lean-forward="true" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Createur.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Createur.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/model/Createur.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="320">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -92,8 +101,8 @@
       <file leaf-file-name="Authentification.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/mf/auth/Authentification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="103" column="6" lean-forward="false" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+            <state relative-caret-position="154">
+              <caret line="82" column="29" lean-forward="true" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -102,23 +111,14 @@
       <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="65" column="21" lean-forward="true" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="38" />
+            <state relative-caret-position="-100">
+              <caret line="51" column="72" lean-forward="false" selection-start-line="51" selection-start-column="72" selection-end-line="51" selection-end-column="72" />
               <folding>
-                <marker date="1510042285977" expanded="true" signature="702:1298" ph="..." />
-                <marker date="1510042285977" expanded="true" signature="781:1279" ph="..." />
-                <marker date="1510042285977" expanded="true" signature="1795:1834" ph="..." />
+                <marker date="1510051714096" expanded="true" signature="702:1298" ph="..." />
+                <marker date="1510051714096" expanded="true" signature="781:1279" ph="..." />
+                <marker date="1510051714096" expanded="true" signature="1930:2002" ph="..." />
+                <marker date="1510051714096" expanded="true" signature="2333:2372" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AbstractController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/mf/control/AbstractController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -137,12 +137,12 @@
         <option value="$PROJECT_DIR$/presentapp/model/Liste.php" />
         <option value="$PROJECT_DIR$/presentapp/view/PresentView.php" />
         <option value="$PROJECT_DIR$/presentapp/control/PresentController.php" />
+        <option value="$PROJECT_DIR$/conf/config.ini" />
+        <option value="$PROJECT_DIR$/app/src/presentapp/model/Createur.php" />
         <option value="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
         <option value="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
-        <option value="$PROJECT_DIR$/main.php" />
-        <option value="$PROJECT_DIR$/conf/config.ini" />
         <option value="$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php" />
-        <option value="$PROJECT_DIR$/app/src/presentapp/model/Createur.php" />
+        <option value="$PROJECT_DIR$/main.php" />
       </list>
     </option>
   </component>
@@ -297,12 +297,12 @@
       <workItem from="1509977731835" duration="5372000" />
       <workItem from="1509984965778" duration="1589000" />
       <workItem from="1509995712476" duration="3229000" />
-      <workItem from="1510039158525" duration="8524000" />
+      <workItem from="1510039158525" duration="12390000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18714000" />
+    <option name="totallyTimeSpent" value="22580000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -383,9 +383,10 @@
         <state relative-caret-position="1100">
           <caret line="60" column="21" lean-forward="false" selection-start-line="60" selection-start-column="21" selection-end-line="60" selection-end-column="21" />
           <folding>
-            <marker date="1510042285977" expanded="true" signature="702:1298" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="781:1279" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="1795:1834" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="702:1298" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="781:1279" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="1930:2002" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="2333:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -455,9 +456,10 @@
         <state relative-caret-position="580">
           <caret line="34" column="24" lean-forward="false" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
           <folding>
-            <marker date="1510042285977" expanded="true" signature="702:1298" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="781:1279" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="1795:1834" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="702:1298" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="781:1279" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="1930:2002" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="2333:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -535,9 +537,10 @@
         <state relative-caret-position="600">
           <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
           <folding>
-            <marker date="1510042285977" expanded="true" signature="702:1298" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="781:1279" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="1795:1834" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="702:1298" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="781:1279" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="1930:2002" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="2333:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -605,38 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/Authentification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="103" column="6" lean-forward="false" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="65" column="21" lean-forward="true" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="38" />
-          <folding>
-            <marker date="1510042285977" expanded="true" signature="702:1298" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="781:1279" ph="..." />
-            <marker date="1510042285977" expanded="true" signature="1795:1834" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/presentapp/model/Liste.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/mf/router/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-120">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -649,34 +624,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.php">
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/model/Createur.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="48" lean-forward="false" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
+        <state relative-caret-position="320">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="-100">
+          <caret line="51" column="72" lean-forward="false" selection-start-line="51" selection-start-column="72" selection-end-line="51" selection-end-column="72" />
+          <folding>
+            <marker date="1510051714096" expanded="true" signature="702:1298" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="781:1279" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="1930:2002" ph="..." />
+            <marker date="1510051714096" expanded="true" signature="2333:2372" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/Authentification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="82" column="29" lean-forward="true" selection-start-line="82" selection-start-column="29" selection-end-line="82" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/router/AbstractRouter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-146">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/router/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="32" column="40" lean-forward="true" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/AbstractAuthentification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="93" column="43" lean-forward="false" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+        <state relative-caret-position="114">
+          <caret line="83" column="39" lean-forward="true" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/model/Createur.php">
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="1140">
+          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="14" column="30" lean-forward="true" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
           <folding />
         </state>
       </provider>

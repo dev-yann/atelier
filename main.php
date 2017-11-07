@@ -1,12 +1,14 @@
 <?php
+
+session_start();
 use mf\router\Router;
 
 // Require autoload
 require_once ("vendor/autoload.php");
 require_once ("app/src/mf/utils/ClassLoader.php");
-
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
+
 // initialisation connection
 $config = parse_ini_file('conf/config.ini');
 $db = new Illuminate\Database\Capsule\Manager();
@@ -23,4 +25,6 @@ $router->addRoute('login','/login/','\presentapp\control\PresentController', 'vi
 $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
 $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
 $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+
 $router->run();
+

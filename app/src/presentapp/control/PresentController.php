@@ -103,7 +103,7 @@ class PresentController extends \mf\control\AbstractController
 
             } else {
 
-                $this->checkSignup();
+                $this->viewSignup();
 
             }
         }
