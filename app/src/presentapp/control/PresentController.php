@@ -36,5 +36,16 @@ class PresentController extends \mf\control\AbstractController
         return $vue->render('renderViewForm');
     }
 
+    // Show login form
+    public function viewLogin(){
+        $vue = new $vue = new \presentapp\view\PresentView('');
+        $vue->render('renderLogin');
+    }
+
+    public function check_login(){
+        $vue = new $vue = new \presentapp\view\PresentView('');
+        $vue->render('renderLogin');
+    }
+
 
 }
