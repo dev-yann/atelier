@@ -120,6 +120,7 @@ class PresentController extends \mf\control\AbstractController
     public function logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
+        $this->viewListe();
     }
 
 
