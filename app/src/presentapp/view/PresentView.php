@@ -27,7 +27,6 @@ class PresentView extends AbstractView
     // HEADER
     private function renderHeader(){
 
-        /*$root = $this->app_root;*/
         if(isset($_SESSION['user_login'])){
             $html =
                 <<<EOT
