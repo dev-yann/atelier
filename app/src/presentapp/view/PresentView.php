@@ -29,14 +29,18 @@ class PresentView extends AbstractView
 
         if(isset($_SESSION['user_login'])){
 
-            $html =
-                <<<EOT
-
-<h1>header</h1>
-<a href="$this->script_name/logout/">logout</a>
-<a href="$this->script_name/addliste/">Ajouter une liste</a>
-<a href="$this->script_name/liste/">Mes listes</a>
-
+			 $html = <<<EOT
+		<header class="header">
+        	<h1 class="logo"><img src="../img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
+                <span class="icon-menu" id="btn-menu"></span>
+                <nav class="nav" id="nav">
+                    <ul class="menu">
+                        <li class="menu_item"><a href="$this->script_name/logout/" class="menu_link select">Deconnexion</a></li>
+                        <li class="menu_item"><a href="$this->script_name/addliste/" class="menu_link">Ajouter une liste</a></li>
+                        <li class="menu_item"><a href="$this->script_name/liste/" class="menu_link">Accueil</a></li>
+                    </ul>
+                </nav> 
+        </header>
 EOT;
         } else {
 

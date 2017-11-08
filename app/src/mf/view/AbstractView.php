@@ -4,7 +4,7 @@ namespace mf\view;
 
 abstract class AbstractView {
 
-    static protected $style_sheets = ['style.css','font-awesome/css/font-awesome.min.css']; /* un tableau de fichiers style */
+    static protected $style_sheets = ['css/principal.css','icomoon/style.css','icon/css/font-awesome.css','font-awesome/css/font-awesome.min.css']; /* un tableau de fichiers style */
     static protected $app_title    = "MF app Title"; /* un titre de document */
     
     protected $app_root    = null; /* répertoire racine de l'application */
@@ -108,8 +108,10 @@ abstract class AbstractView {
     <body>
         
        ${body}
-
+	   
+		<script src="../js/menu.js"></script> 
     </body>
+	
 </html>
 EOT;
 
