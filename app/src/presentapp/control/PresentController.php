@@ -276,13 +276,17 @@ class PresentController extends \mf\control\AbstractController
     }
 
 
-    public function viewListeItem(){
 
-        $id = $this->request->get['idListe'];
-        $l= Liste::where('idPartage','=',$id)->first();
+    public function viewListeItem($msg = null){  
+                $id = $this->request->get['idListe'];        
+                $l= Liste::where('idPartage','=',$id)->first();
+                if($msg != ''){
+                    $l['msg']=$msg;
+                }
+       
+                $vue = new \presentapp\view\PresentView($l);
+                $vue->render('renderViewListeItem');
 
-        $vue = new \presentapp\view\PresentView($l);
-        $vue->render('renderViewListeItem');
     }
 
     public function viewSupprItem(){
