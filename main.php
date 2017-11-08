@@ -31,8 +31,6 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
     $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
-    $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem');
-    $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem');
     $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 } else {
@@ -42,6 +40,8 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
     $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin');
+    $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem');
+    $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem');
     $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
     $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
