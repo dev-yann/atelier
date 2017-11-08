@@ -93,7 +93,7 @@ EOT;
 			$html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
 		}
 		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer une liste</a>';
+		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
         return $html;
     }
 	

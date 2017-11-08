@@ -177,7 +177,6 @@ class PresentController extends \mf\control\AbstractController
 
                 $connect->login($user,$pass);
                 $this->viewListe();
-                //echo $_SESSION['user_login'];
 
             }catch(\mf\auth\exception\AuthentificationException $e){
 
