@@ -26,20 +26,30 @@ class PresentView extends AbstractView
 
     // HEADER
     private function renderHeader(){
-        $html =
-            <<<EOT
+
+        if(isset($_SESSION['user_login'])){
+
+            $html =
+                <<<EOT
 
 <h1>header</h1>
-<a href="$this->script_name/signup/">inscription</a>
-<a href="$this->script_name/login/">connection</a>
 <a href="$this->script_name/logout/">logout</a>
 <a href="$this->script_name/addliste/">Ajouter une liste</a>
 <a href="$this->script_name/liste/">Mes listes</a>
-<a href="$this->script_name/addItem/">Ajouter items</a>
-
-
 
 EOT;
+        } else {
+
+            $html = <<<EOT
+            
+<a href="$this->script_name/signup/">inscription</a>
+<a href="$this->script_name/login/">connection</a>
+
+EOT;
+
+        }
+
+
         return $html;//<a href="$this->script_name//"></a>
     }
 
