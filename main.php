@@ -40,6 +40,7 @@ if(isset($_SESSION['user_login'])){
 
     // sinon pas connecter
     $router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp');
+    $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
     $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin');
     $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
