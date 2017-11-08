@@ -112,15 +112,19 @@ EOT;
 			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . ">". $value->nom . "</a></br>";
 			$html .= "Commence le : " . $value->date_debut . "</br>";
             $html .= "<p>Reservation possible jusqu'au: ".$value->date_final."</p></br>";
-
-			$html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien</a></p>";
-
-            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer la liste</a></br></br></br>';
-		}
-
-		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
+		
+            if(isset($_SESSION['user_login'])){
+                $html .= "<p><a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien de partage</a></p>";
+            }
+            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer cette liste</a></br></br></br>';
+            
+        }
+        if(isset($_SESSION['user_login'])){
+            $html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
+		    
+        }
 		$html .= "</div>";
-
+		
         return $html;
     }
 
@@ -134,13 +138,12 @@ EOT;
 <div class="container">
      <div class="col-8 offset-2">
       <div class="formulaire">
-       <legend>Ajouter une nouvelle liste</legend>
+       <legend>Ajouter une nouvelle liste : </legend>
         <form method="post" action="$this->script_name/check_addliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
-            <label for="date">Date evenement</label>
-            <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement" required/>
-             
+            <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
+            
             <input type="submit" value="Ajouter"/>
         </form>
         </div> 
@@ -160,7 +163,7 @@ EOT;
            <div class="container">
      <div class="col-8 offset-2">
       <div class="formulaire">
-       <legend>Inscription</legend>
+       <legend>Connexion</legend>
         <form method="post" action="$this->script_name/check_login/">
          <input type="email" name="email" placeholder="email" required> 
          <input type="password" name="pw" placeholder="password" required>  
@@ -203,9 +206,9 @@ EOT;
        <label for="nom">Nom</label><input type="text" id="nom" name="nom" placeholder="Nom" required/>
          
        <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" placeholder="Tarif" step="0.01"/>
-         <input type="url" placeholder="Url vers un autre site" required> 
+         <input type="url" id="url" placeholder="Url vers un autre site"> 
          <Textarea rows="4" cols="15" placeholder="Description" name="description"></Textarea>
-         <input type="text" name="image" placeholder="Ajouter le lien d'une image"/>
+         <input type="text" name="image" id="urlimage" placeholder="Ajouter le lien d'une image"/>
          <input type="submit" value="ajouter">
         </form>
        </div> 
@@ -237,13 +240,16 @@ EOT;
     public function renderViewListeItem(){
 
         $html = '<div class="container">';
+        if($this->data['msg'] !== null){
+            $html .= "<h1 class='alert'>".$this->data['msg']."</h1>";
+        }
+        
         $html .="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
         //if(isset($_SESSION['user_login'])){
-        $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a>";
+        $html .= "<p><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a></p>";
         //}
-        $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
-        $html .= $this->data->date_final . "</br></br></br>";
+        $html .= "Date de l'évènement : ".$this->data->date_final . "</br></br></br>";
 
         //$id_list = $this->data->id;
 
@@ -268,7 +274,9 @@ EOT;
             }
             $html .= '</div>';
             $html .= '</div>';
-
+			$html.= $value->id;
+			$html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">Supprimer cet item</a>';
+			/* $this->data->nom*/
         }
         return $html;
     }
