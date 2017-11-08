@@ -57,7 +57,7 @@ class PresentController extends \mf\control\AbstractController
 
         $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
-        $vue->render('renderViewLogin');
+        $vue->render('renderViewLogin'); // WHAT
 
     }
 
@@ -121,7 +121,7 @@ class PresentController extends \mf\control\AbstractController
 		
 		$affectedRows = Liste::where('id', '=', $idListe)->delete();
 		
-		$this->viewListe();
+		$this->viewItem();
     }
 
     public function addItem(){
@@ -131,6 +131,7 @@ class PresentController extends \mf\control\AbstractController
                 $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
                 $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
                 $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
+				$url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
 
                 //$tarifformat = number_format($tarif, 2, '.', ' '); problème avec les virgules
 
@@ -151,12 +152,15 @@ class PresentController extends \mf\control\AbstractController
                 $item->tarif=$tarifformat;
                 $item->id_list = $requeteListe['id'];
                 $item->urlImage = $image;
+				$item->url = $url;
                 $item->save();
                 $message = "L'item à bien été ajouté";
                 $this->viewListeItem($message);
                 
         }
     }
+
+
 
     public function logout(){
         $logout = new \mf\auth\Authentification();
@@ -208,6 +212,8 @@ class PresentController extends \mf\control\AbstractController
             $email_a = $_POST["mail"];
             $prenom=$_POST["fullname"];
             $nom=$_POST["username"];
+            $mdp=$_POST["pw"];
+            $longueur= strlen($mdp);
             if(preg_match($regex1, $prenom)){
                 echo" le prénom n'est pas au bon format";
                 
@@ -224,7 +230,9 @@ class PresentController extends \mf\control\AbstractController
                     $pw = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
                     $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
                     
-                                    
+                     if($longueur < 8){
+                         echo"mot de passe trop court";
+                     }else{              
                     if($pw === $pw_repeat){
                     
                         $signUp = new PresentAuthentification();
@@ -249,7 +257,7 @@ class PresentController extends \mf\control\AbstractController
                             echo "Les mots de passes ne sont pas les mêmes";
                             $this->viewSignUp();
                             }
-                    
+                        } 
                 } else {
                     
                     echo "L'adresse email n'a pas le bon format";
@@ -265,6 +273,7 @@ class PresentController extends \mf\control\AbstractController
     }
 
 
+<<<<<<< HEAD
     public function viewListeItem($msg = null){  
                 $message = $msg;      
                 $id = $this->request->get['idListe'];        
@@ -272,9 +281,24 @@ class PresentController extends \mf\control\AbstractController
                 if($message != ''){
                     $l['msg']=$message;
                 }
+=======
+    public function viewListeItem(){
+        
+    	$id = $this->request->get['idListe'];        
+        $l= Liste::where('idPartage','=',$id)->first();
+>>>>>>> 11f810c04680df698ba0c577ea9e2a5bc86d7148
        
-                $vue = new \presentapp\view\PresentView($l);
-                $vue->render('renderViewListeItem');
+        $vue = new \presentapp\view\PresentView($l);
+        $vue->render('renderViewListeItem');
+    }
+	
+	public function viewSupprItem(){
+		$idItem = $this->request->get['idItem'];
+		$idListe = $this->request->get['idListe'];
+		
+		$affectedRows = Item::where('id', '=', $idItem)->delete();
+		
+		$this->viewListeItem();
     }
 
     public function viewReserverItem(){
