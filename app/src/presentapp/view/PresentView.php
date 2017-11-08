@@ -120,10 +120,10 @@ EOT;
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'</p>";
+                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-            $html .= '<a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . "><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+            $html .= '<a href=' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
             $html .= "</div>";
             
         }
@@ -247,7 +247,6 @@ EOT;
         if($this->data['msg'] !== null){
             $html .= "<div class='alert alert-success col-12'>".$this->data['msg']."</div>";
         }
-        $html .= $this->data;
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
         $html .= "<div class='col-3 offset-9 sp'>
