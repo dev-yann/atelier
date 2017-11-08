@@ -34,7 +34,7 @@ class PresentView extends AbstractView
                 <<<EOT
                 
                 
-                <header class="header">
+                <header class="header theme-backcolor1">
         <h1 class="logo"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
@@ -107,7 +107,7 @@ EOT;
 	 // LISTE
     private  function renderViewListe(){
 
-        $html ="<h1>Liste</h1>";
+        $html ="<div class='container'>";
 		foreach ($this->data as $value){
 			 
 			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->id . ">". $value->nom . "</a></br>";
@@ -117,6 +117,8 @@ EOT;
 		}
 		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
 		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
+
+		$html .= "</div>";
         return $html;
     }
 	
@@ -281,7 +283,7 @@ EOT;
 
             <<<EOT
 
-        <header class="theme-backcolor1">${header}</header>
+        ${header}
         <section id="container" class="theme-backcolor2">
             ${body}
         </section>
