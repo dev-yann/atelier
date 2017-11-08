@@ -1,7 +1,9 @@
+$cl_header1: #4CB0AE;
 $color1: lighten($cl_header1,20%);
 $color2: darken($cl_header1,20%);
 $color3: beige;
 $color4: crimson;
+$color5: greenforest;
 
 .fa-pencil-square-o{
     color: $color3; 
@@ -10,6 +12,7 @@ $color4: crimson;
     width: 35px;
     height: 35px;
     text-align: center;
+    line-height: 50px;
 }
 .fa-pencil-square-o:hover{
     background-color: $color2;
@@ -22,10 +25,10 @@ $color4: crimson;
 }
 .fa-plus-circle{
     @extend .fa-pencil-square-o;
-    background-color: forestgreen;
+    background-color: green;
 }
 fa-minus-circle{
-     @extend .fa-pencil-square-o;
+    @extend .fa-pencil-square-o;
     background-color: $color4;
 }
 fa-minus-circle:hover{
