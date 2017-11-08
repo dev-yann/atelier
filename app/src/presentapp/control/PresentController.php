@@ -154,10 +154,8 @@ class PresentController extends \mf\control\AbstractController
             $item->urlImage = $image;
             $item->url = $url;
             $item->save();
-
-            $this->viewListeItem();
-            $message = "L'item à bien été ajouté";
-            echo "<script alert(".$message.")></script>";
+$message = "L'item à bien été ajouté";
+            $this->viewListeItem($message);
 
         }
     }

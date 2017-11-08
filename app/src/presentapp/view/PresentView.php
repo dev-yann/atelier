@@ -106,21 +106,26 @@ EOT;
     private  function renderViewListe(){
 
         $html ="<div class='container'>";
+        $html .= "<h2>Mes Listes</h2>";
+        if(isset($_SESSION['user_login'])){
+        $html .= '<div class="col-3 offset-9 sp">
+        <h3><a href='.$this->script_name.'/addliste/>Ajouter une liste</a></h3><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+        </div>';
+        }
 		foreach ($this->data as $value){
 
-			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . ">". $value->nom . "</a></br>";
-			$html .= "Commence le : " . $value->date_debut . "</br>";
-            $html .= "<p>Reservation possible jusqu'au: ".$value->date_final."</p></br>";
+            $html .="<div class='col-3 sp'>
+            <h3>".$value->nom."</h3>";
+			//$html .= "Commence le : " . $value->date_debut . "</br>";
+            $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<p><a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien de partage</a></p>";
+                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'</p>";
             }
-            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer cette liste</a></br></br></br>';
+            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
+            $html .= '<a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . "><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+            $html .= "</div>";
             
-        }
-        if(isset($_SESSION['user_login'])){
-            $html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		    
         }
 		$html .= "</div>";
 		
@@ -138,7 +143,7 @@ EOT;
      <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Ajouter une nouvelle liste : </legend>
-        <form method="post" action="$this->script_name/check_addliste/">
+        <form method="post" action="$this->script_name/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
@@ -240,15 +245,13 @@ EOT;
 
         $html = '<div class="container">';
         if($this->data['msg'] !== null){
-            $html .= "<div class='alert alert-success'>".$this->data['msg']."</div>";
+            $html .= "<div class='alert alert-success col-12'>".$this->data['msg']."</div>";
         }
-        
-        $html .="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
-        //if(isset($_SESSION['user_login'])){
-        $html .= "<p><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a></p>";
-        //}
-        $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
-        $html .= "Date de l'évènement : ".$this->data->date_final . "</br></br></br>";
+        $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
+        $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
+        $html .= "<div class='col-3 offset-9 sp'>
+                    <h3><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter Cadeau</a></h3><i class='fa fa-plus-circle fa-2x' aria-hidden='true'></i>
+                    </div>";
 
         //$id_list = $this->data->id;
 
@@ -261,21 +264,18 @@ EOT;
                 $status="déjà pris";
             }
 
-            $html .= '<div class="item">';
-            
-            $html .= '<p>Nom : '.$value['nom'].'</p>';
-            $html .= '<p>Description : '.$value['description'].'</a></p>';
-            $html .= '<p>Tarif : '.$value['tarif'].'€</p>';
-            $html .= '<p>Description : '.$value['description'].'</a></p>';
-            $html .= '<p>image : <img src="'.$value['urlImage'].'" alt="'.$value['nom'].'"></p>';
-            if(!isset($_SESSION['user_login'])){
+            $html .= '<div class="col-3 sp">';
+            $html .= '<h3 class="sp1">Nom : '.$value['nom'].'</h3>';
+            $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['nom'].'" class="cadeau"/>';
+            $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
+            $html .= '<h4>Tarif : '.$value['tarif'].'€</h4>';
+
+            if(isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
             }
-            $html .= '</div>';
-            $html .= '</div>';
-			$html.= $value->id;
-			$html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">Supprimer cet item</a>';
-			/* $this->data->nom*/
+            
+			$html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
+			$html .= '</div>';
         }
         return $html;
     }
