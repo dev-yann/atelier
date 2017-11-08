@@ -41,7 +41,6 @@ class PresentView extends AbstractView
                         <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">logout</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/addliste/">Ajouter une liste</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/liste/">Mes listes</a></li>
->>>>>>> 9def7d88957b8a9613936fc5b1030b94bf19c59a
                     </ul>
                 </nav> 
         </header>
