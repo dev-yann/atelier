@@ -109,13 +109,20 @@ EOT;
         $html ="<h1>Liste</h1>";
 		foreach ($this->data as $value){
 			 
-			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->id . ">". $value->nom . "</a></br>";
+			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
-			$html .= $value->date_final."</br>";
-			$html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
-		}
-		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
+            $html .= "<p>Reservation possible jusqu'au: ".$value->date_final."</p></br>";
+            if(isset($_SESSION['user_login'])){
+                $html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?id=".$value->idPartage."'>Lien</a></p>";
+            }
+            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
+            
+        }
+        if(isset($_SESSION['user_login'])){
+            $html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
+		    $html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
+        }
+		
         return $html;
     }
 	
@@ -220,7 +227,9 @@ EOT;
     public function renderViewListeItem(){
 
         $html ="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
-        $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->id.">Ajouter une item</a>";
+        if(isset($_SESSION['user_login'])){
+            $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a>";
+        }
         $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
         $html .= $this->data->date_final . "</br></br></br>";
@@ -231,7 +240,7 @@ EOT;
 
         foreach ($tab as $key => $value){
             if($value['status']==0){
-                $status="<a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->id."&idItem=". $value['id'] .">reserver</a>";
+                $status="<a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->idPartage."&idItem=". $value['id'] .">reserver</a>";
             }else{
                 $status="déjà pris";
             }
@@ -242,8 +251,10 @@ EOT;
             $html .= '<p>Description : '.$value['description'].'</a></p>';
             $html .= '<p>Tarif : '.$value['tarif'].'€</p>';
             $html .= '<p>Description : '.$value['description'].'</a></p>';
-            $html .= '<p>image : '.$value['urlImage'].'</p>';
-            $html .= "<p>Status : $status</p>";
+            $html .= '<p>image : <img src="'.$value['urlImage'].'" alt="'.$value['nom'].'"></p>';
+            if(!isset($_SESSION['user_login'])){
+                $html .= "<p>Status : $status</p>";
+            }
             $html .= '</div>';
         }
         return $html;
