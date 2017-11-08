@@ -121,13 +121,7 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
-
-        $uploaddir = '/var/www/uploads/';
-        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
-
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
-
-            if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
                 // regarder si ca existe
                 $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
                 $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -149,14 +143,9 @@ class PresentController extends \mf\control\AbstractController
                 $item->save();
 
                 $this->viewListeItem();
+                $message = "L'item à bien été ajouté";
+                echo "<script alert(".$message.")></script>";
                 
-                echo "Alerte :tout est dl et dans la bdd";
-            } else {
-                echo "Attaque potentielle par téléchargement de fichiers.
-                      Voici plus d'informations :\n";
-            }
-        }else{
-            echo "faire une alerte de pb avec l'image";
         }
     }
 
