@@ -35,6 +35,8 @@ class PresentView extends AbstractView
 <a href="$this->script_name/logout/">logout</a>
 <a href="$this->script_name/addliste/">Ajouter une liste</a>
 <a href="$this->script_name/liste/">Mes listes</a>
+<a href="$this->script_name/addItem/">Ajouter items</a>
+
 
 
 EOT;
@@ -173,7 +175,7 @@ EOT;
         $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->id.">Ajouter une item</a>";
         $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
-        $html .= $this->data->date_final . "</br></br></br> MDRRR";
+        $html .= $this->data->date_final . "</br></br></br>";
 
         //$id_list = $this->data->id;
 
@@ -190,7 +192,7 @@ EOT;
             
             $html .= '<p>Nom : '.$value['nom'].'</p>';
             $html .= '<p>Description : '.$value['description'].'</a></p>';
-            $html .= '<p>Tarif : '.$value['tarif'].'</p>';
+            $html .= '<p>Tarif : '.$value['tarif'].'€</p>';
             $html .= "<p>Status : $status</p>";
             $html .= '</div>';
         }
