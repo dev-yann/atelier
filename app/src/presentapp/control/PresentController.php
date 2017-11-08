@@ -70,11 +70,12 @@ class PresentController extends \mf\control\AbstractController
     }
 
 	public function viewListe(){
+		//recuperation de l'id de la personne connecté
         $persCo = $_SESSION['user_login'];
         $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();     
         $idc = $requeteCrea->id;
 		
-		$requeteListe = Liste::select()->where('createur', '=', $idc)->get(); /* Faire le where avec variable de session */
+		$requeteListe = Liste::select()->where('createur', '=', $idc)->get();
         $vue = new \presentapp\view\PresentView($requeteListe);
         $vue->render('renderViewListe');
     }
