@@ -116,7 +116,8 @@ abstract class AbstractView {
     <body>
         
        ${body}
-
+	   
+		<script src="../js/menu.js"></script> 
     </body>
     
     ${js}
