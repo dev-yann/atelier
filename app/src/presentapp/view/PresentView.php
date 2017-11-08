@@ -141,10 +141,11 @@ EOT;
         $idList = $this->data; //a faire mieux comme en haut mais pb de protected
         $html = <<<EOT
 <section>
-    <form method="post" action="$this->script_name/addItem/?idListe=$idList">
+    <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$idList">
     <label for="nom">Nom</label><input id="nom" name="nom"/>
     <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
     <textarea placeholder="description" name="description"></textarea>
+    <input type="file" name="image" value="Ajouter image"/>    
     <input type="submit" value="ajouter"/>
 </form>
 </section>
