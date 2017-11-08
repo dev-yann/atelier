@@ -31,6 +31,8 @@ create table Item(
     id int not null AUTO_INCREMENT PRIMARY KEY,
     nom varchar (50) not null,
     description varchar (50) not null,
+    message varchar(255) default null,
+    reservePart varchar(255) default null,
     tarif float,
     url varchar (100),
     status boolean not null default 0,

@@ -8,6 +8,8 @@
 
 namespace presentapp\view;
 
+use \presentapp\model\Item as Item;
+
 
 use mf\view\AbstractView;
 
@@ -73,10 +75,10 @@ EOT;
         $html ="<h1>Liste</h1>";
 		foreach ($this->data as $value){
 			 
-			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?id=" . $value->id . ">". $value->nom . "</a></br>";
+			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->id . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
 			$html .= $value->date_final."</br>";
-			$html .= '<a href="'.$this->script_name.'/supprliste/?id='.$value->id.'">Supprimer une liste</a></br></br></br>';
+			$html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
 		}
 		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
 		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer une liste</a>';
@@ -136,10 +138,10 @@ EOT;
     private function renderViewAddItem(){
         /*$get = new \presentapp\control\PresentController();
         $idList = $get->request->get['id'];*/
-        $idList = $_GET['id']; //a faire mieux comme en haut mais pb de protected
+        $idList = $this->data; //a faire mieux comme en haut mais pb de protected
         $html = <<<EOT
 <section>
-    <form method="post" action="$this->script_name/addItem/?id=$idList">
+    <form method="post" action="$this->script_name/addItem/?idListe=$idList">
     <label for="nom">Nom</label><input id="nom" name="nom"/>
     <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
     <textarea placeholder="description" name="description"></textarea>
@@ -168,7 +170,7 @@ EOT;
     public function renderViewListeItem(){
 
         $html ="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
-        $html .= "<a href=".$this->script_name."/ViewAddItem/?id=".$this->data->id.">Ajouter une item</a>";
+        $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->id.">Ajouter une item</a>";
         $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
         $html .= $this->data->date_final . "</br></br></br> MDRRR";
@@ -179,9 +181,9 @@ EOT;
 
         foreach ($tab as $key => $value){
             if($value['status']==0){
-                $status="<a href='#'>reservable</a>";
+                $status="<a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->id."&idItem=". $value['id'] .">reserver</a>";
             }else{
-                $status="<a href='#'>déjà pris</a>";
+                $status="déjà pris";
             }
 
             $html .= '<div class="item">';
@@ -193,6 +195,24 @@ EOT;
             $html .= '</div>';
         }
         return $html;
+    }
+
+    public function renderViewReserverItem(){
+        
+        $idItem = $this->data['idItem'];
+        $idListe = $this->data['idListe'];
+        $nom = $this->data['nom']->nom;
+        
+        $html = "<h1>Reserver : ". $nom."</h1>";
+        $html .= "
+        <form method='post' action=".$this->script_name."/reserverItem/?idItem=".$idItem."&idListe=".$idListe.">
+            <label for='nom'>Nom</label>
+            <input type='text' placeholder='Votre nom' name='nom'/>
+            <label for='message'>Message</label>
+            <textarea placeholder='Message' name='message'></textarea>
+            <input type='submit' value='Reserver'/>
+        </form>";
+        return $html;        
     }
 
 

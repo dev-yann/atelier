@@ -8,7 +8,7 @@
 
 namespace presentapp\control;
 use \presentapp\model\Liste as Liste;
-use \presentapp\model\Item;
+use \presentapp\model\Item as Item;
 use \presentapp\model\Createur as Createur;
 use presentapp\auth\PresentAuthentification;
 
@@ -62,8 +62,9 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function viewAddItem(){
+        $id = $this->request->get['idListe']; 
 
-        $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView($id);
         $vue->render('renderViewAddItem');
 
     }
@@ -112,7 +113,7 @@ class PresentController extends \mf\control\AbstractController
     }
 	
 	public function viewSupprliste(){
-		$idListe = $this->request->get['id'];
+		$idListe = $this->request->get['idListe'];
 		
 		$affectedRows = Liste::where('id', '=', $idListe)->delete();
 		
@@ -133,14 +134,15 @@ class PresentController extends \mf\control\AbstractController
             $item->url=$url;
         }
 
-        $idListe = $this->request->get['id'];
+        $idListe = $this->request->get['idListe'];
 
         $item->nom=$nom;
         $item->description=$description;
         $item->tarif=$tarif;
         $item->id_list = $idListe;
-
         $item->save();
+
+        $this->viewListeItem();
     }
 
     public function logout(){
@@ -239,13 +241,45 @@ class PresentController extends \mf\control\AbstractController
 
     public function viewListeItem(){
         
-                $id = $this->request->get['id'];        
+                $id = $this->request->get['idListe'];        
                 $l= Liste::where('id','=',$id)->first();
        
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
-        
-                //$idem= Item::where('id','=',$id)->get();    
+    }
 
+    public function viewReserverItem(){
+        $tab['idItem'] = $this->request->get['idItem'];
+        $tab['idListe'] = $this->request->get['idListe'];
+
+        $item = new Item();
+        $nomItem = $item->select('nom')->where('id', '=', $tab['idItem'])->first();
+
+        $tab['nom'] = $nomItem;
+
+        $vue = new \presentapp\view\PresentView($tab);
+        $vue->render('renderViewReserverItem');
+    }
+
+    public function reserverItem(){
+        $idItem = $this->request->get['idItem'];
+
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'message')){
+            $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
+            $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $item = new Item();
+            $update = $item->where('id', '=', $idItem)->first();
+            $update->status = 1;
+            $update->message = $message;
+            $update->reservePart = $nom;
+            $update->save();
+
+            $this->viewListeItem();
+        }else{
+            $this->viewReserverItem();
+        }
+
+        
     }
 }
