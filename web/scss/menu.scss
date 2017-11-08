@@ -1,0 +1,105 @@
+$cl_header1: #4CB0AE;
+$cl_1: beige;
+
+$lg_header: 50px;
+
+.icon{
+//    background-color: $cl_1;
+    max-height: 80%;
+    
+}
+.logo{
+    font-family: 'Lobster', cursive;
+    color: $cl_1;
+}
+
+/*ESTILOS HEADER*/
+.header{
+    width: 100%;
+    height: $lg_header;
+    background: lighten($cl_header1,20%);
+    
+    position: fixed;
+    top: 0;
+    left: 0; 
+    z-index: 100; 
+    
+    display: flex;
+    justify-content: space-between;
+}
+.icon-menu{
+    margin: 5px;
+    color: #fff;
+    display: block;
+    width: 35px;
+    height: 35px;
+    font-size: 25px;
+    background: darken($cl_header1,20%) ;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+a{
+    cursor: pointer;
+}
+/*ESTILO MENU*/
+.nav{
+    position: absolute;
+    top: $lg_header;
+    left: -100%;
+    width: 100%; 
+    transition: all 0.4s;
+}
+.menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu_link{
+    display: block;
+    padding: 5px;
+    height: $lg_header;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(133, 193, 233, 0.8);
+    font-weight: bold;
+}
+.menu_link:hover, .select {
+    background: lighten($cl_header1,20%);
+    color: #fff;
+}
+.icon-menu:hover{
+    background: lighten($cl_header1,20%);;
+}
+/*LA CLASE MOSTRAR SE MANDA LLAMAR JS*/
+.mostrar{
+    left: 0;
+}
+/*ESTILOS RESPONSIVE*/
+@media(min-width:480px){
+    .header{
+        height: $lg_header;
+    }
+     .nav{
+         top: $lg_header;
+    }
+}
+@media(min-width:1024px){
+    .nav{
+      position: static; 
+      width: auto;
+    }
+    .menu{
+        display: flex;
+    }
+    .icon-menu{
+        display: none;
+    }
+    .menu_link{
+       background: none;
+       font-size: 20px;
+    }
+}
+

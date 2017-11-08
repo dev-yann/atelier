@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans'); 
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+@import "menu";
+@import "login";
+@import "grille";
+@import "icon";
+
+$hauteur: 50px;
+$color1: dimgray;
+$color2: beige;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: $color2;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    letter-spacing: 1.5px;
+    color: $color1;
+}
+
+.container{
+    width: 100%;
+    margin: auto;
+    margin-top: $hauteur;
+    padding: 10px;
+}
+
+.formulaire{
+    margin-top: 80px;
+    padding: 10px;
+    background-color: lightgray;
+    border-radius: 5px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+input{
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+}
+textarea{
+    display: block;
+    margin: auto;
+    width: 100%;
+    margin: 0;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid gray;
+}
+th, td{
+    padding: 5px;
+    color: $color1;
+    font-size: 13px;
+}
+.sp{
+    background-color: #82E0AA;
+    border-radius: 5px;
+    margin-top: 3px;
+}
+@media(min-width:480px){
+
+}
