@@ -132,6 +132,10 @@ class PresentController extends \mf\control\AbstractController
                 $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
                 $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
 
+                //$tarifformat = number_format($tarif, 2, '.', ' '); problème avec les virgules
+
+                $tarifformat = str_replace(',', '.', $tarif);
+
                 $item=new Item();
 
                 if(isset($_POST['url'])){
@@ -144,7 +148,7 @@ class PresentController extends \mf\control\AbstractController
 
                 $item->nom=$nom;
                 $item->description=$description;
-                $item->tarif=$tarif;
+                $item->tarif=$tarifformat;
                 $item->id_list = $requeteListe['id'];
                 $item->urlImage = $image;
                 $item->save();
