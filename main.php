@@ -18,22 +18,33 @@ $db->bootEloquent();
 
 // Définition des routes
 $router = new Router();
-$router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
-$router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp');
-$router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
-$router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
-$router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
-$router->addRoute('addItem','/addItem/','\presentapp\control\PresentController', 'addItem');
-$router->addRoute('viewAddItem','/ViewAddItem/','\presentapp\control\PresentController', 'viewAddItem');
-$router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin');
-$router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
-$router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
-$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
-$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem');
-$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem');
-$router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+if(isset($_SESSION['user_login'])){
+
+    // si la personne est connecter
+    $router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
+    $router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    //$router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
+    $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
+    $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
+    $router->addRoute('addItem','/addItem/','\presentapp\control\PresentController', 'addItem');
+    $router->addRoute('viewAddItem','/ViewAddItem/','\presentapp\control\PresentController', 'viewAddItem');
+    $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
+    $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
+    $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem');
+    $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem');
+    $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+
+} else {
+
+    // sinon pas connecter
+    $router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp');
+    $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    $router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin');
+    $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login');
+    $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+
+}
+
 $router->run();

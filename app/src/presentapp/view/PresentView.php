@@ -103,14 +103,21 @@ EOT;
 	
 		$html .= 
 			<<<EOT
-        <section>
-                <form method="post" action="$this->script_name/check_addliste/">
-                    <input type="text" name="nomListe" placeholder="Nom de l'évènement"/>
-					<input type="text" name="dateFinale" placeholder="Date de l'évènement"/>
-
-                    <input type="submit" value="Ajouter"/>
-                </form>
-        </section>
+      
+<div class="container">
+     <div class="col-8 offset-2">
+      <div class="formulaire">
+       <legend>Ajouter une nouvelle liste</legend>
+        <form method="post" action="$this->script_name/check_addliste/">
+            <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
+            <label for="date">Date evenement</label>
+            <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement" required/>
+             
+            <input type="submit" value="Ajouter"/>
+        </form>
+        </div> 
+    </div>
+ </div>
 EOT;
         return $html;
     }

@@ -10,6 +10,10 @@
 $hauteur: 50px;
 $color1: dimgray;
 $color2: beige;
+$color3: #4CB0AE;
+$color4: #9B434F;
+
+$shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 *{
     box-sizing: border-box;
@@ -42,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $shadow;
 }
 input{
     display: block;
@@ -53,7 +57,8 @@ textarea{
     display: block;
     margin: auto;
     width: 100%;
-    margin: 0;
+    margin-top: 5px;
+    resize:none;
 }
 table {
     border-collapse: collapse;
@@ -67,9 +72,25 @@ th, td{
     font-size: 13px;
 }
 .sp{
-    background-color: #82E0AA;
+    background-color: lighten($color3,20%);
     border-radius: 5px;
     margin-top: 3px;
+    padding: 15px;
+    box-shadow: $shadow;
+}
+.button{
+    width: 70%;
+    padding: 5px;
+    text-decoration: none;
+    background-color: lighten($color4,20%);
+    color: beige;
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    text-align: center;
+}
+.button:hover{
+    background-color: $color4;
 }
 @media(min-width:480px){
 

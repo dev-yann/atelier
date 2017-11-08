@@ -18,6 +18,7 @@ create table Liste(
     date_debut TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     date_final date,
     createur int not null,
+    description varchar (150) not null,
     constraint fk_liste FOREIGN KEY (createur) REFERENCES Createur (id)   
 );
 
