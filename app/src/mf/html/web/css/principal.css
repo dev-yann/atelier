@@ -288,6 +288,10 @@ th, td {
   color: dimgray;
   font-size: 13px; }
 
+a {
+  text-decoration: none;
+  color: dimgray; }
+
 .sp {
   background-color: #92d0cf;
   border-radius: 5px;
