@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7140a29b-7536-4246-ae3f-a334d1e32443" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/_alert.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/_variable.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/grille.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/icon.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/login.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/menu.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/principal.scssc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/mf/html/web/scss/_alert.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css.map" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/scss/principal.scss" afterPath="$PROJECT_DIR$/app/src/mf/html/web/scss/principal.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" afterPath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" afterPath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/config.ini" afterPath="$PROJECT_DIR$/conf/config.ini" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,10 +19,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-              <folding>
-                <marker date="1510155325104" expanded="true" signature="505:1982" ph="..." />
-                <marker date="1510155325104" expanded="true" signature="1990:3010" ph="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -51,8 +37,8 @@
       <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2740">
-              <caret line="288" column="0" lean-forward="true" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
+            <state relative-caret-position="-580">
+              <caret line="285" column="34" lean-forward="false" selection-start-line="285" selection-start-column="34" selection-end-line="285" selection-end-column="34" />
               <folding>
                 <element signature="e#6#84#0#PHP" expanded="true" />
                 <element signature="e#116#153#0#PHP" expanded="true" />
@@ -107,6 +93,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/conf/config.ini">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -132,10 +128,10 @@
         <option value="$PROJECT_DIR$/app/src/presentapp/model/Liste.php" />
         <option value="$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php" />
         <option value="$PROJECT_DIR$/conf/mecado.sql" />
-        <option value="$PROJECT_DIR$/conf/config.ini" />
         <option value="$PROJECT_DIR$/main.php" />
         <option value="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
         <option value="$PROJECT_DIR$/app/src/mf/view/AbstractView.php" />
+        <option value="$PROJECT_DIR$/conf/config.ini" />
         <option value="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
       </list>
     </option>
@@ -191,44 +187,7 @@
             <path>
               <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
               <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
-              <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="conf" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -277,12 +236,12 @@
       <workItem from="1510061399112" duration="9890000" />
       <workItem from="1510081583364" duration="3670000" />
       <workItem from="1510126515783" duration="12162000" />
-      <workItem from="1510146040185" duration="9430000" />
+      <workItem from="1510146040185" duration="11079000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57866000" />
+    <option name="totallyTimeSpent" value="59515000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="447" y="-4" width="1303" height="780" extended-state="6" />
@@ -376,10 +335,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <marker date="1510155325104" expanded="true" signature="505:1982" ph="..." />
-            <marker date="1510155325104" expanded="true" signature="1990:3010" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -479,10 +435,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1510155325104" expanded="true" signature="505:1982" ph="..." />
-            <marker date="1510155325104" expanded="true" signature="1990:3010" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -671,14 +624,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/html/ajouter_liste.html" />
-    <entry file="file://$PROJECT_DIR$/conf/config.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/mf/html/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -711,17 +656,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <marker date="1510155325104" expanded="true" signature="505:1982" ph="..." />
-            <marker date="1510155325104" expanded="true" signature="1990:3010" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -820,10 +754,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/conf/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2740">
-          <caret line="288" column="0" lean-forward="true" selection-start-line="288" selection-start-column="0" selection-end-line="288" selection-end-column="0" />
+        <state relative-caret-position="-580">
+          <caret line="285" column="34" lean-forward="false" selection-start-line="285" selection-start-column="34" selection-end-line="285" selection-end-column="34" />
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
             <element signature="e#116#153#0#PHP" expanded="true" />
