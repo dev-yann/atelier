@@ -5,7 +5,7 @@
 @import "menu";
 @import "login";
 @import "grille";
-@import "icon";
+//@import "icon";
 
 $hauteur: 50px;
 $color1: dimgray;
@@ -96,7 +96,7 @@ th, td{
     width: 80%;
     display: block;
     margin: auto;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     border-radius: 5px;
 }
 @media(min-width:480px){
