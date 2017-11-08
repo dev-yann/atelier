@@ -140,11 +140,12 @@ class PresentController extends \mf\control\AbstractController
                 }
 
                 $idListe = $this->request->get['idListe'];
+                $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
 
                 $item->nom=$nom;
                 $item->description=$description;
                 $item->tarif=$tarif;
-                $item->id_list = $idListe;
+                $item->id_list = $requeteListe['id'];
                 $item->urlImage = $image;
                 $item->save();
 
@@ -251,7 +252,7 @@ class PresentController extends \mf\control\AbstractController
     public function viewListeItem(){
         
                 $id = $this->request->get['idListe'];        
-                $l= Liste::where('id','=',$id)->first();
+                $l= Liste::where('idPartage','=',$id)->first();
        
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
