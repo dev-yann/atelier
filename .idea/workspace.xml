@@ -2,18 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7140a29b-7536-4246-ae3f-a334d1e32443" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/grille.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/icon.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/login.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/menu.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/principal.scssc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/html/liste_Participant.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/html/liste_cadeaux.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/img/vfcon084827.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/icon.scssc" afterPath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/icon.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/menu.scssc" afterPath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/menu.scssc" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/principal.scssc" afterPath="$PROJECT_DIR$/web/.sass-cache/570b15d3d5dcf5af27f6478b5dd9bd53e6da71ca/principal.scssc" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/view/AbstractView.php" afterPath="$PROJECT_DIR$/app/src/mf/view/AbstractView.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" afterPath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.php" afterPath="$PROJECT_DIR$/main.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/icon.css" afterPath="$PROJECT_DIR$/html/css/icon.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/icon.css.map" afterPath="$PROJECT_DIR$/html/css/icon.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/menu.css" afterPath="$PROJECT_DIR$/html/css/menu.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/menu.css.map" afterPath="$PROJECT_DIR$/html/css/menu.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/principal.css" afterPath="$PROJECT_DIR$/html/css/principal.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/css/principal.css.map" afterPath="$PROJECT_DIR$/html/css/principal.css.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/scss/icon.scss" afterPath="$PROJECT_DIR$/html/scss/icon.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/scss/menu.scss" afterPath="$PROJECT_DIR$/html/scss/menu.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/scss/principal.scss" afterPath="$PROJECT_DIR$/html/scss/principal.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/html/liste_Participant.html" afterPath="$PROJECT_DIR$/web/html/liste_Participant.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/html/liste_cadeaux.html" afterPath="$PROJECT_DIR$/web/html/liste_cadeaux.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="771">
-              <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
+            <state relative-caret-position="154">
+              <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
               <folding>
                 <element signature="e#116#153#0#PHP" expanded="true" />
                 <element signature="e#619#897#0#PHP" expanded="false" />
@@ -61,22 +65,23 @@
                 <element signature="e#2426#2852#0#PHP" expanded="false" />
                 <element signature="e#2854#2991#0#PHP" expanded="false" />
                 <element signature="e#2993#3168#0#PHP" expanded="false" />
-                <element signature="e#3244#3474#0#PHP" expanded="false" />
-                <element signature="e#3479#4315#0#PHP" expanded="false" />
-                <element signature="e#4320#5986#0#PHP" expanded="false" />
-                <element signature="e#6007#6980#0#PHP" expanded="false" />
-                <element signature="e#7000#8317#0#PHP" expanded="false" />
-                <element signature="e#8322#8997#0#PHP" expanded="false" />
+                <element signature="e#3225#4580#0#PHP" expanded="false" />
+                <element signature="e#4619#4849#0#PHP" expanded="false" />
+                <element signature="e#4854#5690#0#PHP" expanded="false" />
+                <element signature="e#5695#8266#0#PHP" expanded="false" />
+                <element signature="e#9280#10597#0#PHP" expanded="false" />
+                <element signature="e#10602#11277#0#PHP" expanded="false" />
+                <marker date="1510152512764" expanded="false" signature="8319:9259" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+            <state relative-caret-position="298">
+              <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
               <folding>
                 <element signature="e#2158#2236#0#PHP" expanded="false" />
                 <element signature="e#2254#3190#0#PHP" expanded="false" />
@@ -126,7 +131,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/mf/html/web/css/menu.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1094">
-              <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -240,6 +245,23 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="atelier" type="b2602c69:ProjectViewProjectNode" />
+              <item name="atelier" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mf" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="html" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -287,12 +309,12 @@
       <workItem from="1510061399112" duration="9890000" />
       <workItem from="1510081583364" duration="3670000" />
       <workItem from="1510126515783" duration="12162000" />
-      <workItem from="1510146040185" duration="5750000" />
+      <workItem from="1510146040185" duration="6736000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54186000" />
+    <option name="totallyTimeSpent" value="55172000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="447" y="-4" width="1303" height="780" extended-state="6" />
@@ -525,12 +547,13 @@
             <element signature="e#2426#2852#0#PHP" expanded="false" />
             <element signature="e#2854#2991#0#PHP" expanded="false" />
             <element signature="e#2993#3168#0#PHP" expanded="false" />
-            <element signature="e#3244#3474#0#PHP" expanded="false" />
-            <element signature="e#3479#4315#0#PHP" expanded="false" />
-            <element signature="e#4320#5986#0#PHP" expanded="false" />
-            <element signature="e#6007#6980#0#PHP" expanded="false" />
-            <element signature="e#7000#8317#0#PHP" expanded="false" />
-            <element signature="e#8322#8997#0#PHP" expanded="false" />
+            <element signature="e#3225#4580#0#PHP" expanded="false" />
+            <element signature="e#4619#4849#0#PHP" expanded="false" />
+            <element signature="e#4854#5690#0#PHP" expanded="false" />
+            <element signature="e#5695#8266#0#PHP" expanded="false" />
+            <element signature="e#9280#10597#0#PHP" expanded="false" />
+            <element signature="e#10602#11277#0#PHP" expanded="false" />
+            <marker date="1510152512764" expanded="false" signature="8319:9259" ph="..." />
           </folding>
         </state>
       </provider>
@@ -575,12 +598,13 @@
             <element signature="e#2426#2852#0#PHP" expanded="false" />
             <element signature="e#2854#2991#0#PHP" expanded="false" />
             <element signature="e#2993#3168#0#PHP" expanded="false" />
-            <element signature="e#3244#3474#0#PHP" expanded="false" />
-            <element signature="e#3479#4315#0#PHP" expanded="false" />
-            <element signature="e#4320#5986#0#PHP" expanded="false" />
-            <element signature="e#6007#6980#0#PHP" expanded="false" />
-            <element signature="e#7000#8317#0#PHP" expanded="false" />
-            <element signature="e#8322#8997#0#PHP" expanded="false" />
+            <element signature="e#3225#4580#0#PHP" expanded="false" />
+            <element signature="e#4619#4849#0#PHP" expanded="false" />
+            <element signature="e#4854#5690#0#PHP" expanded="false" />
+            <element signature="e#5695#8266#0#PHP" expanded="false" />
+            <element signature="e#9280#10597#0#PHP" expanded="false" />
+            <element signature="e#10602#11277#0#PHP" expanded="false" />
+            <marker date="1510152512764" expanded="false" signature="8319:9259" ph="..." />
           </folding>
         </state>
       </provider>
@@ -853,7 +877,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/mf/html/web/css/menu.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1094">
-          <caret line="92" column="0" lean-forward="true" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -866,36 +890,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="771">
-          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-          <folding>
-            <element signature="e#116#153#0#PHP" expanded="true" />
-            <element signature="e#619#897#0#PHP" expanded="false" />
-            <element signature="e#940#1078#0#PHP" expanded="false" />
-            <element signature="e#1083#1207#0#PHP" expanded="false" />
-            <element signature="e#1230#1562#0#PHP" expanded="false" />
-            <element signature="e#1567#1749#0#PHP" expanded="false" />
-            <element signature="e#1754#2159#0#PHP" expanded="false" />
-            <element signature="e#2164#2404#0#PHP" expanded="false" />
-            <element signature="e#2426#2852#0#PHP" expanded="false" />
-            <element signature="e#2854#2991#0#PHP" expanded="false" />
-            <element signature="e#2993#3168#0#PHP" expanded="false" />
-            <element signature="e#3244#3474#0#PHP" expanded="false" />
-            <element signature="e#3479#4315#0#PHP" expanded="false" />
-            <element signature="e#4320#5986#0#PHP" expanded="false" />
-            <element signature="e#6007#6980#0#PHP" expanded="false" />
-            <element signature="e#7000#8317#0#PHP" expanded="false" />
-            <element signature="e#8322#8997#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        <state relative-caret-position="298">
+          <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
           <folding>
             <element signature="e#2158#2236#0#PHP" expanded="false" />
             <element signature="e#2254#3190#0#PHP" expanded="false" />
@@ -936,6 +934,33 @@
             <marker date="1510148396608" expanded="true" signature="7201:7237" ph="..." />
             <marker date="1510148396608" expanded="true" signature="9642:9660" ph="..." />
             <marker date="1510148396608" expanded="true" signature="9718:9757" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="161" column="0" lean-forward="true" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
+          <folding>
+            <element signature="e#116#153#0#PHP" expanded="true" />
+            <element signature="e#619#897#0#PHP" expanded="false" />
+            <element signature="e#940#1078#0#PHP" expanded="false" />
+            <element signature="e#1083#1207#0#PHP" expanded="false" />
+            <element signature="e#1230#1562#0#PHP" expanded="false" />
+            <element signature="e#1567#1749#0#PHP" expanded="false" />
+            <element signature="e#1754#2159#0#PHP" expanded="false" />
+            <element signature="e#2164#2404#0#PHP" expanded="false" />
+            <element signature="e#2426#2852#0#PHP" expanded="false" />
+            <element signature="e#2854#2991#0#PHP" expanded="false" />
+            <element signature="e#2993#3168#0#PHP" expanded="false" />
+            <element signature="e#3225#4580#0#PHP" expanded="false" />
+            <element signature="e#4619#4849#0#PHP" expanded="false" />
+            <element signature="e#4854#5690#0#PHP" expanded="false" />
+            <element signature="e#5695#8266#0#PHP" expanded="false" />
+            <element signature="e#9280#10597#0#PHP" expanded="false" />
+            <element signature="e#10602#11277#0#PHP" expanded="false" />
+            <marker date="1510152512764" expanded="false" signature="8319:9259" ph="..." />
           </folding>
         </state>
       </provider>

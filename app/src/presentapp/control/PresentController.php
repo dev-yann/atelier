@@ -122,14 +122,46 @@ class PresentController extends \mf\control\AbstractController
     }
 
 
+
     /*
      *
      * LES CHECK
      *
      * */
 
+    /*public function addItem(){
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')) {
+            // regarder si ca existe
+            $nom = filter_input(INPUT_POST, 'nom', FILTER_SANITIZE_SPECIAL_CHARS);
+            $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
+            $tarif = filter_input(INPUT_POST, 'tarif', FILTER_SANITIZE_SPECIAL_CHARS);
+            $image = filter_input(INPUT_POST, 'image', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    // INSCRIPTION
+            //$tarifformat = number_format($tarif, 2, '.', ' '); problème avec les virgules
+
+            $tarifformat = str_replace(',', '.', $tarif);
+
+            $item = new Item();
+
+            if (isset($_POST['url'])) {
+                $url = filter_input(INPUT_POST, 'url', FILTER_SANITIZE_SPECIAL_CHARS);
+                $item->url = $url;
+            }
+
+            $idListe = $this->request->get['idListe'];
+            $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
+
+            $item->nom = $nom;
+            $item->description = $description;
+            $item->tarif = $tarifformat;
+            $item->id_list = $requeteListe['id'];
+            $item->urlImage = $image;
+            $item->save();
+        }
+    }*/
+
+
+    // INSCRIPTION - CONNECTION
     public function check_logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
@@ -170,48 +202,62 @@ class PresentController extends \mf\control\AbstractController
     }
     public function checkSignup(){
 
+        $regex1='/[^a-zA-Z \-éèêëçäà]/';
+
         if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
 
             $email_a = $_POST["mail"];
-
-            if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
-
-                $fullname = filter_input(INPUT_POST,'fullname',FILTER_SANITIZE_STRING);
-                $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
-                $pw = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
-                $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
-
-                if($pw === $pw_repeat){
-
-                    $signUp = new PresentAuthentification();
-
-                    try{
-
-                        $signUp->createUser($username, $pw, $fullname,$email_a);
-
-                        // Si tous se passe bien on renvoie sur les listes
-                        $this->viewListe();
-
-                    }catch (\Exception $e){
-
-                        // si la création du user à échouée
-                        $this->viewSignUp();
-                        echo $e->getMessage();
-
-                    }
-
-                } else {
-
-                    echo "Les mots de passes ne sont pas les mêmes";
-                    $this->viewSignUp();
+            $prenom=$_POST["fullname"];
+            $nom=$_POST["username"];
+            if(preg_match($regex1, $prenom)){
+                echo" le prénom n'est pas au bon format";
+                
+                
+            }else{
+                if(preg_match($regex1, $nom)){
+                    echo" le nom n'est pas au bon format";
                 }
-
-            } else {
-
-                echo "L'adresse email n'a pas le bon format";
-
+                else{
+                if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
+                    
+                    $fullname = filter_input(INPUT_POST,'fullname',FILTER_SANITIZE_STRING);
+                    $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
+                    $pw = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
+                    $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
+                    
+                                    
+                    if($pw === $pw_repeat){
+                    
+                        $signUp = new PresentAuthentification();
+                    
+                        try{
+                    
+                            $signUp->createUser($username, $pw, $fullname,$email_a);
+                    
+                            // Si tous se passe bien on renvoie sur les listes
+                            $this->viewListe();
+                    
+                            }catch (\Exception $e){
+                    
+                                // si la création du user à échouée
+                                $this->viewSignUp();
+                                echo $e->getMessage();
+                    
+                                }
+                    
+                    } else {
+                    
+                            echo "Les mots de passes ne sont pas les mêmes";
+                            $this->viewSignUp();
+                            }
+                    
+                } else {
+                    
+                    echo "L'adresse email n'a pas le bon format";
+                    
+                    }
+                }
             }
-
         } else {
 
             echo "Certaines données sont manquantes";
