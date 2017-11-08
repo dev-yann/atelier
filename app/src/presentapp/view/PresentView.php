@@ -247,6 +247,7 @@ EOT;
         if($this->data['msg'] !== null){
             $html .= "<div class='alert alert-success col-12'>".$this->data['msg']."</div>";
         }
+        $html .= $this->data;
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
         $html .= "<div class='col-3 offset-9 sp'>
