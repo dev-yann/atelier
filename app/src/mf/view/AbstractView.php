@@ -4,7 +4,8 @@ namespace mf\view;
 
 abstract class AbstractView {
 
-    static protected $style_sheets = ['style.css','font-awesome/css/font-awesome.min.css']; /* un tableau de fichiers style */
+    static protected $style_sheets = ['web/css/principal.css','web/icon/css/font-awesome.min.css','web/icomoon/style.css']; /* un tableau de fichiers style */
+    static protected $tabJs = ['web/js/menu.js'];
     static protected $app_title    = "MF app Title"; /* un titre de document */
     
     protected $app_root    = null; /* répertoire racine de l'application */
@@ -83,8 +84,12 @@ abstract class AbstractView {
         /* les feuilles de style */
         $styles = '';
         foreach ( self::$style_sheets as $file )
-            $styles .= '<link rel="stylesheet" href="'.$this->app_root.'/html/'.$file.'"> ';
+            $styles .= '<link rel="stylesheet" href="'.$this->app_root.'/app/src/mf/html/'.$file.'"> ';
 
+        $js = '';
+        foreach (self::$tabJs as $fileJs){
+            $js .= '<script src="'.$this->app_root.'/app/src/mf/html/'.$fileJs.'"></script>';
+        }
         /* on appele la methode renderBody de la sous classe */
         $body = $this->renderBody($selector);
         
@@ -100,6 +105,9 @@ abstract class AbstractView {
 <html lang="fr">
     <head>
         <meta charset="utf-8">
+        <title>Mecado</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
         
         <title>${title}</title>
 	    ${styles}
@@ -108,8 +116,11 @@ abstract class AbstractView {
     <body>
         
        ${body}
-
+	   
+		<script src="../js/menu.js"></script> 
     </body>
+    
+    ${js}
 </html>
 EOT;
 
