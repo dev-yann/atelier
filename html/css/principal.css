@@ -21,18 +21,18 @@ header {
   justify-content: space-between; }
 
 .icon-menu {
-  margin: 5px;
   color: #fff;
   display: block;
   width: 35px;
   height: 35px;
-  font-size: 25px;
+  font-size: 30px;
   background: #2d6968;
   text-align: center;
-  line-height: 45px;
+  line-height: 25px;
   border-radius: 5px;
-  margin: 10px;
-  cursor: pointer; }
+  line-height: 35px;
+  cursor: pointer;
+  margin: 10px; }
 
 a {
   cursor: pointer; }
@@ -192,13 +192,14 @@ a {
   border-radius: 5px;
   width: 35px;
   height: 35px;
-  text-align: center; }
+  text-align: center;
+  line-height: 50px; }
 
 .fa-pencil-square-o:hover, .fa-trash-o:hover, .fa-plus-circle:hover, fa-minus-circle:hover {
   background-color: #2d6968; }
 
 .fa-plus-circle {
-  background-color: forestgreen; }
+  background-color: green; }
 
 fa-minus-circle {
   background-color: crimson; }
@@ -243,6 +244,12 @@ textarea {
   width: 100%;
   margin-top: 5px;
   resize: none; }
+
+p {
+  line-height: 15px;
+  font-size: 13px;
+  text-align: justify;
+  margin: 3px; }
 
 table {
   border-collapse: collapse; }

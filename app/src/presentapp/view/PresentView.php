@@ -33,7 +33,7 @@ class PresentView extends AbstractView
                 <<<EOT
                 
                 
-                <header class="header">
+                <header class="header theme-backcolor1">
         <h1 class="logo"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
@@ -106,26 +106,24 @@ EOT;
 	 // LISTE
     private  function renderViewListe(){
 
-        $html ="<h1>Liste</h1>";
+        $html ="<div class='container'>";
 		foreach ($this->data as $value){
-			 
+
 			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . ">". $value->nom . "</a></br>";
-			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
+			$html .= "Commence le : " . $value->date_debut . "</br>";
             $html .= "<p>Reservation possible jusqu'au: ".$value->date_final."</p></br>";
-            if(isset($_SESSION['user_login'])){
-                $html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien</a></p>";
-            }
-            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
-            
-        }
-        if(isset($_SESSION['user_login'])){
-            $html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		    $html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
-        }
-		
+
+			$html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien</a></p>";
+
+            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer la liste</a></br></br></br>';
+		}
+
+		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
+		$html .= "</div>";
+
         return $html;
     }
-	
+
 	// ADD LISTE
     private  function renderViewAddListe(){
         $html ="<h1>Liste</h1>";
@@ -152,9 +150,7 @@ EOT;
         return $html;
     }
 	// SUPPR LISTE
-	
-	
-	
+
     public function renderLogin(){
         $html =
         
@@ -196,15 +192,29 @@ EOT;
         $idList = $get->request->get['id'];*/
         $idList = $this->data; //a faire mieux comme en haut mais pb de protected
         $html = <<<EOT
-<section>
-    <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$idList">
-    <label for="nom">Nom</label><input id="nom" name="nom"/>
-    <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
-    <textarea placeholder="description" name="description"></textarea>
-    <input type="text" name="image" placeholder="Ajouter le lien d'une image"/>    
-    <input type="submit" value="ajouter"/>
+        
+        <div class="container">
+     <div class="col-8 offset-2">
+      <div class="formulaire">
+       <legend>Cadeau</legend>
+       
+       <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$idList">
+       
+       <label for="nom">Nom</label><input type="text" id="nom" name="nom" placeholder="Nom" required/>
+         
+       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" placeholder="Tarif" step="0.01"/>
+         <input type="url" placeholder="Url vers un autre site" required> 
+         <Textarea rows="4" cols="15" placeholder="Description" name="description"></Textarea>
+         <input type="text" name="image" placeholder="Ajouter le lien d'une image"/>
+         <input type="submit" value="ajouter">
+        </form>
+       </div> 
+     </div>
+     </div>
+             
 </form>
 </section>
+</div>
 EOT;
 
         return $html;
@@ -226,7 +236,8 @@ EOT;
 
     public function renderViewListeItem(){
 
-        $html ="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
+        $html = '<div class="container">';
+        $html .="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
         //if(isset($_SESSION['user_login'])){
         $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a>";
         //}
@@ -256,6 +267,8 @@ EOT;
                 $html .= "<p>Status : $status</p>";
             }
             $html .= '</div>';
+            $html .= '</div>';
+
         }
         return $html;
     }
@@ -291,7 +304,7 @@ EOT;
 
             <<<EOT
 
-        <header class="theme-backcolor1">${header}</header>
+        ${header}
         <section id="container" class="theme-backcolor2">
             ${body}
         </section>
