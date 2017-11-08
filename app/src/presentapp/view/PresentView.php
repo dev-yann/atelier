@@ -114,7 +114,7 @@ EOT;
             $html .= "<p>Reservation possible jusqu'au: ".$value->date_final."</p></br>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien de partage</a></p>";
+                $html .= "<p><a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien de partage</a></p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer cette liste</a></br></br></br>';
             
