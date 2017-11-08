@@ -127,6 +127,7 @@ class PresentController extends \mf\control\AbstractController
                 $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
                 $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
                 $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+                $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
 
                 $item=new Item();
 
@@ -141,6 +142,7 @@ class PresentController extends \mf\control\AbstractController
                 $item->description=$description;
                 $item->tarif=$tarif;
                 $item->id_list = $idListe;
+                $item->urlImage = $image;
                 $item->save();
 
                 $this->viewListeItem();

@@ -164,7 +164,7 @@ EOT;
     <label for="nom">Nom</label><input id="nom" name="nom"/>
     <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
     <textarea placeholder="description" name="description"></textarea>
-    <input type="file" name="image" value="Ajouter image"/>    
+    <input type="text" name="image" placeholder="Ajouter le lien d'une image"/>    
     <input type="submit" value="ajouter"/>
 </form>
 </section>
@@ -211,6 +211,8 @@ EOT;
             $html .= '<p>Nom : '.$value['nom'].'</p>';
             $html .= '<p>Description : '.$value['description'].'</a></p>';
             $html .= '<p>Tarif : '.$value['tarif'].'€</p>';
+            $html .= '<p>Description : '.$value['description'].'</a></p>';
+            $html .= '<p>image : '.$value['urlImage'].'</p>';
             $html .= "<p>Status : $status</p>";
             $html .= '</div>';
         }
