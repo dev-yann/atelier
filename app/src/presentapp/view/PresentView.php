@@ -107,9 +107,11 @@ EOT;
 
         $html ="<div class='container'>";
         $html .= "<h2>Mes Listes</h2>";
+        if(isset($_SESSION['user_login'])){
         $html .= '<div class="col-3 offset-9 sp">
         <h3><a href='.$this->script_name.'/addliste/>Ajouter une liste</a></h3><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
         </div>';
+        }
 		foreach ($this->data as $value){
 
             $html .="<div class='col-3 sp'>
@@ -124,10 +126,6 @@ EOT;
             $html .= '<a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . "><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
             $html .= "</div>";
             
-        }
-        if(isset($_SESSION['user_login'])){
-            $html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		    
         }
 		$html .= "</div>";
 		
@@ -145,7 +143,7 @@ EOT;
      <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Ajouter une nouvelle liste : </legend>
-        <form method="post" action="$this->script_name/check_addliste/">
+        <form method="post" action="$this->script_name/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
