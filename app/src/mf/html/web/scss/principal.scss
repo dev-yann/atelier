@@ -82,6 +82,10 @@ th, td{
     color: $color1;
     font-size: 13px;
 }
+a{
+    text-decoration: none;
+    color: $color1;
+}
 .sp{
     background-color: lighten($color3,20%);
     border-radius: 5px;
