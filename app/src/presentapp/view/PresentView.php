@@ -240,7 +240,7 @@ EOT;
 
         $html = '<div class="container">';
         if($this->data['msg'] !== null){
-            $html .= "<h1 class='alert'>".$this->data['msg']."</h1>";
+            $html .= "<div class='alert alert-success'>".$this->data['msg']."</div>";
         }
         
         $html .="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
