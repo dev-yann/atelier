@@ -206,6 +206,8 @@ class PresentController extends \mf\control\AbstractController
             $email_a = $_POST["mail"];
             $prenom=$_POST["fullname"];
             $nom=$_POST["username"];
+            $mdp=$_POST["pw"];
+            $longueur= strlen($mdp);
             if(preg_match($regex1, $prenom)){
                 echo" le prénom n'est pas au bon format";
                 
@@ -222,7 +224,9 @@ class PresentController extends \mf\control\AbstractController
                     $pw = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
                     $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
                     
-                                    
+                     if($longueur < 8){
+                         echo"mot de passe trop court";
+                     }else{              
                     if($pw === $pw_repeat){
                     
                         $signUp = new PresentAuthentification();
@@ -247,7 +251,7 @@ class PresentController extends \mf\control\AbstractController
                             echo "Les mots de passes ne sont pas les mêmes";
                             $this->viewSignUp();
                             }
-                    
+                        } 
                 } else {
                     
                     echo "L'adresse email n'a pas le bon format";
