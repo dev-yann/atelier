@@ -112,15 +112,16 @@ EOT;
 			$html .="<div class='unEvenement'><a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . ">". $value->nom . "</a></br>";
 			$html .= "Aujourd'hui : " . $value->date_debut . "</br>";
             $html .= "<p>Reservation possible jusqu'au: ".$value->date_final."</p></br>";
+			
             if(isset($_SESSION['user_login'])){
-                $html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien</a></p>";
+                $html .= "<p>Lien de partage: <a href='http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'>Lien de partage</a></p>";
             }
-            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
+            $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer cette liste</a></br></br></br>';
             
         }
         if(isset($_SESSION['user_login'])){
             $html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		    $html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
+		    
         }
 		
         return $html;
@@ -136,13 +137,12 @@ EOT;
 <div class="container">
      <div class="col-8 offset-2">
       <div class="formulaire">
-       <legend>Ajouter une nouvelle liste</legend>
+       <legend>Ajouter une nouvelle liste : </legend>
         <form method="post" action="$this->script_name/check_addliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
-            <label for="date">Date evenement</label>
-            <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement" required/>
-             
+            <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
+            
             <input type="submit" value="Ajouter"/>
         </form>
         </div> 
@@ -164,7 +164,7 @@ EOT;
            <div class="container">
      <div class="col-8 offset-2">
       <div class="formulaire">
-       <legend>Inscription</legend>
+       <legend>Connexion</legend>
         <form method="post" action="$this->script_name/check_login/">
          <input type="email" name="email" placeholder="email" required> 
          <input type="password" name="pw" placeholder="password" required>  

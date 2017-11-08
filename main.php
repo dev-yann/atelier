@@ -24,7 +24,6 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
     $router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-    //$router->addRoute('form','/form/','\presentapp\control\PresentController', 'viewForm');
     $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
     $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
     $router->addRoute('addItem','/addItem/','\presentapp\control\PresentController', 'addItem');
