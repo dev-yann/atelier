@@ -93,6 +93,7 @@ class PresentController extends \mf\control\AbstractController
 
             $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
             $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+            $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
         
 			//recuperation de l'id de la personne connecté
 			$persCo = $_SESSION['user_login'];
@@ -100,9 +101,11 @@ class PresentController extends \mf\control\AbstractController
 			$idc = $requeteCrea->id;
 					
             $l = new Liste();
+            $l->idpartage= uniqid();
             $l->nom = $nomListe;
 			$l->date_final = $dateFinal;
-			$l->createur = $idc;
+            $l->createur = $idc;
+            $l->description = $desc;
 			$l->save();
 			
             $this->viewListe();

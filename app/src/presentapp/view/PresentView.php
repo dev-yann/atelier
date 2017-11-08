@@ -110,6 +110,7 @@ EOT;
        <legend>Ajouter une nouvelle liste</legend>
         <form method="post" action="$this->script_name/check_addliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
+            <textarea placeholder="description" name="description"></textarea>
             <label for="date">Date evenement</label>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement" required/>
              
