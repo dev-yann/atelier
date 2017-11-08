@@ -34,7 +34,8 @@ create table Item(
     description varchar (50) not null,
     message varchar(255) default null,
     reservePart varchar(255) default null,
-    tarif float,
+    urlImage text not null,
+    tarif float not null,
     url varchar (100),
     status boolean not null default 0,
     id_list int not null

@@ -93,6 +93,7 @@ class PresentController extends \mf\control\AbstractController
 
             $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
             $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+            $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
         
 			//recuperation de l'id de la personne connecté
 			$persCo = $_SESSION['user_login'];
@@ -100,9 +101,11 @@ class PresentController extends \mf\control\AbstractController
 			$idc = $requeteCrea->id;
 					
             $l = new Liste();
+            $l->idpartage= uniqid();
             $l->nom = $nomListe;
 			$l->date_final = $dateFinal;
-			$l->createur = $idc;
+            $l->createur = $idc;
+            $l->description = $desc;
 			$l->save();
 			
             $this->viewListe();
@@ -122,17 +125,12 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
-
-        $uploaddir = '/var/www/uploads/';
-        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
-
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
-
-            if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
                 // regarder si ca existe
                 $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
                 $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
                 $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+                $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
 
                 $item=new Item();
 
@@ -147,17 +145,13 @@ class PresentController extends \mf\control\AbstractController
                 $item->description=$description;
                 $item->tarif=$tarif;
                 $item->id_list = $idListe;
+                $item->urlImage = $image;
                 $item->save();
 
                 $this->viewListeItem();
+                $message = "L'item à bien été ajouté";
+                echo "<script alert(".$message.")></script>";
                 
-                echo "Alerte :tout est dl et dans la bdd";
-            } else {
-                echo "Attaque potentielle par téléchargement de fichiers.
-                      Voici plus d'informations :\n";
-            }
-        }else{
-            echo "faire une alerte de pb avec l'image";
         }
     }
 
@@ -186,7 +180,6 @@ class PresentController extends \mf\control\AbstractController
 
                 $connect->login($user,$pass);
                 $this->viewListe();
-                //echo $_SESSION['user_login'];
 
             }catch(\mf\auth\exception\AuthentificationException $e){
 

@@ -116,7 +116,7 @@ EOT;
 			$html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'">Supprimer une liste</a></br></br></br>';
 		}
 		$html .= '<a href="'.$this->script_name.'/addliste/">Ajouter une liste</a></br>';
-		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer une liste</a>';
+		$html .= '<a href="'.$this->script_name.'/supprliste/">Supprimer la liste</a>';
         return $html;
     }
 	
@@ -133,6 +133,7 @@ EOT;
        <legend>Ajouter une nouvelle liste</legend>
         <form method="post" action="$this->script_name/check_addliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
+            <textarea placeholder="description" name="description"></textarea>
             <label for="date">Date evenement</label>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement" required/>
              
@@ -194,7 +195,7 @@ EOT;
     <label for="nom">Nom</label><input id="nom" name="nom"/>
     <label for="tarif">Tarif</label><input id="Tarif" name="tarif"/>
     <textarea placeholder="description" name="description"></textarea>
-    <input type="file" name="image" value="Ajouter image"/>    
+    <input type="text" name="image" placeholder="Ajouter le lien d'une image"/>    
     <input type="submit" value="ajouter"/>
 </form>
 </section>
@@ -241,6 +242,8 @@ EOT;
             $html .= '<p>Nom : '.$value['nom'].'</p>';
             $html .= '<p>Description : '.$value['description'].'</a></p>';
             $html .= '<p>Tarif : '.$value['tarif'].'€</p>';
+            $html .= '<p>Description : '.$value['description'].'</a></p>';
+            $html .= '<p>image : '.$value['urlImage'].'</p>';
             $html .= "<p>Status : $status</p>";
             $html .= '</div>';
         }
