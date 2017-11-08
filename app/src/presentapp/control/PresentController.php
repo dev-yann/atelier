@@ -25,6 +25,14 @@ class PresentController extends \mf\control\AbstractController
         parent::__construct();
     }
 
+    /*
+     *
+     * LES VUES
+     *
+     *
+     * */
+
+    // VUE PAR DEFAULT
     public function viewPresent(){
         /*$listTweet = tweet::get();
 
@@ -35,19 +43,19 @@ class PresentController extends \mf\control\AbstractController
 
     }
 
-    // VUE INSCRIPTION
+
+    // VUE INSCRIPTION - CONNECTION
     public function viewSignUp(){
 
         $vue = new \presentapp\view\PresentView('');
         return $vue->render('renderViewSignUp');
     }
-
-    // Show login form
     public function viewLogin(){
         $vue = new \presentapp\view\PresentView('');
         $vue->render('renderLogin');
     }
 
+    // VUE ITEMS
     public function viewItem(){
 
         $crea = $_SESSION['user_login'];
@@ -60,7 +68,6 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderViewLogin');
 
     }
-
     public function viewAddItem(){
         $id = $this->request->get['idListe']; 
 
@@ -68,7 +75,29 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderViewAddItem');
 
     }
+    public function viewReserverItem(){
+        $tab['idItem'] = $this->request->get['idItem'];
+        $tab['idListe'] = $this->request->get['idListe'];
 
+        $item = new Item();
+        $nomItem = $item->select('nom')->where('id', '=', $tab['idItem'])->first();
+
+        $tab['nom'] = $nomItem;
+
+        $vue = new \presentapp\view\PresentView($tab);
+        $vue->render('renderViewReserverItem');
+    }
+    public function ViewListeItem(){
+
+        $id = $this->request->get['idListe'];
+        $l= Liste::where('idPartage','=',$id)->first();
+
+        $vue = new \presentapp\view\PresentView($l);
+        $vue->render('renderViewListeItem');
+    }
+
+
+    // VUE LISTES
 	public function viewListe(){
 		//recuperation de l'id de la personne connecté
         $persCo = $_SESSION['user_login'];
@@ -79,43 +108,11 @@ class PresentController extends \mf\control\AbstractController
         $vue = new \presentapp\view\PresentView($requeteListe);
         $vue->render('renderViewListe');
     }
-	
 	public function viewaddListe(){
 		
         $vue = new \presentapp\view\PresentView('');
         $vue->render('renderViewAddListe');
     }
-	
-	public function checkaddliste(){
-		
-	
-        if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale')){
-
-            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
-            $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
-            $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
-        
-			//recuperation de l'id de la personne connecté
-			$persCo = $_SESSION['user_login'];
-			$requeteCrea = Createur::select()->where('email', '=', $persCo)->first();     
-			$idc = $requeteCrea->id;
-					
-            $l = new Liste();
-            $l->idpartage= uniqid();
-            $l->nom = $nomListe;
-			$l->date_final = $dateFinal;
-            $l->createur = $idc;
-            $l->description = $desc;
-			$l->save();
-			
-            $this->viewListe();
-
-        } else {
-
-            $this->checkSignup();
-        }
-    }
-	
 	public function viewSupprliste(){
 		$idListe = $this->request->get['idListe'];
 		
@@ -124,39 +121,16 @@ class PresentController extends \mf\control\AbstractController
 		$this->viewListe();
     }
 
-    public function addItem(){
-        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
-                // regarder si ca existe
-                $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
-                $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
-                $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
-                $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
 
-                $item=new Item();
+    /*
+     *
+     * LES CHECK
+     *
+     * */
 
-                if(isset($_POST['url'])){
-                    $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
-                    $item->url=$url;
-                }
 
-                $idListe = $this->request->get['idListe'];
-                $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
-
-                $item->nom=$nom;
-                $item->description=$description;
-                $item->tarif=$tarif;
-                $item->id_list = $requeteListe['id'];
-                $item->urlImage = $image;
-                $item->save();
-
-                $this->viewListeItem();
-                $message = "L'item à bien été ajouté";
-                echo "<script alert(".$message.")></script>";
-                
-        }
-    }
-
-    public function logout(){
+    // INSCRIPTION
+    public function check_logout(){
         $logout = new \mf\auth\Authentification();
         $logout->logout();
 
@@ -164,7 +138,6 @@ class PresentController extends \mf\control\AbstractController
         /*$this->viewListe();*/
         $this->viewPresent();
     }
-
     public function check_login(){
 
         // on recharge la vue dans le cas d'une error
@@ -195,8 +168,6 @@ class PresentController extends \mf\control\AbstractController
 
         }
     }
-
-    // CONTROL DE L'INSCRIPTION
     public function checkSignup(){
 
         if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
@@ -249,28 +220,70 @@ class PresentController extends \mf\control\AbstractController
     }
 
 
-    public function viewListeItem(){
-        
-                $id = $this->request->get['idListe'];        
-                $l= Liste::where('idPartage','=',$id)->first();
-       
-                $vue = new \presentapp\view\PresentView($l);
-                $vue->render('renderViewListeItem');
+    // LISTES
+    public function checkAddListe(){
+
+
+        if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale')){
+
+            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+            $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+
+            //recuperation de l'id de la personne connecté
+            $persCo = $_SESSION['user_login'];
+            $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
+            $idc = $requeteCrea->id;
+
+            $l = new Liste();
+            $l->idpartage= uniqid();
+            $l->nom = $nomListe;
+            $l->date_final = $dateFinal;
+            $l->createur = $idc;
+            $l->description = $desc;
+            $l->save();
+
+            $this->viewListe();
+
+        } else {
+
+            $this->checkSignup();
+        }
     }
 
-    public function viewReserverItem(){
-        $tab['idItem'] = $this->request->get['idItem'];
-        $tab['idListe'] = $this->request->get['idListe'];
 
-        $item = new Item();
-        $nomItem = $item->select('nom')->where('id', '=', $tab['idItem'])->first();
+    // ITEMS
+    public function addItem(){
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
+            // regarder si ca existe
+            $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+            $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+            $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+            $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
 
-        $tab['nom'] = $nomItem;
+            $item=new Item();
 
-        $vue = new \presentapp\view\PresentView($tab);
-        $vue->render('renderViewReserverItem');
+            if(isset($_POST['url'])){
+                $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+                $item->url=$url;
+            }
+
+            $idListe = $this->request->get['idListe'];
+            $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
+
+            $item->nom=$nom;
+            $item->description=$description;
+            $item->tarif=$tarif;
+            $item->id_list = $requeteListe['id'];
+            $item->urlImage = $image;
+            $item->save();
+
+            $this->viewListeItem();
+            $message = "L'item à bien été ajouté";
+            echo "<script alert(".$message.")></script>";
+
+        }
     }
-
     public function reserverItem(){
         $idItem = $this->request->get['idItem'];
 
@@ -290,6 +303,8 @@ class PresentController extends \mf\control\AbstractController
             $this->viewReserverItem();
         }
 
-        
+
     }
+
+
 }
