@@ -275,9 +275,13 @@ $message = "L'item à bien été ajouté";
 
 
 
-    public function viewListeItem($msg = null){  
+    // AFFICHE LA LISTE DES ITEMS D'UNE LISTE
+    public function viewListeItem($msg = null){
+
                 $id = $this->request->get['idListe'];        
                 $l= Liste::where('idPartage','=',$id)->first();
+
+                // c'est quoi $msg
                 if($msg != ''){
                     $l['msg']=$msg;
                 }

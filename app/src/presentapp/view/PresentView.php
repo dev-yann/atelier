@@ -120,10 +120,10 @@ EOT;
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."'</p>";
+                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-            $html .= '<a href=" . $this->script_name. "/listeItem/?idListe=" . $value->idPartage . "><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+            $html .= '<a href=' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
             $html .= "</div>";
             
         }
