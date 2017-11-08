@@ -152,10 +152,8 @@ class PresentController extends \mf\control\AbstractController
                 $item->id_list = $requeteListe['id'];
                 $item->urlImage = $image;
                 $item->save();
-
-                $this->viewListeItem();
                 $message = "L'item à bien été ajouté";
-                echo "<script alert(".$message.")></script>";
+                $this->viewListeItem($message);
                 
         }
     }
@@ -267,10 +265,13 @@ class PresentController extends \mf\control\AbstractController
     }
 
 
-    public function viewListeItem(){
-        
+    public function viewListeItem($msg = null){  
+                $message = $msg;      
                 $id = $this->request->get['idListe'];        
                 $l= Liste::where('idPartage','=',$id)->first();
+                if($message != ''){
+                    $l['msg']=$message;
+                }
        
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
