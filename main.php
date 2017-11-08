@@ -32,6 +32,7 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
     $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+	$router->addRoute('supprItem','/supprItem/','\presentapp\control\PresentController','viewsupprItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 } else {
 

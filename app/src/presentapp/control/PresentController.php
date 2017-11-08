@@ -57,7 +57,7 @@ class PresentController extends \mf\control\AbstractController
 
         $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
-        $vue->render('renderViewLogin');
+        $vue->render('renderViewLogin'); // WHAT
 
     }
 
@@ -121,7 +121,7 @@ class PresentController extends \mf\control\AbstractController
 		
 		$affectedRows = Liste::where('id', '=', $idListe)->delete();
 		
-		$this->viewListe();
+		$this->viewItem();
     }
 
     public function addItem(){
@@ -131,6 +131,7 @@ class PresentController extends \mf\control\AbstractController
                 $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
                 $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
                 $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
+				$url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
 
                 $item=new Item();
 
@@ -147,6 +148,7 @@ class PresentController extends \mf\control\AbstractController
                 $item->tarif=$tarif;
                 $item->id_list = $requeteListe['id'];
                 $item->urlImage = $image;
+				$item->url = $url;
                 $item->save();
 
                 $this->viewListeItem();
@@ -155,6 +157,8 @@ class PresentController extends \mf\control\AbstractController
                 
         }
     }
+
+
 
     public function logout(){
         $logout = new \mf\auth\Authentification();
@@ -251,11 +255,20 @@ class PresentController extends \mf\control\AbstractController
 
     public function viewListeItem(){
         
-                $id = $this->request->get['idListe'];        
-                $l= Liste::where('idPartage','=',$id)->first();
+    	$id = $this->request->get['idListe'];        
+        $l= Liste::where('idPartage','=',$id)->first();
        
-                $vue = new \presentapp\view\PresentView($l);
-                $vue->render('renderViewListeItem');
+        $vue = new \presentapp\view\PresentView($l);
+        $vue->render('renderViewListeItem');
+    }
+	
+	public function viewSupprItem(){
+		$idItem = $this->request->get['idItem'];
+		$idListe = $this->request->get['idListe'];
+		
+		$affectedRows = Item::where('id', '=', $idItem)->delete();
+		
+		$this->viewListeItem();
     }
 
     public function viewReserverItem(){

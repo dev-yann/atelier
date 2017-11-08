@@ -206,9 +206,9 @@ EOT;
        <label for="nom">Nom</label><input type="text" id="nom" name="nom" placeholder="Nom" required/>
          
        <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" placeholder="Tarif" step="0.01"/>
-         <input type="url" placeholder="Url vers un autre site" required> 
+         <input type="url" id="url" placeholder="Url vers un autre site"> 
          <Textarea rows="4" cols="15" placeholder="Description" name="description"></Textarea>
-         <input type="text" name="image" placeholder="Ajouter le lien d'une image"/>
+         <input type="text" name="image" id="urlimage" placeholder="Ajouter le lien d'une image"/>
          <input type="submit" value="ajouter">
         </form>
        </div> 
@@ -240,13 +240,12 @@ EOT;
     public function renderViewListeItem(){
 
         $html = '<div class="container">';
-        $html .="<h1>Liste pour l'évenement: " . $this->data->nom . "</h1>";
+        $html .="<h1>Liste pour l'évenement : <i>" . $this->data->nom . "</i></h1>";
         //if(isset($_SESSION['user_login'])){
-        $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a>";
+        $html .= "<p><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter une item</a></p>";
         //}
-        $html .="<div class='unEvenement'>". $this->data->nom . "</br>";
         $html .= "Aujourd'hui : " . $this->data->date_debut . "</br>";
-        $html .= $this->data->date_final . "</br></br></br>";
+        $html .= "Date de l'évènement : ".$this->data->date_final . "</br></br></br>";
 
         //$id_list = $this->data->id;
 
@@ -271,7 +270,9 @@ EOT;
             }
             $html .= '</div>';
             $html .= '</div>';
-
+			$html.= $value->id;
+			$html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">Supprimer cet item</a>';
+			/* $this->data->nom*/
         }
         return $html;
     }
