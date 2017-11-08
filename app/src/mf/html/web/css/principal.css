@@ -9,7 +9,7 @@
   color: beige; }
 
 /*ESTILOS HEADER*/
-.header {
+header {
   width: 100%;
   height: 50px;
   background: #92d0cf;
@@ -21,18 +21,18 @@
   justify-content: space-between; }
 
 .icon-menu {
-  margin: 5px;
   color: #fff;
   display: block;
   width: 35px;
   height: 35px;
-  font-size: 25px;
+  font-size: 30px;
   background: #2d6968;
   text-align: center;
-  line-height: 45px;
+  line-height: 25px;
   border-radius: 5px;
-  margin: 10px;
-  cursor: pointer; }
+  line-height: 35px;
+  cursor: pointer;
+  margin: 10px; }
 
 a {
   cursor: pointer; }
@@ -52,8 +52,10 @@ a {
 
 .menu_link {
   display: block;
-  padding: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
   height: 50px;
+  line-height: 50px;
   text-decoration: none;
   color: #fff;
   background-color: rgba(133, 193, 233, 0.8);
@@ -184,21 +186,23 @@ a {
 
   .offset-12 {
     margin-left: 100%; } }
-.fa-pencil-square-o, .fa-trash-o, .fa-plus-circle {
+.fa-pencil-square-o, .fa-trash-o, .fa-plus-circle, .fa-minus-circle {
   color: beige;
   background-color: #92d0cf;
-  padding: 5px;
   border-radius: 5px;
   width: 35px;
   height: 35px;
-  font-size: 30px;
-  text-align: center; }
+  text-align: center;
+  line-height: 50px; }
 
-.fa-pencil-square-o:hover, .fa-trash-o:hover, .fa-plus-circle:hover {
+.fa-pencil-square-o:hover, .fa-trash-o:hover, .fa-plus-circle:hover, .fa-minus-circle:hover {
   background-color: #2d6968; }
 
 .fa-plus-circle {
-  background-color: forestgreen; }
+  background-color: green; }
+
+.fa-minus-circle {
+  background-color: crimson; }
 
 * {
   box-sizing: border-box;
@@ -234,12 +238,21 @@ input {
   margin: auto;
   margin-top: 5px; }
 
+input[type="radio"] {
+  transform: scale(1.5); }
+
 textarea {
   display: block;
   margin: auto;
   width: 100%;
   margin-top: 5px;
   resize: none; }
+
+p {
+  line-height: 15px;
+  font-size: 13px;
+  text-align: justify;
+  margin: 3px; }
 
 table {
   border-collapse: collapse; }
@@ -272,5 +285,12 @@ th, td {
 
 .button:hover {
   background-color: #9B434F; }
+
+.cadeau {
+  width: 80%;
+  display: block;
+  margin: auto;
+  margin-bottom: 8px;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=principal.css.map */
