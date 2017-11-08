@@ -19,6 +19,7 @@ create table Liste(
     date_final date,
     createur int not null,
     description varchar (150) not null,
+    idPartage varchar (20) not null,
     constraint fk_liste FOREIGN KEY (createur) REFERENCES Createur (id)   
 );
 
