@@ -184,7 +184,7 @@ a {
 
   .offset-12 {
     margin-left: 100%; } }
-.fa-pencil-square-o, .fa-trash-o, .fa-plus-circle {
+.fa-pencil-square-o, .fa-trash-o, .fa-plus-circle, fa-minus-circle {
   color: beige;
   background-color: #92d0cf;
   padding: 5px;
@@ -194,11 +194,14 @@ a {
   font-size: 30px;
   text-align: center; }
 
-.fa-pencil-square-o:hover, .fa-trash-o:hover, .fa-plus-circle:hover {
+.fa-pencil-square-o:hover, .fa-trash-o:hover, .fa-plus-circle:hover, fa-minus-circle:hover {
   background-color: #2d6968; }
 
 .fa-plus-circle {
   background-color: forestgreen; }
+
+fa-minus-circle {
+  background-color: crimson; }
 
 * {
   box-sizing: border-box;
@@ -272,5 +275,12 @@ th, td {
 
 .button:hover {
   background-color: #9B434F; }
+
+.cadeau {
+  width: 80%;
+  display: block;
+  margin: auto;
+  margin-bottom: 5px;
+  border-radius: 5px; }
 
 /*# sourceMappingURL=principal.css.map */

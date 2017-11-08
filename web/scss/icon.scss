@@ -1,6 +1,7 @@
 $color1: lighten($cl_header1,20%);
 $color2: darken($cl_header1,20%);
 $color3: beige;
+$color4: crimson;
    
 .fa-pencil-square-o{
     color: $color3; 
@@ -24,4 +25,11 @@ $color3: beige;
 .fa-plus-circle{
     @extend .fa-pencil-square-o;
     background-color: forestgreen;
+}
+fa-minus-circle{
+     @extend .fa-pencil-square-o;
+    background-color: $color4;
+}
+fa-minus-circle:hover{
+     @extend .fa-pencil-square-o:hover;
 }
