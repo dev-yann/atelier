@@ -27,17 +27,21 @@ class PresentView extends AbstractView
     // HEADER
     private function renderHeader(){
 
+        /*$root = $this->app_root;*/
         if(isset($_SESSION['user_login'])){
-
-			 $html = <<<EOT
-		<header class="header">
-        	<h1 class="logo"><img src="../img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
+            $html =
+                <<<EOT
+                
+                
+                <header class="header">
+        <h1 class="logo"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
-                        <li class="menu_item"><a href="$this->script_name/logout/" class="menu_link select">Deconnexion</a></li>
-                        <li class="menu_item"><a href="$this->script_name/addliste/" class="menu_link">Ajouter une liste</a></li>
-                        <li class="menu_item"><a href="$this->script_name/liste/" class="menu_link">Accueil</a></li>
+                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">logout</a></li>
+                        <li class="menu_item"><a class="menu_link" href="$this->script_name/addliste/">Ajouter une liste</a></li>
+                        <li class="menu_item"><a class="menu_link" href="$this->script_name/liste/">Mes listes</a></li>
+>>>>>>> 9def7d88957b8a9613936fc5b1030b94bf19c59a
                     </ul>
                 </nav> 
         </header>
@@ -45,9 +49,16 @@ EOT;
         } else {
 
             $html = <<<EOT
-            
-<a href="$this->script_name/signup/">inscription</a>
-<a href="$this->script_name/login/">connection</a>
+            <header class="header">
+        <h1 class="logo"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
+                <span class="icon-menu" id="btn-menu"></span>
+                <nav class="nav" id="nav">
+                    <ul class="menu">
+                        <li class="menu_item"><a  class="menu_link" href="$this->script_name/signup/">inscription</a></li>
+                        <li class="menu_item"><a  class="menu_link" href="$this->script_name/login/">connection</a></li>
+                    </ul>
+                </nav> 
+        </header>
 
 EOT;
 
@@ -60,24 +71,32 @@ EOT;
     // FOOTER
     private function renderFooter(){
 
-        return '<h1>footer</h1>';
+/*        return '<h1>footer</h1>';*/
 
     }
 
     // FORM
     private  function renderViewSignUp(){
         $html = <<<EOT
+         <section>
         
-        <section>
-                <form method="post" action="$this->script_name/check_signup/">
-                    <input type="text" name="fullname" placeholder="Prénom"/>
-                    <input type="text" name="username" placeholder="Nom"/>
-                    <input type="email" name="mail" placeholder="mail"/>
-                    <input type="password" name="pw" placeholder="password"/>
-                    <input type="password" name="pw_repeat" placeholder="Repeat password"/>
+        <div class="container">
+     <div class="col-8 offset-2">
+      <div class="formulaire">
+       <legend>Inscription</legend>
+        <form method="post" action="$this->script_name/check_signup/">
+                    <input type="text" name="fullname" placeholder="Prénom" required/>
+                    <input type="text" name="username" placeholder="Nom" required/>
+                    <input type="email" name="mail" placeholder="mail" required/>
+                    <input type="password" name="pw" placeholder="password" required/>
+                    <input type="password" name="pw_repeat" placeholder="Repeat password" required/>
                    
-                    <input type="submit" value="create"/>
-                </form>
+                    <input type="submit" value="Créer"/>
+        </form>
+       </div> 
+     </div>
+     </div>
+                
         </section>
 EOT;
         return $html;
@@ -134,16 +153,23 @@ EOT;
         $html =
         
         <<<EOT
-                <section>
-                    <form method="post" action="$this->script_name/check_login/">
-                        <input type="text" name="email" placeholder="email"/>
-                        <input type="password" name="pw" placeholder="password"/>
-                        
-                        <input type="submit" value="login"/>
-                    </form>
-                </section>  
+                
+    <section>
+           <div class="container">
+     <div class="col-8 offset-2">
+      <div class="formulaire">
+       <legend>Inscription</legend>
+        <form method="post" action="$this->script_name/check_login/">
+         <input type="email" name="email" placeholder="email" required> 
+         <input type="password" name="pw" placeholder="password" required>  
+         <input type="submit" value="login">
+        </form>
+       </div> 
+     </div>
+     </div>         
+    </section>  
 EOT;
-        
+
                 return $html;
     }
     
