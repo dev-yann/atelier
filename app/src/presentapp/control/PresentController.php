@@ -123,27 +123,42 @@ class PresentController extends \mf\control\AbstractController
 
     public function addItem(){
 
-	    // regarder si ca existe
-        $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
-        $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
-        $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+        $uploaddir = '/var/www/uploads/';
+        $uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 
-        $item=new Item();
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
 
-        if(isset($_POST['url'])){
-            $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
-            $item->url=$url;
+            if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+                // regarder si ca existe
+                $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+                $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+                $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
+
+                $item=new Item();
+
+                if(isset($_POST['url'])){
+                    $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+                    $item->url=$url;
+                }
+
+                $idListe = $this->request->get['idListe'];
+
+                $item->nom=$nom;
+                $item->description=$description;
+                $item->tarif=$tarif;
+                $item->id_list = $idListe;
+                $item->save();
+
+                $this->viewListeItem();
+                
+                echo "Alerte :tout est dl et dans la bdd";
+            } else {
+                echo "Attaque potentielle par téléchargement de fichiers.
+                      Voici plus d'informations :\n";
+            }
+        }else{
+            echo "faire une alerte de pb avec l'image";
         }
-
-        $idListe = $this->request->get['idListe'];
-
-        $item->nom=$nom;
-        $item->description=$description;
-        $item->tarif=$tarif;
-        $item->id_list = $idListe;
-        $item->save();
-
-        $this->viewListeItem();
     }
 
     public function logout(){
@@ -161,7 +176,7 @@ class PresentController extends \mf\control\AbstractController
         $vue = new \presentapp\view\PresentView('');
 
         if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
-            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_SPECIAL_CHARS);
+            $user = filter_input(INPUT_POST,'email',FILTER_SANITIZE_STRING);
             $pass = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
 
             $connect = new PresentAuthentification();
@@ -196,8 +211,8 @@ class PresentController extends \mf\control\AbstractController
 
             if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
 
-                $fullname = filter_input(INPUT_POST,'fullname',FILTER_SANITIZE_SPECIAL_CHARS);
-                $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_SPECIAL_CHARS);
+                $fullname = filter_input(INPUT_POST,'fullname',FILTER_SANITIZE_STRING);
+                $username = filter_input(INPUT_POST,'username',FILTER_SANITIZE_STRING);
                 $pw = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
                 $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -266,8 +281,8 @@ class PresentController extends \mf\control\AbstractController
         $idItem = $this->request->get['idItem'];
 
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'message')){
-            $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_SPECIAL_CHARS);
-            $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
+            $message = filter_input(INPUT_POST,'message',FILTER_SANITIZE_STRING);
+            $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_STRING);
 
             $item = new Item();
             $update = $item->where('id', '=', $idItem)->first();
