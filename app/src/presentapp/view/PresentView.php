@@ -33,7 +33,7 @@ class PresentView extends AbstractView
                 
                 
                 <header class="header theme-backcolor1">
-        <h1 class="logo"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
+        <h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
@@ -109,9 +109,9 @@ EOT;
         $html ="<div class='container'>";
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
-        $html .= '<a href="'.$this->script_name.'/addliste/" class="col-3 offset-9 sp"><div>
+        $html .= '<div class="col-12 sp centrar"><a href="'.$this->script_name.'/addliste/">
         <h3>Ajouter une liste</h3>
-        </div></a>';
+        </a></div>';
         }
 		foreach ($this->data as $value){
 
@@ -144,7 +144,7 @@ EOT;
      <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Ajouter une nouvelle liste : </legend>
-        <form method="post" action="$this->script_name/checkaddliste/">
+        <form method="post" action="$this->script_name/check_addliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
@@ -289,10 +289,10 @@ EOT;
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
 
         if(isset($_SESSION['user_login'])){
-            $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage." class='col-3 offset-9 sp'><div>
+            $html .= "<div class='col-12 sp centrar'><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">
                     <h3>Ajouter Cadeau</h3>
 
-                    </div></a>";
+                    </a></div>";
         }
         //$id_list = $this->data->id;
 
@@ -321,8 +321,12 @@ EOT;
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
                 $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
             }
+
             $html .= '</div>';
         }
+
+        $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage.">Voir les messages déposer par vos invités</a></p></div>";
+
         return $html;
     }
 
@@ -343,6 +347,16 @@ EOT;
         </form>";
         return $html;        
     }
+
+
+
+
+    public function renderViewMessagePrivate(){
+
+
+    }
+
+
 
 
 
