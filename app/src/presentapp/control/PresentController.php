@@ -57,7 +57,7 @@ class PresentController extends \mf\control\AbstractController
 
         $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
-        $vue->render('renderViewLogin'); // WHAT
+        $vue->render('renderViewListeItem'); // WHAT
 
     }
 
