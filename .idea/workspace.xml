@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7140a29b-7536-4246-ae3f-a334d1e32443" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/login.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/login.css.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/mf/html/web/scss/login.scss" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/grille.scssc" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/grille.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/icon.scssc" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/icon.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/menu.scssc" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/menu.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/principal.scssc" afterPath="$PROJECT_DIR$/app/src/mf/html/web/.sass-cache/4e0bb1582b31887900977ab48ab8c00df91b1483/principal.scssc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/grille.css" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/grille.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/grille.css.map" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/grille.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/icon.css" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/icon.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/icon.css.map" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/icon.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/menu.css" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/menu.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/menu.css.map" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/menu.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css.map" afterPath="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/html/liste_participant.html" afterPath="$PROJECT_DIR$/app/src/mf/html/web/html/liste_participant.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/js/menu.js" afterPath="$PROJECT_DIR$/app/src/mf/html/web/js/menu.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/scss/grille.scss" afterPath="$PROJECT_DIR$/app/src/mf/html/web/scss/grille.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/scss/icon.scss" afterPath="$PROJECT_DIR$/app/src/mf/html/web/scss/icon.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/scss/menu.scss" afterPath="$PROJECT_DIR$/app/src/mf/html/web/scss/menu.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/mf/html/web/scss/principal.scss" afterPath="$PROJECT_DIR$/app/src/mf/html/web/scss/principal.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" afterPath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" afterPath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.php" afterPath="$PROJECT_DIR$/main.php" />
-    </list>
+    <list default="true" id="7140a29b-7536-4246-ae3f-a334d1e32443" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +14,8 @@
       <file leaf-file-name="main.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="940">
+              <caret line="48" column="99" lean-forward="false" selection-start-line="48" selection-start-column="99" selection-end-line="48" selection-end-column="122" />
               <folding>
                 <element signature="e#23#44#0#PHP" expanded="true" />
               </folding>
@@ -52,7 +26,7 @@
       <file leaf-file-name="Authentification.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/mf/auth/Authentification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
+            <state relative-caret-position="2180">
               <caret line="109" column="24" lean-forward="false" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
               <folding />
             </state>
@@ -62,7 +36,7 @@
       <file leaf-file-name="AbstractAuthentification.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/mf/auth/AbstractAuthentification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-26">
+            <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -72,8 +46,8 @@
       <file leaf-file-name="Router.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/mf/router/Router.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="60" column="91" lean-forward="false" selection-start-line="60" selection-start-column="91" selection-end-line="60" selection-end-column="91" />
               <folding>
                 <element signature="e#28#57#0#PHP" expanded="true" />
               </folding>
@@ -81,17 +55,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="59" column="41" lean-forward="false" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
+            <state relative-caret-position="460">
+              <caret line="385" column="5" lean-forward="true" selection-start-line="385" selection-start-column="5" selection-end-line="385" selection-end-column="5" />
               <folding>
                 <element signature="e#6#84#0#PHP" expanded="true" />
                 <element signature="e#116#153#0#PHP" expanded="true" />
+                <element signature="e#541#819#0#PHP" expanded="false" />
+                <element signature="e#848#986#0#PHP" expanded="false" />
+                <element signature="e#1015#1139#0#PHP" expanded="false" />
+                <element signature="e#1145#1489#0#PHP" expanded="false" />
                 <element signature="e#10360#10664#0#PHP" expanded="false" />
                 <element signature="e#10670#11075#0#PHP" expanded="false" />
-                <marker date="1510218097099" expanded="true" signature="2292:2387" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,18 +77,18 @@
       <file leaf-file-name="PresentAuthentification.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-446">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="260">
+              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-360">
-              <caret line="286" column="0" lean-forward="true" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+            <state relative-caret-position="6540">
+              <caret line="335" column="29" lean-forward="true" selection-start-line="335" selection-start-column="29" selection-end-line="335" selection-end-column="29" />
               <folding>
                 <marker date="1510218343579" expanded="true" signature="632:1014" ph="..." />
                 <marker date="1510218343579" expanded="true" signature="632:1351" ph="..." />
@@ -206,11 +183,11 @@
         <option value="$PROJECT_DIR$/app/src/mf/view/AbstractView.php" />
         <option value="$PROJECT_DIR$/conf/config.ini" />
         <option value="$PROJECT_DIR$/app/src/mf/router/AbstractRouter.php" />
+        <option value="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
         <option value="$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php" />
+        <option value="$PROJECT_DIR$/main.php" />
         <option value="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
         <option value="$PROJECT_DIR$/app/src/mf/router/Router.php" />
-        <option value="$PROJECT_DIR$/main.php" />
-        <option value="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
       </list>
     </option>
   </component>
@@ -242,6 +219,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -316,7 +294,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -362,12 +339,13 @@
       <workItem from="1510126515783" duration="12162000" />
       <workItem from="1510146040185" duration="11624000" />
       <workItem from="1510165446126" duration="415000" />
-      <workItem from="1510211903170" duration="6448000" />
+      <workItem from="1510211903170" duration="7657000" />
+      <workItem from="1510221146674" duration="25000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66923000" />
+    <option name="totallyTimeSpent" value="68157000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="447" y="-4" width="1303" height="780" extended-state="6" />
@@ -583,9 +561,12 @@
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
             <element signature="e#116#153#0#PHP" expanded="true" />
+            <element signature="e#541#819#0#PHP" expanded="false" />
+            <element signature="e#848#986#0#PHP" expanded="false" />
+            <element signature="e#1015#1139#0#PHP" expanded="false" />
+            <element signature="e#1145#1489#0#PHP" expanded="false" />
             <element signature="e#10360#10664#0#PHP" expanded="false" />
             <element signature="e#10670#11075#0#PHP" expanded="false" />
-            <marker date="1510218097099" expanded="true" signature="2292:2387" ph="..." />
           </folding>
         </state>
       </provider>
@@ -622,9 +603,12 @@
           <folding>
             <element signature="e#6#84#0#PHP" expanded="true" />
             <element signature="e#116#153#0#PHP" expanded="true" />
+            <element signature="e#541#819#0#PHP" expanded="false" />
+            <element signature="e#848#986#0#PHP" expanded="false" />
+            <element signature="e#1015#1139#0#PHP" expanded="false" />
+            <element signature="e#1145#1489#0#PHP" expanded="false" />
             <element signature="e#10360#10664#0#PHP" expanded="false" />
             <element signature="e#10670#11075#0#PHP" expanded="false" />
-            <marker date="1510218097099" expanded="true" signature="2292:2387" ph="..." />
           </folding>
         </state>
       </provider>
@@ -794,7 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="8" lean-forward="false" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/AbstractAuthentification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/mf/router/AbstractRouter.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -856,60 +831,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-446">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/Authentification.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="109" column="24" lean-forward="false" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="59" column="41" lean-forward="false" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
-          <folding>
-            <element signature="e#6#84#0#PHP" expanded="true" />
-            <element signature="e#116#153#0#PHP" expanded="true" />
-            <element signature="e#10360#10664#0#PHP" expanded="false" />
-            <element signature="e#10670#11075#0#PHP" expanded="false" />
-            <marker date="1510218097099" expanded="true" signature="2292:2387" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/mf/router/Router.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="64" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <element signature="e#28#57#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding>
-            <element signature="e#23#44#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360">
-          <caret line="286" column="0" lean-forward="true" selection-start-line="286" selection-start-column="0" selection-end-line="286" selection-end-column="0" />
+        <state relative-caret-position="6540">
+          <caret line="335" column="29" lean-forward="true" selection-start-line="335" selection-start-column="29" selection-end-line="335" selection-end-column="29" />
           <folding>
             <marker date="1510218343579" expanded="true" signature="632:1014" ph="..." />
             <marker date="1510218343579" expanded="true" signature="632:1351" ph="..." />
@@ -946,6 +871,67 @@
             <marker date="1510218343579" expanded="true" signature="9191:9404" ph="..." />
             <marker date="1510218343579" expanded="true" signature="10892:10901" ph="..." />
             <marker date="1510218343579" expanded="true" signature="11922:11961" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/AbstractAuthentification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/auth/Authentification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2180">
+          <caret line="109" column="24" lean-forward="false" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/auth/PresentAuthentification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="940">
+          <caret line="48" column="99" lean-forward="false" selection-start-line="48" selection-start-column="99" selection-end-line="48" selection-end-column="122" />
+          <folding>
+            <element signature="e#23#44#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/mf/router/Router.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="60" column="91" lean-forward="false" selection-start-line="60" selection-start-column="91" selection-end-line="60" selection-end-column="91" />
+          <folding>
+            <element signature="e#28#57#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="385" column="5" lean-forward="true" selection-start-line="385" selection-start-column="5" selection-end-line="385" selection-end-column="5" />
+          <folding>
+            <element signature="e#6#84#0#PHP" expanded="true" />
+            <element signature="e#116#153#0#PHP" expanded="true" />
+            <element signature="e#541#819#0#PHP" expanded="false" />
+            <element signature="e#848#986#0#PHP" expanded="false" />
+            <element signature="e#1015#1139#0#PHP" expanded="false" />
+            <element signature="e#1145#1489#0#PHP" expanded="false" />
+            <element signature="e#10360#10664#0#PHP" expanded="false" />
+            <element signature="e#10670#11075#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
