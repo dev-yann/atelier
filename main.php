@@ -50,10 +50,14 @@ $router->addRoute('modifierItemBDD','/modifierItemBDD/','\presentapp\control\Pre
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
 $router->addRoute('checkMessageItemPrivate','/messageItemPrivate/', 'presentapp\control\PresentController','checkMessageItemPrivate',PresentAuthentification::ACCESS_LEVEL_USER);
+// AFFICHAGE DES MESSAGE POUR TOUS
+$router->addRoute('messageItemAll','/messageItemAll/','presentapp\control\PresentController', 'checkMessageItemAll',PresentAuthentification::ACCESS_LEVEL_NONE);
+
 
 
 
 /*if($_SESSION['user_login']){ // par défault quand connecté va par la page 
+>>>>>>> 835dd1a1afbc5d0eb5bbea9c14a1cec79a2e7c23
 	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewListe', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewListe',PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewListe', PresentAuthentification::ACCESS_LEVEL_NONE);

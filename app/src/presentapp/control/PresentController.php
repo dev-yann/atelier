@@ -495,4 +495,8 @@ class PresentController extends \mf\control\AbstractController
         }
 
     }
+
+
+
+    public function checkMessageItemAll(){}
 }
