@@ -20,19 +20,12 @@ $db->bootEloquent();
 // Définition des routes
 $router = new Router();
 
-if($_SESSION['user_login']){ // par défault quand connecté va par la page Mes listes
-	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewListe', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);	
-}
-else{ // Par défault si pas connecté -> Va sur la page connexion
-	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewLogin', PresentAuthentification::ACCESS_LEVEL_USER); 
-}
 
 // ROUTE DE CONNECTION
 $router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewLogin', PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'check_login',PresentAuthentification::ACCESS_LEVEL_NONE);
-
 $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 
@@ -57,6 +50,19 @@ $router->addRoute('modifierItemBDD','/modifierItemBDD/','\presentapp\control\Pre
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
 $router->addRoute('checkMessageItemPrivate','/messageItemPrivate/', 'presentapp\control\PresentController','checkMessageItemPrivate',PresentAuthentification::ACCESS_LEVEL_USER);
+
+
+
+if($_SESSION['user_login']){ // par défault quand connecté va par la page 
+	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewListe', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+	$router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewListe',PresentAuthentification::ACCESS_LEVEL_NONE);
+	$router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewListe', PresentAuthentification::ACCESS_LEVEL_NONE);
+	$router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'viewListe',PresentAuthentification::ACCESS_LEVEL_NONE);
+	$router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','viewListe', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+}
+else{ // Par défault si pas connecté -> Va sur la page connexion
+	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewLogin', PresentAuthentification::ACCESS_LEVEL_USER); 
+}
 
 
 $router->run();
