@@ -345,6 +345,9 @@ $message = "L'item à bien été ajouté";
         $item['idListe'] = $idListe;
         $vue = new \presentapp\view\PresentView($item);
         $vue->render('renderViewModifierItem');
+
+        
+        
     }
 
     public function viewReserverItem(){
@@ -412,9 +415,10 @@ $message = "L'item à bien été ajouté";
             
             
             $item->save();
-$message = "L'item à bien été modifié";
+            $message = "L'item à bien été modifié";
             $this->viewListeItem($message);
-
+        } else {
+            echo "<div class='container'>nan dsl</div>";
         }
     }
 
