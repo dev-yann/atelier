@@ -243,6 +243,14 @@ EOT;
     }
 
     public function renderViewModifierItem(){
+        /*$idListe = $this->data->idListe;
+        $id = $this->data->id;
+        $nom = $this->data->nom;
+        $tarif = $this->data->tarif;
+        $url = $this->data->url;
+        $description = $this->data->description;
+        $urlImage = $this->data->urlImage;*/
+
         $html = <<<EOT
         
         <div class="container">
@@ -250,15 +258,15 @@ EOT;
       <div class="formulaire">
        <legend>Modifier le cadeau</legend>
        
-       <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$this->data->idListe">
+       <form method="post" enctype="multipart/form-data" action="$this->script_name/modifierItemBDD/?idListe=$idListe&idItem=$id">
        
-       <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$this->data->nom" required/>
+       <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$nom" required/>
          
-       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$this->data->tarif" step="0.01"/>
-         <input type="url" id="url" value="$this->data->url"> 
-         <Textarea rows="4" cols="15" value="$this->data->description" name="description"></Textarea>
-         <input type="text" name="image" id="urlimage" value="$this->data->urlImage"/>
-         <input type="submit" value="ajouter">
+       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$tarif" step="0.01"/>
+         <input type="url" id="url" value="$url"> 
+         <textarea rows="4" cols="15" name="description">$description</textarea>
+         <input type="text" name="image" id="urlimage" value="$urlImage"/>
+         <input type="submit" value="Modifier">
         </form>
        </div> 
      </div>
