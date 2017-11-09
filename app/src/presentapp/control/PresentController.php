@@ -11,6 +11,7 @@ use \presentapp\model\Liste as Liste;
 use \presentapp\model\Item as Item;
 use \presentapp\model\Createur as Createur;
 use presentapp\auth\PresentAuthentification;
+use presentapp\view\PresentView;
 
 
 class PresentController extends \mf\control\AbstractController
@@ -425,11 +426,29 @@ $message = "L'item à bien été ajouté";
 
     public function checkMessageItemPrivate(){
 
-      /*  $idListe = $this->request->get['idListe'];
-        $requeteDate = Liste::select('date_final')->where()->first();
+        $idListe = $this->request->get['idListe'];
+
+        $requeteDate = Liste::select('date_final')->where('idPartage','=',$idListe)->first();
+
+        $dateFinal = $requeteDate['date_final'];
+
+        $now = date('Y-m-d');
+
+        if($dateFinal <= $now){
+
+            echo "dispo";
+           /* $vue = new PresentView();
+            $this->renderMessageItemPrivate();*/
+
+        } else {
+
+            $this->viewListeItem();
+        }
 
 
-        $requeteMessage = Item::all();*/
+        /*$tab = $requeteDate->items()->where('id_list','=',$this->data->id)->get();
+        $vue = new \presentapp\view\PresentView($requeteDate);
+        $vue->render('renderViewMessagePrivate');*/
 
     }
 }
