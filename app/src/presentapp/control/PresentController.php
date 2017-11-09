@@ -240,14 +240,14 @@ class PresentController extends \mf\control\AbstractController
         $regex1='/[^a-zA-Z \-éèêëçäà]/';
 		
 		// Politique de MDP
-      /*  $policyL = new \PasswordPolicy\Policy; // Lower
+      	$policyL = new \PasswordPolicy\Policy; // Lower
 		$policyU = new \PasswordPolicy\Policy; // Upper						// Policy
 		$policyD = new \PasswordPolicy\Policy; // Digit
 		$policyS = new \PasswordPolicy\Policy; // symnbole
 		$policyL->contains('lowercase', $policyL->atLeast(1));
 		$policyU->contains('uppercase', $policyU->atLeast(1));
 		$policyD->contains('digit', $policyD->atLeast(1));
-		$policyS->contains('symbol', $policyS->atLeast(1));*/
+		$policyS->contains('symbol', $policyS->atLeast(1));
 		
         if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
 
@@ -274,14 +274,14 @@ class PresentController extends \mf\control\AbstractController
                             echo"mot de passe trop court";
                         }else{
 								
-							/*$resultL = $policyL->test($mdp);  
+							$resultL = $policyL->test($mdp);  
 							if($resultL->result){		// Verif minuscule
 								$resultU = $policyU->test($mdp);
 								if($resultU->result){		// Verif majuscule
 									$resultD = $policyD->test($mdp);
 									if($resultD->result){		// Verif Chiffre
 										$resultS = $policyS->test($mdp);
-										if($resultS->result){   	// Verif Symbole */
+										if($resultS->result){   	// Verif Symbole 
 										  
 											if($pw === $pw_repeat){
 
@@ -308,7 +308,7 @@ class PresentController extends \mf\control\AbstractController
 												$this->viewSignUp();
 											}
 											}
-									/*	else{
+										else{
 											echo 'pas de symbole';
 										}
 									}
@@ -325,7 +325,7 @@ class PresentController extends \mf\control\AbstractController
 							else{
 								echo 'pas de minuscule';
 							}
-						}*/
+						}
                     } else {
 
                         echo "L'adresse email n'a pas le bon format";
