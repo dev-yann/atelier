@@ -417,4 +417,15 @@ $message = "L'item à bien été modifié";
 
         }
     }
+
+
+    public function checkMessageItemPrivate(){
+
+      /*  $idListe = $this->request->get['idListe'];
+        $requeteDate = Liste::select('date_final')->where()->first();
+
+
+        $requeteMessage = Item::all();*/
+
+    }
 }
