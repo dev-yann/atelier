@@ -211,9 +211,9 @@ EOT;
        <label for="nom">Nom</label><input type="text" id="nom" name="nom" placeholder="Nom" required/>
          
        <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" placeholder="Tarif" step="0.01"/>
-         <input type="url" id="url" placeholder="Url vers un autre site"> 
+         <input type="url" id="url" placeholder="Url vers un autre site" name="url"> 
          <Textarea rows="4" cols="15" placeholder="Description" name="description"></Textarea>
-         <input type="text" name="image" id="urlimage" placeholder="Ajouter le lien d'une image"/>
+         <input type="text" name="urlImage" id="urlimage" placeholder="Ajouter le lien d'une image"/>
          <input type="submit" value="ajouter">
         </form>
        </div> 
@@ -242,6 +242,36 @@ EOT;
 
     }
 
+    public function renderViewModifierItem(){
+        $html = <<<EOT
+        
+        <div class="container">
+     <div class="col-8 offset-2">
+      <div class="formulaire">
+       <legend>Modifier le cadeau</legend>
+       
+       <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$this->data->idListe">
+       
+       <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$this->data->nom" required/>
+         
+       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$this->data->tarif" step="0.01"/>
+         <input type="url" id="url" value="$this->data->url"> 
+         <Textarea rows="4" cols="15" value="$this->data->description" name="description"></Textarea>
+         <input type="text" name="image" id="urlimage" value="$this->data->urlImage"/>
+         <input type="submit" value="ajouter">
+        </form>
+       </div> 
+     </div>
+     </div>
+             
+</form>
+</section>
+</div>
+EOT;
+
+        return $html;
+    }
+
     public function renderViewListeItem(){
 
         $html = '<div class="container">';
@@ -250,10 +280,11 @@ EOT;
         }
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
-        $html .= "<div class='col-3 offset-9 sp'>
+        if(isset($_SESSION['user_login'])){
+            $html .= "<div class='col-3 offset-9 sp'>
                     <h3><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter cadeau</h3><i class='fa fa-plus-circle fa-2x' aria-hidden='true'></i></a>
                     </div>";
-
+        }
         //$id_list = $this->data->id;
 
         $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
@@ -272,12 +303,15 @@ EOT;
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
             $html .= '<h4>Tarif : '.$value['tarif'].'€</h4>';
 
-            //if(!isset($_SESSION['user_login'])){
+            if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
-            //}
-            
-			$html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-			$html .= '</div>';
+                $html .= "<a class='button' href=".$value['url'].">Plus d'information</a>";
+            }
+            if(isset($_SESSION['user_login'])){
+			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
+                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
+            }
+            $html .= '</div>';
         }
         return $html;
     }
