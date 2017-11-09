@@ -37,7 +37,7 @@ class PresentView extends AbstractView
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
-                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">Deconnexion</a></li>
+                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">Deconnection</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/addliste/">Ajouter une liste</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/liste/">Mes listes</a></li>
                     </ul>

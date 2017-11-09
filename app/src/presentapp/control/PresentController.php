@@ -181,7 +181,7 @@ class PresentController extends \mf\control\AbstractController
 
         // SI DÉCO ALORS PEU PAS AFFICHER VIEWLISTE
         /*$this->viewListe();*/
-        $this->viewPresent();
+        $this->viewLogin();
     }
 
     public function check_login(){
