@@ -109,7 +109,7 @@ EOT;
         $html ="<div class='container'>";
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
-        $html .= '<div class="col-12 sp"><a href="'.$this->script_name.'/addliste/" class="centrar">
+        $html .= '<div class="col-12 sp centrar"><a href="'.$this->script_name.'/addliste/">
         <h3>Ajouter une liste</h3>
         </a></div>';
         }
@@ -289,10 +289,10 @@ EOT;
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
 
         if(isset($_SESSION['user_login'])){
-            $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage." class='col-3 offset-9 sp'><div>
+            $html .= "<div class='col-12 sp centrar'><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">
                     <h3>Ajouter Cadeau</h3>
 
-                    </div></a>";
+                    </a></div>";
         }
         //$id_list = $this->data->id;
 
