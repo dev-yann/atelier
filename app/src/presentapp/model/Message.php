@@ -19,7 +19,7 @@ class Message extends \Illuminate\Database\Eloquent\Model
 
     public function liste(){
 
-        return $this->belongsTo('presentapp\model\ListeItem', 'id_liste');
+        return $this->belongsTo('presentapp\model\Liste', 'id_list');
 
     }
 }
