@@ -3,7 +3,8 @@
 
 .logo {
   font-family: 'Lobster', cursive;
-  color: beige; }
+  color: beige;
+  width: auto; }
 
 /*ESTILOS HEADER*/
 header {
