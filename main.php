@@ -45,6 +45,7 @@ $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentControll
 $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('modifierItem','/modifierItem/','\presentapp\control\PresentController', 'viewModifierItem',PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('modifierItemBDD','/modifierItemBDD/','\presentapp\control\PresentController', 'modifierItemBDD',PresentAuthentification::ACCESS_LEVEL_USER);
 //$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE

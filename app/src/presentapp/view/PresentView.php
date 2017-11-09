@@ -109,9 +109,9 @@ EOT;
         $html ="<div class='container'>";
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
-        $html .= '<a href="'.$this->script_name.'/addliste/" class="col-3 offset-9 sp"><div>
+        $html .= '<div class="col-12 sp"><a href="'.$this->script_name.'/addliste/" class="  centrar"><div>
         <h3>Ajouter une liste</h3>
-        </div></a>';
+        </div></a></div>';
         }
 		foreach ($this->data as $value){
 
@@ -262,9 +262,9 @@ EOT;
        <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$nom" required/>
          
        <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$tarif" step="0.01"/>
-         <input type="url" id="url" value="$url"> 
+         <input type="url" id="url" value="$url" name="url"> 
          <textarea rows="4" cols="15" name="description">$description</textarea>
-         <input type="text" name="image" id="urlimage" value="$urlImage"/>
+         <input type="text" name="urlImage" id="image" value="$urlImage"/>
          <input type="submit" value="Modifier">
         </form>
        </div> 
