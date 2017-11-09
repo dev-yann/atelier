@@ -53,16 +53,16 @@ $router->addRoute('checkMessageItemPrivate','/messageItemPrivate/', 'presentapp\
 
 
 
-if($_SESSION['user_login']){ // par défault quand connecté va par la page 
+/*if($_SESSION['user_login']){ // par défault quand connecté va par la page 
 	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewListe', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewListe',PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('login','/login/','\presentapp\control\PresentController', 'viewListe', PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('check_login','/check_login/','\presentapp\control\PresentController', 'viewListe',PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','viewListe', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 }
-else{ // Par défault si pas connecté -> Va sur la page connexion
+else{*/ // Par défault si pas connecté -> Va sur la page connexion
 	$router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewLogin', PresentAuthentification::ACCESS_LEVEL_USER); 
-}
+//}
 
 
 $router->run();
