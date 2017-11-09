@@ -11,6 +11,7 @@ class PresentAuthentification extends \mf\auth\Authentification {
 	 * LEVEL ACCESS
 	 *
 	 */
+	const ACCESS_LEVEL_INVIT = 50;
 	const ACCESS_LEVEL_USER  = 100;   
 	const ACCESS_LEVEL_ADMIN = 200;
 

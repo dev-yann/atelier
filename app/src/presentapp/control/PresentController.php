@@ -57,7 +57,7 @@ class PresentController extends \mf\control\AbstractController
 
         $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
-        $vue->render('renderViewLogin'); // WHAT
+        $vue->render('renderViewListeItem'); // WHAT
 
     }
 
@@ -125,12 +125,12 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
-        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             // regarder si ca existe
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
             $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
-            $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
+            $urlImage = filter_input(INPUT_POST,'urlImage',FILTER_SANITIZE_SPECIAL_CHARS);
             $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
 
             //$tarifformat = number_format($tarif, 2, '.', ' '); problème avec les virgules
@@ -139,20 +139,22 @@ class PresentController extends \mf\control\AbstractController
 
             $item=new Item();
 
-            if(isset($_POST['url'])){
+            /*if(isset($_POST['url'])){
                 $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
                 $item->url=$url;
-            }
+            }*/
 
             $idListe = $this->request->get['idListe'];
             $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
 
             $item->nom=$nom;
-            $item->description=$description;
+            $item->description = $description;
+            $item->urlImage = $urlImage;
             $item->tarif=$tarifformat;
-            $item->id_list = $requeteListe['id'];
-            $item->urlImage = $image;
             $item->url = $url;
+            $item->id_list = $requeteListe['id'];
+            
+            
             $item->save();
 $message = "L'item à bien été ajouté";
             $this->viewListeItem($message);
@@ -206,8 +208,17 @@ $message = "L'item à bien été ajouté";
     public function checkSignup(){
 
         $regex1='/[^a-zA-Z \-éèêëçäà]/';
-        $regex2 = '#^(?=.+[a-z])(?=.+[A-Z])(?=.+[0-9])(?=.+\W)#';
-
+		
+		// Politique de MDP
+        $policyL = new \PasswordPolicy\Policy; // Lower
+		$policyU = new \PasswordPolicy\Policy; // Upper
+		$policyD = new \PasswordPolicy\Policy; // Digit
+		$policyS = new \PasswordPolicy\Policy; // symnbole
+		$policyL->contains('lowercase', $policyL->atLeast(1));
+		$policyU->contains('uppercase', $policyU->atLeast(1));
+		$policyD->contains('digit', $policyD->atLeast(1));
+		$policyS->contains('symbol', $policyS->atLeast(1));
+		
         if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
 
             $email_a = $_POST["mail"];
@@ -217,8 +228,6 @@ $message = "L'item à bien été ajouté";
             $longueur= strlen($mdp);
             if(preg_match($regex1, $prenom)){
                 echo" le prénom n'est pas au bon format";
-
-
             }else{
                 if(preg_match($regex1, $nom)){
                     echo" le nom n'est pas au bon format";
@@ -231,38 +240,66 @@ $message = "L'item à bien été ajouté";
                         $pw = filter_input(INPUT_POST,'pw',FILTER_SANITIZE_SPECIAL_CHARS);
                         $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
 
-                        if($longueur < 8){
+                        if($longueur < 8){  // Verif longueur mdp
                             echo"mot de passe trop court";
                         }else{
-                            if($pw === $pw_repeat){
+								
+							$resultL = $policyL->test($mdp);  
+							if($resultL->result == true){		// Verif minuscule
+								$resultU = $policyU->test($mdp);
+								if($resultU->result == true){		// Verif majuscule
+									$resultD = $policyD->test($mdp);
+									if($resultD->result == true){		// Verif Chiffre
+										$resultS = $policyS->test($mdp);
+										if($resultS->result == true){   	// Verif Symbole 
+										  
+											if($pw === $pw_repeat){
 
-                                $signUp = new PresentAuthentification();
+												$signUp = new PresentAuthentification();
 
-                                try{
+												try{
 
-                                    $signUp->createUser($username, $pw, $fullname,$email_a);
+													$signUp->createUser($username, $pw, $fullname,$email_a);
 
-                                    // Si tous se passe bien on renvoie sur les listes
-                                    $this->viewListe();
+													// Si tous se passe bien on renvoie sur les listes
+													$this->viewListe();
 
-                                }catch (\Exception $e){
+												}catch (\Exception $e){
 
-                                    // si la création du user à échouée
-                                    $this->viewSignUp();
-                                    echo $e->getMessage();
+													// si la création du user à échouée
+													$this->viewSignUp();
+													echo $e->getMessage();
 
-                                }
+												}
+											}
 
-                            } else {
-
-                                echo "Les mots de passes ne sont pas les mêmes";
-                                $this->viewSignUp();
-                            }
-                        }
+											else {
+												echo "Les mots de passes ne sont pas les mêmes";
+												$this->viewSignUp();
+											}
+											}
+										else{
+											echo 'pas de symbole';
+										}
+									}
+									else{
+										echo 'pas de chiffre';
+									}
+								}
+								else{
+									echo 'pas de masjucule';
+								}
+									
+							}
+							
+							else{
+								echo 'pas de minuscule';
+							}
+						}
                     } else {
 
                         echo "L'adresse email n'a pas le bon format";
-
+                        $this->viewSignUp();
                     }
                 }
             }
@@ -271,7 +308,7 @@ $message = "L'item à bien été ajouté";
             echo "Certaines données sont manquantes";
             $this->viewSignup();
         }
-    }
+	}
 
 
 
@@ -298,6 +335,15 @@ $message = "L'item à bien été ajouté";
         $affectedRows = Item::where('id', '=', $idItem)->delete();
 
         $this->viewListeItem();
+    }
+
+    public function viewModifierItem(){
+        $idItem = $this->request->get['idItem'];
+        $idListe = $this->request->get['idListe'];
+
+        $item = Item::where('id', '=', $idItem)->first();
+        $vue = new \presentapp\view\PresentView($item);
+        $vue->render('renderViewModifierItem');
     }
 
     public function viewReserverItem(){
