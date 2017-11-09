@@ -145,7 +145,11 @@ class PresentController extends \mf\control\AbstractController
 
     public function addItem(){
 
+<<<<<<< HEAD
 		$regexTarif='/[^0-9 \.\,]/';
+=======
+		$regexTarif='/[^0-9\.\,]/';
+>>>>>>> 562d30b536243341ac5c91bacb1f9f72ed7383bb
 		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             
@@ -159,11 +163,25 @@ class PresentController extends \mf\control\AbstractController
             
                 
 
+<<<<<<< HEAD
                 if(preg_match($regexTarif, $prix)){
                     //echo" le chiffre n'est pas au bon format"; //pb ici
                     $message = "Le tarif doit être un nombre ou un chiffre";
                     $this->viewAddItem($message);
                 }else{
+=======
+			
+            if(preg_match($regexTarif, $prix)){
+                echo" le tarif n'est pas au bon format";
+            }else{
+				$tarifformatpoint = str_replace(',', '.', $tarif);
+
+				//Vérifier que chiffres !! ici
+
+				$tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
+
+				$item=new Item();
+>>>>>>> 562d30b536243341ac5c91bacb1f9f72ed7383bb
 
                     $tarifformatpoint = str_replace(',', '.', $tarif);
                     $tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
@@ -185,10 +203,18 @@ class PresentController extends \mf\control\AbstractController
                     $item->id_list = $requeteListe['id'];
                     $item->save();
 
+<<<<<<< HEAD
 
                     $message = "<div class='alert alert-success col-12'>L'item à bien été ajouté</div>";
                     $this->viewListeItem($message);
                 }			
+=======
+				$item->save();
+				$message = "L'item à bien été ajouté";
+				$this->viewListeItem($message);
+			
+            }
+>>>>>>> 562d30b536243341ac5c91bacb1f9f72ed7383bb
         }
     }
 
@@ -200,7 +226,7 @@ class PresentController extends \mf\control\AbstractController
 
         // SI DÉCO ALORS PEU PAS AFFICHER VIEWLISTE
         /*$this->viewListe();*/
-        $this->viewPresent();
+        $this->viewLogin();
     }
 
     public function check_login(){
@@ -354,7 +380,6 @@ class PresentController extends \mf\control\AbstractController
        
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
-
     }
 
     public function viewSupprItem(){
@@ -452,29 +477,48 @@ class PresentController extends \mf\control\AbstractController
 
     public function checkMessageItemPrivate(){
 
-        $idListe = $this->request->get['idListe'];
+        // on regarde si ca existe
+        if(isset($this->request->get['idListe']) && isset($this->request->get['idItem'])){
 
-        $requeteDate = Liste::select('date_final')->where('idPartage','=',$idListe)->first();
+            // si c'est pas vide
+            $idListe = $this->request->get['idListe'];
+            $idItem = $this->request->get['idItem'];
 
-        $dateFinal = $requeteDate['date_final'];
+            // On recupère la date
+            $requeteDate = Liste::select('date_final')->where('idPartage', '=', $idListe)->first();
 
-        $now = date('Y-m-d');
+            // si la date existe
+            if(isset($requeteDate->date_final)){
 
-        if($dateFinal <= $now){
+                $dateFinal = $requeteDate['date_final'];
+                $now = date('Y-m-d');
 
-            echo "dispo";
-           /* $vue = new PresentView();
-            $this->renderMessageItemPrivate();*/
+                // On compare les dates
+                if ($dateFinal <= $now) {
 
+
+                    $resultIdItem = Item::where('id', '=', $idItem)->first();
+                    /*->Item()->where('id_list','=',$idListe)->get();*/
+
+
+                    $vue = new \presentapp\view\PresentView($resultIdItem);
+                    $vue->render('renderMessageItemPrivate');
+
+                } else {
+
+                    $this->viewListeItem();
+
+                }
+            } else {
+
+                $this->viewListeItem();
+
+            }
         } else {
 
             $this->viewListeItem();
+
         }
-
-
-        /*$tab = $requeteDate->items()->where('id_list','=',$this->data->id)->get();
-        $vue = new \presentapp\view\PresentView($requeteDate);
-        $vue->render('renderViewMessagePrivate');*/
 
     }
 }

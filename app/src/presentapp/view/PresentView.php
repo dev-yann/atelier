@@ -8,6 +8,7 @@
 
 namespace presentapp\view;
 
+use presentapp\control\PresentController;
 use \presentapp\model\Item as Item;
 
 
@@ -37,7 +38,7 @@ class PresentView extends AbstractView
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
-                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">Deconnexion</a></li>
+                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">Deconnection</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/addliste/">Ajouter une liste</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/liste/">Mes listes</a></li>
                     </ul>
@@ -144,7 +145,7 @@ EOT;
      <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Ajouter une nouvelle liste : </legend>
-        <form method="post" action="$this->script_name/check_addliste/">
+        <form method="post" action="$this->script_name/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
@@ -182,7 +183,7 @@ EOT;
                 return $html;
     }
     
-    // DEFAULT
+    // DEFAULT										 // SUPPRIMER CETTE METHODE PAGE DEFAUTL VA SUR CONNEXION OU VIEWLIST
     private function renderViewPresent(){
         /*echo $_SESSION['user_login'];
         echo $_SESSION['access_level'];*/
@@ -227,17 +228,7 @@ EOT;
 
     }
 
-    // Item presentation
-    private function renderViewItem(){
-        $tab = $this->data->items()->get();
 
-        foreach($tab as $key => $value){
-
-            echo "$key => $value";
-
-        }
-
-    }
 
     public function renderViewModifierItem(){
         $idListe = $this->data->idListe;
@@ -320,10 +311,11 @@ EOT;
                 $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
             }
 
+            $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
             $html .= '</div>';
         }
 
-        $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage.">Voir les messages déposer par vos invités</a></p></div>";
+        // afficher les messages
 
         return $html;
     }
@@ -349,16 +341,34 @@ EOT;
 
 
 
-    public function renderViewMessagePrivate(){
+    public function renderMessageItemPrivate(){
 
+        if(isset($this->data->message)){
 
+            $html = '<div class="container">';
+
+            $html .= '<div class="col-3 sp">';
+            $html .= '<h3 class="sp1">'.$this->data->nom.'</h3>';
+
+            $html .= '<h4>Description : </h4><p>'.$this->data->description.'</p>';
+
+            $html .= '<h4>Message déposé par l\'invité :</h4><p>'.$this->data->message.'</p>';
+            $html .= '</div></div>';
+
+            return $html;
+
+        } else {
+
+            $return = new PresentController();
+            $return->viewListeItem();
+        }
     }
 
 
 
 
 
-    protected function renderBody($selector=null){
+    public function renderBody($selector=null){
 
         $header = $this->renderHeader();
         $footer = $this->renderFooter();

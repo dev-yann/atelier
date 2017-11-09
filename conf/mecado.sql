@@ -37,7 +37,7 @@ create table Item(
     reservePart varchar(255) default null,
     urlImage text not null,
     tarif float not null,
-    url varchar (100),
+    url text not null,
     status boolean not null default 0,
     id_list int not null
 );
