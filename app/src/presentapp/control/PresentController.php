@@ -277,52 +277,57 @@ class PresentController extends \mf\control\AbstractController
 
 													$signUp->createUser($username, $pw, $fullname,$email_a);
 
-													// Si tous se passe bien on renvoie sur les listes
-													$this->viewListe();
+                                                    // Si tous se passe bien on renvoie sur les listes
+                                                    
+                                                    $message = "<div class='alert alert-success col-12'>Vous êtes maintenant authentifié</div>";
+													$this->viewListe($message);
 
 												}catch (\Exception $e){
 
-													// si la création du user à échouée
-													$this->viewSignUp();
-													echo $e->getMessage();
+                                                    // si la création du user à échouée
+                                                    $message = "<div class='alert alert-danger col-12'>La création du compte a échouée</div>";
+                                                    $this->viewSignUp($message);
 
 												}
 											}
 
 											else {
-												echo "Les mots de passes ne sont pas les mêmes";
-												$this->viewSignUp();
+                                                $message = "<div class='alert alert-danger col-12'>Les mots de passes ne sont pas les mêmes</div>";
+                                                $this->viewSignUp($message);
 											}
 											}
 										else{
-											echo 'pas de symbole';
+                                            $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins un symbole dans votre mot de passe</div>";
+                                            $this->viewSignUp($message);
+                                            
 										}
 									}
 									else{
-										echo 'pas de chiffre';
+                                        $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins un chiffre dans votre mot de passe</div>";
+                                        $this->viewSignUp($message);
 									}
 								}
 								else{
-									echo 'pas de masjucule';
+                                    $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins une majuscule dans votre mot de passe</div>";
+                                    $this->viewSignUp($message);
 								}
 									
 							}
 							
 							else{
-								echo 'pas de minuscule';
+                                $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins une minuscule dans votre mot de passe</div>";
+                                $this->viewSignUp($message);
 							}
 						}
                     } else {
-
-                        echo "L'adresse email n'a pas le bon format";
-                        $this->viewSignUp();
+                        $message = "<div class='alert alert-danger col-12'>Saisisser une vrai adresse email</div>";
+                        $this->viewSignUp($message);
                     }
                 }
             }
         } else {
-
-            echo "Certaines données sont manquantes";
-            $this->viewSignup();
+            $message = "<div class='alert alert-danger col-12'>Veuillez remplir tous les champs</div>";
+            $this->viewSignUp($message);
         }
 	}
 
