@@ -182,7 +182,7 @@ EOT;
                 return $html;
     }
     
-    // DEFAULT
+    // DEFAULT										 // SUPPRIMER CETTE METHODE PAGE DEFAUTL VA SUR CONNEXION OU VIEWLIST
     private function renderViewPresent(){
         /*echo $_SESSION['user_login'];
         echo $_SESSION['access_level'];*/

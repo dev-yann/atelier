@@ -336,7 +336,6 @@ class PresentController extends \mf\control\AbstractController
        
                 $vue = new \presentapp\view\PresentView($l);
                 $vue->render('renderViewListeItem');
-
     }
 
     public function viewSupprItem(){

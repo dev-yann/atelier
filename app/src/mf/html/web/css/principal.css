@@ -6,7 +6,8 @@
 
 .logo {
   font-family: 'Lobster', cursive;
-  color: beige; }
+  color: beige;
+  width: auto; }
 
 /*ESTILOS HEADER*/
 header {
@@ -253,6 +254,7 @@ body {
   background-color: beige; }
 
 h1, h2, h3, h4, h5, h6 {
+  width: 100%;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: 1.5px;
   color: dimgray; }
