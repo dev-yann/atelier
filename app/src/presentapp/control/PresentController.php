@@ -11,6 +11,7 @@ use \presentapp\model\Liste as Liste;
 use \presentapp\model\Item as Item;
 use \presentapp\model\Createur as Createur;
 use presentapp\auth\PresentAuthentification;
+use presentapp\model\Message;
 use presentapp\view\PresentView;
 
 
@@ -501,10 +502,37 @@ class PresentController extends \mf\control\AbstractController
     public function checkMessageItemAll(){
 
         // si la variable existe
-        if(isset($_POST['textall']) && !empty($_POST['textall'])){
+        if(isset($_POST['textall']) && !empty($_POST['textall']) && isset($_POST['id_list']) && !empty($_POST['id_list'])){
 
-            $text = filter_input(INPUT_POST,'textall',FILTER_SANITIZE_SPECIAL_CHARS);
+            $idSend = $_POST['id_list'];
 
+            // tester l'id reçu
+            $requeteListe = Liste::select('id')->where('idPartage', '=', $idSend)->first();
+
+            // si l'id est la bonne alors je devrais recevoir un résultat
+
+            if(is_null($requeteListe)){
+
+                $vue = new PresentView('');
+                $vue->renderViewListeItem();
+
+            } else {
+
+                // si il y a correspondance c'est que la donnée est bonne
+                $text = filter_input(INPUT_POST,'textall',FILTER_SANITIZE_SPECIAL_CHARS);
+                $id = filter_input(INPUT_POST,'id_list',FILTER_SANITIZE_SPECIAL_CHARS);
+
+                // ajoute le text à la table message
+                $message = new Message();
+
+                $message->contenu = $text;
+                $message->id_list = $id;
+
+                $message->save();
+
+               /* $vue = new PresentView('');
+                $vue->renderViewListeItem();*/
+            }
 
         }
 
