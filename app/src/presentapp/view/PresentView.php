@@ -17,14 +17,16 @@ use mf\view\AbstractView;
 class PresentView extends AbstractView
 {
     private $info;
+    protected $message     = null;
 
     /* Constructeur
     *
     * Appelle le constructeur de la classe \mf\view\AbstractView
     */
-    public function __construct( $data, $info = null ){
+    public function __construct( $data, $info = null, $message = null ){
         parent::__construct($data);
         $this->info = $info;
+        $this->message = $message;
     }
 
     // HEADER
@@ -316,7 +318,24 @@ EOT;
         $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
         $html .= '<input type="submit" value="poster">';
         $html .= '</form>';
+        $html .= '</div>';
+
+
         // afficher les messages
+
+        // je récupere les donnée message
+        $mess = $this->message;
+
+        $html .= "<section class ='col-12 sp centrar'>";
+        $html .= "<h1>Message adressé au groupe</h1>";
+        foreach ($mess as $key => $value){
+
+            $html .= '<p><i class="fa fa-commenting" aria-hidden="true"></i> '.$value["contenu"].'</p>';
+
+        }
+        $html .= '</section>';
+        $html .= '</div>';
+
 
         return $html;
     }

@@ -79,7 +79,7 @@ class PresentController extends \mf\control\AbstractController
 
     public function viewaddListe(){
 
-        $vue = new \presentapp\view\PresentView($msg);
+        $vue = new \presentapp\view\PresentView($msg);// DÉFINIR MESSAGE
         $vue->render('renderViewAddListe');
     }
 
@@ -347,10 +347,13 @@ class PresentController extends \mf\control\AbstractController
                 if($msg != ''){
                     $l['msg']=$msg;
                 }
-                $vue = new \presentapp\view\PresentView($l);
+                // je sais pas comment tu utilise info du coup je me suis créer mon propre data -> message
+                $vue = new \presentapp\view\PresentView($l,null,$message);
+
                 $vue->render('renderViewListeItem');
             }else{
                 $message = "<div class='alert alert-danger col-12'>La liste n'existe pas</div>";
+
                 $this->viewListe($message);
             }            
     }
@@ -528,8 +531,8 @@ class PresentController extends \mf\control\AbstractController
 
             if(is_null($requeteListe)){
 
-                $vue = new PresentView('');
-                $vue->renderViewListeItem();
+                // si le login est corrompus on renvoi vers la page de login
+                $this->ViewLogin();
 
             } else {
 
@@ -546,8 +549,8 @@ class PresentController extends \mf\control\AbstractController
                 $message->save();
 
                 // la sauvegarde est effectuée, je renvoie vers listitem
-                $vue = new PresentView('');
-                $vue->renderViewListeItem();
+
+                $this->viewListeItem();
 
                // pour select après select m.contenu
               /*  from message m join Liste l

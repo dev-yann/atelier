@@ -70,9 +70,10 @@ textarea{
 }
 p{
     line-height: 15px;
-    font-size: 13px;
+    font-size: 0.9em;
     text-align: justify;
     margin: 3px;
+    padding: 10px;
 }
 table {
     border-collapse: collapse;
@@ -83,7 +84,7 @@ table, th, td {
 th, td{
     padding: 5px;
     color: $color1;
-    font-size: 13px;
+    font-size: 1em;
 }
 a{
     text-decoration: none;
