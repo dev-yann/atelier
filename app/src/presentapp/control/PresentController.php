@@ -256,13 +256,13 @@ class PresentController extends \mf\control\AbstractController
                         }else{
 								
 							/*$resultL = $policyL->test($mdp);  
-							if($resultL->result == true){		// Verif minuscule
+							if($resultL->result){		// Verif minuscule
 								$resultU = $policyU->test($mdp);
-								if($resultU->result == true){		// Verif majuscule
+								if($resultU->result){		// Verif majuscule
 									$resultD = $policyD->test($mdp);
-									if($resultD->result == true){		// Verif Chiffre
+									if($resultD->result){		// Verif Chiffre
 										$resultS = $policyS->test($mdp);
-										if($resultS->result == true){   	// Verif Symbole */
+										if($resultS->result){   	// Verif Symbole */
 										  
 											if($pw === $pw_repeat){
 
