@@ -58,7 +58,7 @@ class Router extends AbstractRouter
                 $c = new $ctrl();
                 $c->$mth();
 
-            } else if ($check->checkAccessRight(PresentAuthentification::ACCESS_LEVEL_USER) || $check->checkAccessRight(PresentAuthentification::ACCESS_LEVEL_INVIT)){
+            } else if ($check->checkAccessRight(PresentAuthentification::ACCESS_LEVEL_USER)){
 
                 $c = new $ctrl();
                 $c->$mth();

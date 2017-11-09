@@ -109,9 +109,9 @@ EOT;
         $html ="<div class='container'>";
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
-        $html .= '<div class="col-3 offset-9 sp">
-        <h3><a href='.$this->script_name.'/addliste/>Ajouter une liste</h3><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
-        </div>';
+        $html .= '<a href="'.$this->script_name.'/addliste/" class="col-3 offset-9 sp"><div>
+        <h3>Ajouter une liste</h3>
+        </div></a>';
         }
 		foreach ($this->data as $value){
 
@@ -166,7 +166,6 @@ EOT;
                 
     <section>
            <div class="container">
-     <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Connexion</legend>
         <form method="post" action="$this->script_name/check_login/">
@@ -176,7 +175,7 @@ EOT;
         </form>
        </div> 
      </div>
-     </div>         
+    
     </section>  
 EOT;
 
@@ -188,7 +187,7 @@ EOT;
         /*echo $_SESSION['user_login'];
         echo $_SESSION['access_level'];*/
         $html = <<<EOT
-<h1>Défaut</h1>
+<h1 class="container">Défaut</h1>
 EOT;
         return $html;
 
@@ -243,6 +242,14 @@ EOT;
     }
 
     public function renderViewModifierItem(){
+        $idListe = $this->data->idListe;
+        $id = $this->data->id;
+        $nom = $this->data->nom;
+        $tarif = $this->data->tarif;
+        $url = $this->data->url;
+        $description = $this->data->description;
+        $urlImage = $this->data->urlImage;
+
         $html = <<<EOT
         
         <div class="container">
@@ -250,15 +257,15 @@ EOT;
       <div class="formulaire">
        <legend>Modifier le cadeau</legend>
        
-       <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$this->data->idListe">
+       <form method="post" enctype="multipart/form-data" action="$this->script_name/modifierItemBDD/?idListe=$idListe&idItem=$id">
        
-       <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$this->data->nom" required/>
+       <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$nom" required/>
          
-       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$this->data->tarif" step="0.01"/>
-         <input type="url" id="url" value="$this->data->url"> 
-         <Textarea rows="4" cols="15" value="$this->data->description" name="description"></Textarea>
-         <input type="text" name="image" id="urlimage" value="$this->data->urlImage"/>
-         <input type="submit" value="ajouter">
+       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$tarif" step="0.01"/>
+         <input type="url" id="url" value="$url" name="url"> 
+         <textarea rows="4" cols="15" name="description">$description</textarea>
+         <input type="text" name="urlImage" id="image" value="$urlImage"/>
+         <input type="submit" value="Modifier">
         </form>
        </div> 
      </div>
@@ -282,10 +289,10 @@ EOT;
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
 
         if(isset($_SESSION['user_login'])){
-            $html .= "<div class='col-3 offset-9 sp'>
-                    <h3>Ajouter Cadeau<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage."><i class='fa fa-plus-circle fa-2x' aria-hidden='true'></i></a></h3>
+            $html .= "<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage." class='col-3 offset-9 sp'><div>
+                    <h3>Ajouter Cadeau</h3>
 
-                    </div>";
+                    </div></a>";
         }
         //$id_list = $this->data->id;
 
@@ -300,12 +307,13 @@ EOT;
             }
 
             $html .= '<div class="col-3 sp">';
-            $html .= '<h3 class="sp1">Nom : '.$value['nom'].'</h3>';
-            $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['nom'].'" class="cadeau"/>';
+            $html .= '<h3 class="sp1">'.$value['nom'].'</h3>';
+            $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['urlimage'].'" class="cadeau"/>';
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
-            $html .= '<h4>Tarif : '.$value['tarif'].'€</h4>';
-
-            if(!isset($_SESSION['user_login'])){
+            $html .= '<h4>'.$value['tarif'].'€</h4>';
+			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique</a></h4>';
+            
+			if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
                 $html .= "<a class='button' href=".$value['url'].">Plus d'information</a>";
             }

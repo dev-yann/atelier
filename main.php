@@ -4,7 +4,7 @@ use mf\router\Router;
 use presentapp\auth\PresentAuthentification;
 // Require autoload
 require_once ("vendor/autoload.php");
-require_once ("password-policy/vendor/autoload.php");
+//require_once ("password-policy/vendor/autoload.php");
 require_once ("app/src/mf/utils/ClassLoader.php");
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
@@ -30,7 +30,7 @@ $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentControl
 $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // ROUTE DES LISTES
-$router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('checkaddliste',   '/checkaddliste/','\presentapp\control\PresentController','checkaddliste', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe',PresentAuthentification::ACCESS_LEVEL_USER);
@@ -40,13 +40,16 @@ $router->addRoute('addItem','/addItem/','\presentapp\control\PresentController',
 $router->addRoute('viewAddItem','/ViewAddItem/','\presentapp\control\PresentController', 'viewAddItem',PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('supprItem','/supprItem/','\presentapp\control\PresentController','viewsupprItem', PresentAuthentification::ACCESS_LEVEL_USER);
-$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
+$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem',PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
-$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
+$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('modifierItem','/modifierItem/','\presentapp\control\PresentController', 'viewModifierItem',PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('modifierItemBDD','/modifierItemBDD/','\presentapp\control\PresentController', 'modifierItemBDD',PresentAuthentification::ACCESS_LEVEL_USER);
+//$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
-
+//$router->addRoute('checkMessageItemPrivate','/listeItem/', 'presentapp\control\PresentController','checkMessageItemPrivate',PresentAuthentification::ACCESS_LEVEL_USER);
 
 
 $router->run();
