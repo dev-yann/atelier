@@ -243,13 +243,13 @@ EOT;
     }
 
     public function renderViewModifierItem(){
-        /*$idListe = $this->data->idListe;
+        $idListe = $this->data->idListe;
         $id = $this->data->id;
         $nom = $this->data->nom;
         $tarif = $this->data->tarif;
         $url = $this->data->url;
         $description = $this->data->description;
-        $urlImage = $this->data->urlImage;*/
+        $urlImage = $this->data->urlImage;
 
         $html = <<<EOT
         
