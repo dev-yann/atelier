@@ -109,9 +109,9 @@ EOT;
         $html ="<div class='container'>";
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
-        $html .= '<a href="'.$this->script_name.'/addliste/" class="col-3 offset-9 sp"><div>
+        $html .= '<div class="col-12 sp"><a href="'.$this->script_name.'/addliste/" class="centrar">
         <h3>Ajouter une liste</h3>
-        </div></a>';
+        </a></div>';
         }
 		foreach ($this->data as $value){
 

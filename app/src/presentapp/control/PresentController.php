@@ -125,7 +125,7 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
-        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage') AND filter_has_var(INPUT_POST,'urlImage')){
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             // regarder si ca existe
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
