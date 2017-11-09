@@ -27,20 +27,10 @@ class PresentController extends \mf\control\AbstractController
         parent::__construct();
     }
 
-    public function viewPresent(){
-        /*$listTweet = tweet::get();
-
-        $vue = new \tweeterapp\view\TweeterView($listTweet);
-        return $vue->render('home');*/
-        $vue = new \presentapp\view\PresentView('');
-        return $vue->render('renderViewPresent');
-
-    }
-
     // VUE INSCRIPTION
-    public function viewSignUp(){
+    public function viewSignUp($msg = null){
 
-        $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView($msg);
         return $vue->render('renderViewSignUp');
     }
 
@@ -76,16 +66,12 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function viewListe($msg = null){
-        //recuperation de l'id de la personne connecté
+
         $persCo = $_SESSION['user_login'];
         $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
         $idc = $requeteCrea->id;
 
         $requeteListe = Liste::select()->where('createur', '=', $idc)->get();
-
-        /*if(isset($msg)){
-            $info = $msg;
-        }*/
 
         $vue = new \presentapp\view\PresentView($requeteListe, $msg);
         $vue->render('renderViewListe');
@@ -161,7 +147,6 @@ class PresentController extends \mf\control\AbstractController
                 
 
                 if(preg_match($regexTarif, $prix)){
-                    //echo" le chiffre n'est pas au bon format"; //pb ici
                     $message = "Le tarif doit être un nombre ou un chiffre";
                     $this->viewAddItem($message);
                 }else{
@@ -219,6 +204,7 @@ class PresentController extends \mf\control\AbstractController
 
                 $connect->login($user,$pass);
                 $this->viewListe();
+                
 
             }catch(\Exception $e){
                 $message = "<div class='alert alert-danger col-12'>Problème d'authentification</div>";
@@ -255,10 +241,12 @@ class PresentController extends \mf\control\AbstractController
             $mdp=$_POST["pw"];
             $longueur= strlen($mdp);
             if(preg_match($regex1, $prenom)){
-                echo" le prénom n'est pas au bon format";
+                $message = "<div class='alert alert-danger col-12'>Le prénom n'est pas au bon format</div>";
+                $this->viewSignUp($message);
             }else{
                 if(preg_match($regex1, $nom)){
-                    echo" le nom n'est pas au bon format";
+                    $message = "<div class='alert alert-danger col-12'>Le nom n'est pas au bon format</div>";
+                    $this->viewSignUp($message);
                 }
                 else{
                     if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
@@ -269,7 +257,8 @@ class PresentController extends \mf\control\AbstractController
                         $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
 
                         if($longueur < 8){  // Verif longueur mdp
-                            echo"mot de passe trop court";
+                            $message = "<div class='alert alert-danger col-12'>Le mot de passe est trop court, 8 caractères minimum</div>";
+                            $this->viewSignUp($message);
                         }else{
 								
 							$resultL = $policyL->test($mdp);  
@@ -342,30 +331,35 @@ class PresentController extends \mf\control\AbstractController
 
     // AFFICHE LA LISTE DES ITEMS D'UNE LISTE
     public function viewListeItem($msg = null){
-        try{
+
             $id = $this->request->get['idListe'];        
             $l= Liste::where('idPartage','=',$id)->first();
 
-            if($msg != ''){
-                $l['msg']=$msg;
-            }
-   
-            $vue = new \presentapp\view\PresentView($l);
-            $vue->render('renderViewListeItem');
-        }catch(\Exception $e){
-            $message = "La liste n'existe pas";
-            $this->viewListe($message);
-        }
-                
+            if(isset($l)){
+                if($msg != ''){
+                    $l['msg']=$msg;
+                }
+                $vue = new \presentapp\view\PresentView($l);
+                $vue->render('renderViewListeItem');
+            }else{
+                $message = "<div class='alert alert-danger col-12'>La liste n'existe pas</div>";
+                $this->viewListe($message);
+            }            
     }
 
     public function viewSupprItem(){
         $idItem = $this->request->get['idItem'];
         $idListe = $this->request->get['idListe'];
 
-        $affectedRows = Item::where('id', '=', $idItem)->delete();
+        
 
-        $this->viewListeItem();
+        if(Item::where('id', '=', $idItem)->delete()){
+            $message = "<div class='alert alert-success col-12'>Le cadeau a bien été supprimé</div>";
+            $this->viewListeItem($message);
+        }else{
+            $message = "<div class='alert alert-danger col-12'>Le cadeau n'a pas été supprimé</div>";
+            $this->viewListeItem($message);
+        }
     }
 
     public function viewModifierItem(){
@@ -373,12 +367,14 @@ class PresentController extends \mf\control\AbstractController
         $idListe = $this->request->get['idListe'];
 
         $item = Item::where('id', '=', $idItem)->first();
-        $item['idListe'] = $idListe;
-        $vue = new \presentapp\view\PresentView($item);
-        $vue->render('renderViewModifierItem');
-
-        
-        
+        if(isset($item)){
+            $item['idListe'] = $idListe;
+            $vue = new \presentapp\view\PresentView($item);
+            $vue->render('renderViewModifierItem');
+        }else{
+            $message = "<div class='alert alert-danger col-12'>Le cadeau n'existe pas</div>";
+            $this->viewListeItem($message);
+        } 
     }
 
     public function viewReserverItem(){
@@ -388,10 +384,17 @@ class PresentController extends \mf\control\AbstractController
         $item = new Item();
         $nomItem = $item->select('nom')->where('id', '=', $tab['idItem'])->first();
 
-        $tab['nom'] = $nomItem;
+        if(isset($nomItem)){
+            $tab['nom'] = $nomItem;
 
-        $vue = new \presentapp\view\PresentView($tab);
-        $vue->render('renderViewReserverItem');
+            $vue = new \presentapp\view\PresentView($tab);
+            $vue->render('renderViewReserverItem');
+        }else{
+            $message = "<div class='alert alert-danger col-12'>Le cadeau n'existe pas</div>";
+            $this->viewListeItem($message);
+        }
+
+        
     }
 
     public function reserverItem(){
@@ -444,10 +447,12 @@ class PresentController extends \mf\control\AbstractController
             
             
             $item->save();
-            $message = "L'item à bien été modifié";
+
+            $message = "<div class='alert alert-success col-12'>L'item a bien été modifié</div>";
             $this->viewListeItem($message);
         } else {
-            echo "<div class='container'>nan dsl</div>";
+            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été modifié</div>";
+            $this->viewListeItem($message);
         }
     }
 

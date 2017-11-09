@@ -66,7 +66,7 @@ EOT;
         }
 
 
-        return $html;//<a href="$this->script_name//"></a>
+        return $html;
     }
 
     // FOOTER
@@ -78,27 +78,30 @@ EOT;
 
     // FORM
     private  function renderViewSignUp(){
-        $html = <<<EOT
-         <section>
+        $html = "<section>
         
-        <div class="container">
-      <div class="formulaire">
-       <h3 class="centrar">Inscription</h3>
-        <form method="post" action="$this->script_name/check_signup/">
-                    <input type="text" name="fullname" placeholder="Prénom" required/>
-                    <input type="text" name="username" placeholder="Nom" required/>
-                    <input type="email" name="mail" placeholder="mail" required/>
-                    <input type="password" name="pw" placeholder="password" required/>
-                    <input type="password" name="pw_repeat" placeholder="Repeat password" required/>
+        <div class='container'>";
+
+        if(isset($this->data)){
+            $html .= $this->data;
+        }
+      
+      $html.=  "<div class='formulaire'>
+       <h3 class='centrar'>Inscription</h3>
+        <form method='post' action='".$this->script_name."/check_signup/'>
+                    <input type='text' name='fullname' placeholder='Prénom' required/>
+                    <input type='text' name='username' placeholder='Nom' required/>
+                    <input type='email' name='mail' placeholder='mail' required/>
+                    <input type='password' name='pw' placeholder='password' required/>
+                    <input type='password' name='pw_repeat' placeholder='Repeat password' required/>
                    
-                    <input type="submit" value="Créer"/>
+                    <input type='submit' value='Créer'/>
         </form>
-		<h4 class="centrar">Indications mot de passe : au moins une minuscule, une majuscule, un chiffre, un caractère spécial et 8 caractères  </h4>
+		<h4 class='centrar'>Indications mot de passe : au moins une minuscule, une majuscule, un chiffre, un caractère spécial et 8 caractères  </h4>
        </div> 
      </div>
                 
-        </section>
-EOT;
+        </section>";
         return $html;
 
 
@@ -118,15 +121,10 @@ EOT;
         </a></div>';
         }
 
-        //$tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
-
-        //$tab = \presentapp\model\Liste::where('idPartage', '=', $this->data->idPartage)->get();
-
 		foreach ($this->data as $value){
 
             $html .="<div class='col-3 sp'>
             <h2>".$value->nom."</h2>";
-			//$html .= "Commence le : " . $value->date_debut . "</br>";
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
@@ -142,7 +140,7 @@ EOT;
         return $html;
     }
 
-	// ADD LISTE
+
     private  function renderViewAddListe(){
         $html ="<h1>Liste</h1>";
 	
@@ -165,7 +163,7 @@ EOT;
 EOT;
         return $html;
     }
-	// SUPPR LISTE
+
 
     public function renderLogin(){
         $html =
@@ -189,19 +187,8 @@ EOT;
 
                 return $html;
     }
-    
-    // DEFAULT										 // SUPPRIMER CETTE METHODE PAGE DEFAUTL VA SUR CONNEXION OU VIEWLIST
-    private function renderViewPresent(){
-        /*echo $_SESSION['user_login'];
-        echo $_SESSION['access_level'];*/
-        $html = <<<EOT
-<h1 class="container">Défaut</h1>
-EOT;
-        return $html;
 
-    }
 
-    // RENDER ADD ITEM
     private function renderViewAddItem(){
         $idList = $this->data['idListe'];
         $html = "<div class='container'>";
@@ -290,7 +277,6 @@ EOT;
 
                     </a></div>";
         }
-        //$id_list = $this->data->id;
 
         $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
 
@@ -315,10 +301,11 @@ EOT;
             }
             if(isset($_SESSION['user_login'])){
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
+                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+                $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
             }
 
-            $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
+            
             $html .= '</div>';
         }
 
