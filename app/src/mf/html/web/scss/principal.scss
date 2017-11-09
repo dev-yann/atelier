@@ -89,6 +89,9 @@ a{
 a:hover{
     cursor: pointer;
 }
+.centrar{
+    text-align: center;
+}
 .sp{
     background-color: lighten($color3,20%);
     border-radius: 5px;
@@ -97,7 +100,7 @@ a:hover{
     box-shadow: $shadow;
 }
 .button{
-    width: 70%;
+    width: auto;
     padding: 5px;
     text-decoration: none;
     background-color: lighten($color4,20%);
@@ -106,6 +109,7 @@ a:hover{
     margin: auto;
     border-radius: 5px;
     text-align: center;
+    font-weight: bold;
 }
 .button:hover{
     background-color: $color4;
