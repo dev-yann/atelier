@@ -500,5 +500,15 @@ class PresentController extends \mf\control\AbstractController
 
 
 
-    public function checkMessageItemAll(){}
+    public function checkMessageItemAll(){
+
+        // si la variable existe
+        if(isset($_POST['textall']) && !empty($_POST['textall'])){
+
+            $text = filter_input(INPUT_POST,'textall',FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+        }
+
+    }
 }
