@@ -317,10 +317,11 @@ EOT;
             }
             if(isset($_SESSION['user_login'])){
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
+                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+                $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
             }
 
-            $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
+            
             $html .= '</div>';
         }
 
