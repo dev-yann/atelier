@@ -106,7 +106,7 @@ EOT;
     private  function renderViewListe(){
 
         $html ="<div class='container'>";
-        $html .= "<h2>Mes Listes</h2>";
+        $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
         $html .= '<div class="col-3 offset-9 sp">
         <h3><a href='.$this->script_name.'/addliste/>Ajouter une liste</a></h3><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
@@ -115,7 +115,7 @@ EOT;
 		foreach ($this->data as $value){
 
             $html .="<div class='col-3 sp'>
-            <h3>".$value->nom."</h3>";
+            <h2>".$value->nom."</h2>";
 			//$html .= "Commence le : " . $value->date_debut . "</br>";
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
@@ -259,7 +259,7 @@ EOT;
 
         foreach ($tab as $key => $value){
             if($value['status']==0){
-                $status="<a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->idPartage."&idItem=". $value['id'] .">reserver</a>";
+                $status="<a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->idPartage."&idItem=".$value['id'].">reserver</a>";
             }else{
                 $status="déjà pris";
             }
@@ -270,9 +270,9 @@ EOT;
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
             $html .= '<h4>Tarif : '.$value['tarif'].'€</h4>';
 
-            if(isset($_SESSION['user_login'])){
+            //if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
-            }
+            //}
             
 			$html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
 			$html .= '</div>';

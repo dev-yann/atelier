@@ -4,6 +4,7 @@ use mf\router\Router;
 
 // Require autoload
 require_once ("vendor/autoload.php");
+//require_once ("password-policy/vendor/autoload.php");
 require_once ("app/src/mf/utils/ClassLoader.php");
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
@@ -21,7 +22,7 @@ $router = new Router();
 if(isset($_SESSION['user_login'])){
 
     // si la personne est connecter
-    $router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    $router->addRoute('checkaddliste',   '/checkaddliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
     $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
@@ -31,7 +32,7 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
     $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('supprItem','/supprItem/','\presentapp\control\PresentController','viewsupprItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
-
+    $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem');
     $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 } else {
