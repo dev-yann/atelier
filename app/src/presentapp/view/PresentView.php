@@ -195,25 +195,24 @@ EOT;
 
     // RENDER ADD ITEM
     private function renderViewAddItem(){
-        /*$get = new \presentapp\control\PresentController();
-        $idList = $get->request->get['id'];*/
-        $idList = $this->data; //a faire mieux comme en haut mais pb de protected
-        $html = <<<EOT
-        
-        <div class="container">
-     <div class="col-8 offset-2">
-      <div class="formulaire">
+        $idList = $this->data['idListe'];
+        $html = "<div class='container'>";
+        if(isset($this->data['msg'])){
+            $html .= "<div class='alert alert-danger col-12'>".$this->data['msg']."</div>";
+        }  
+     $html .= "<div class='col-8 offset-2'>
+      <div class='formulaire'>
        <legend>Cadeau</legend>
        
-       <form method="post" enctype="multipart/form-data" action="$this->script_name/addItem/?idListe=$idList">
+       <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
-       <label for="nom">Nom</label><input type="text" id="nom" name="nom" placeholder="Nom" required/>
+       <label for='nom'>Nom</label><input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" placeholder="Tarif" step="0.01"/>
-         <input type="url" id="url" placeholder="Url vers un autre site" name="url"> 
-         <Textarea rows="4" cols="15" placeholder="Description" name="description"></Textarea>
-         <input type="text" name="urlImage" id="urlimage" placeholder="Ajouter le lien d'une image"/>
-         <input type="submit" value="ajouter">
+       <label for='tarif'>Tarif</label><input id='tarif' name='tarif' type='number' placeholder='Tarif' step='0.01'/>
+         <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
+         <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
+         <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
+         <input type='submit' value='ajouter'>
         </form>
        </div> 
      </div>
@@ -221,8 +220,7 @@ EOT;
              
 </form>
 </section>
-</div>
-EOT;
+</div>";
 
         return $html;
 
@@ -283,7 +281,7 @@ EOT;
 
         $html = '<div class="container">';
         if($this->data['msg'] !== null){
-            $html .= "<div class='alert alert-success col-12'>".$this->data['msg']."</div>";
+            $html .= $this->data['msg'];
         }
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";

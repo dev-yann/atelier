@@ -58,14 +58,18 @@ class PresentController extends \mf\control\AbstractController
 
         $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
-        $vue->render('renderViewListeItem'); // WHAT
+        $vue->render('renderViewListeItem');
 
     }
 
-    public function viewAddItem(){
-        $id = $this->request->get['idListe'];
-
+    public function viewAddItem($msg = null){
+        $id['idListe'] = $this->request->get['idListe'];
+        if($msg != ''){
+            $id['msg'] = $msg;
+        }
         $vue = new \presentapp\view\PresentView($id);
+
+        
         $vue->render('renderViewAddItem');
 
     }
@@ -92,28 +96,42 @@ class PresentController extends \mf\control\AbstractController
 
         if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description')){
 
-            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
-            $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
-            $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+            try{
+                $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+                $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+                $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
 
-            //recuperation de l'id de la personne connecté
-            $persCo = $_SESSION['user_login'];
-            $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
-            $idc = $requeteCrea->id;
+                //recuperation de l'id de la personne connecté
+                $persCo = $_SESSION['user_login'];
+                $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
+                $idc = $requeteCrea->id;
 
-            $l = new Liste();
-            $l->idpartage= uniqid();
-            $l->nom = $nomListe;
-            $l->date_final = $dateFinal;
-            $l->createur = $idc;
-            $l->description = $desc;
-            $l->save();
+                $l = new Liste();
+                $l->idpartage= uniqid();
+                $l->nom = $nomListe;
+                $l->date_final = $dateFinal;
+                $l->createur = $idc;
+                $l->description = $desc;
+                $l->save();
 
-            $this->viewListe();
+                $this->viewListe();
+            }catch(\Exception $e){
+                
+
+
+
+
+
+
+
+
+
+            }
+            
 
         } else {
 
-            $this->checkSignup();
+            $this->viewAddListe();
         }
     }
 
@@ -127,49 +145,50 @@ class PresentController extends \mf\control\AbstractController
 
     public function addItem(){
 
-		$regexTarif='/[^0-9 \.,]/';
+		$regexTarif='/[^0-9 \.\,]/';
 		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
-            // regarder si ca existe
-			$prix=$_POST["tarif"];
+            
+            $prix=$_POST["tarif"];
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
             $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
             $urlImage = filter_input(INPUT_POST,'urlImage',FILTER_SANITIZE_SPECIAL_CHARS);
             $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+                
+            
+                
 
-			if(preg_match($regexTarif, $prix)){
-                echo" le chiffre n'est pas au bon format";
-            }else{
+                if(preg_match($regexTarif, $prix)){
+                    //echo" le chiffre n'est pas au bon format"; //pb ici
+                    $message = "Le tarif doit être un nombre ou un chiffre";
+                    $this->viewAddItem($message);
+                }else{
 
-				$tarifformatpoint = str_replace(',', '.', $tarif);
+                    $tarifformatpoint = str_replace(',', '.', $tarif);
+                    $tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
 
-				//Vérifier que chiffres !! ici
+                    $item=new Item();
 
-				$tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
+                    if(isset($_POST['url'])){
+                        $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+                        $item->url=$url;
+                    }
 
-				$item=new Item();
-
-				if(isset($_POST['url'])){
-					$url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
-					$item->url=$url;
-				}
-
-				$idListe = $this->request->get['idListe'];
-				$requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
-
-				$item->nom=$nom;
-				$item->description = $description;
-				$item->urlImage = $urlImage;
-				$item->tarif=$tarifformat;
-				$item->id_list = $requeteListe['id'];
+                    $idListe = $this->request->get['idListe'];
+                    $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
+                    
+                    $item->nom=$nom;
+                    $item->description = $description;
+                    $item->urlImage = $urlImage;
+                    $item->tarif=$tarifformat;
+                    $item->id_list = $requeteListe['id'];
+                    $item->save();
 
 
-				$item->save();
-				$message = "L'item à bien été ajouté";
-				$this->viewListeItem($message);
-			}
-
+                    $message = "<div class='alert alert-success col-12'>L'item à bien été ajouté</div>";
+                    $this->viewListeItem($message);
+                }			
         }
     }
 
@@ -329,7 +348,6 @@ class PresentController extends \mf\control\AbstractController
                 $id = $this->request->get['idListe'];        
                 $l= Liste::where('idPartage','=',$id)->first();
 
-                // c'est quoi $msg
                 if($msg != ''){
                     $l['msg']=$msg;
                 }
