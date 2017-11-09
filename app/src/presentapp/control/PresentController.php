@@ -208,6 +208,7 @@ class PresentController extends \mf\control\AbstractController
     public function checkSignup(){
 
         $regex1='/[^a-zA-Z \-éèêëçäà]/';
+		$regex2 = '';
 
         if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
 
