@@ -377,7 +377,11 @@ $message = "L'item à bien été ajouté";
         }else{
             $this->viewReserverItem();
         }
+    }
 
+    public function checkMessageItemPrivate(){
+
+        // RECUPERER LES MESSAGES PAS ITEMS
 
     }
 }

@@ -4,7 +4,7 @@ use mf\router\Router;
 use presentapp\auth\PresentAuthentification;
 // Require autoload
 require_once ("vendor/autoload.php");
-require_once ("password-policy/vendor/autoload.php");
+//require_once ("password-policy/vendor/autoload.php");
 require_once ("app/src/mf/utils/ClassLoader.php");
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
@@ -40,13 +40,13 @@ $router->addRoute('addItem','/addItem/','\presentapp\control\PresentController',
 $router->addRoute('viewAddItem','/ViewAddItem/','\presentapp\control\PresentController', 'viewAddItem',PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('supprItem','/supprItem/','\presentapp\control\PresentController','viewsupprItem', PresentAuthentification::ACCESS_LEVEL_USER);
-$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
+$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem',PresentAuthentification::ACCESS_LEVEL_NONE);
-$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
-$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
+$router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
+$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
-
+$router->addRoute('checkMessageItemPrivate','/listeItem/', 'presentapp\control\PresentController','checkMessageItemPrivate',PresentAuthentification::ACCESS_LEVEL_USER);
 
 
 $router->run();
