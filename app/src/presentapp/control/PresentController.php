@@ -58,14 +58,18 @@ class PresentController extends \mf\control\AbstractController
 
         $nada = Liste::select('id','=',$id)->first();
         $vue =  new \presentapp\view\PresentView($nada);
-        $vue->render('renderViewListeItem'); // WHAT
+        $vue->render('renderViewListeItem');
 
     }
 
-    public function viewAddItem(){
-        $id = $this->request->get['idListe'];
-
+    public function viewAddItem($msg = null){
+        $id['idListe'] = $this->request->get['idListe'];
+        if($msg != ''){
+            $id['msg'] = $msg;
+        }
         $vue = new \presentapp\view\PresentView($id);
+
+        
         $vue->render('renderViewAddItem');
 
     }
@@ -92,28 +96,42 @@ class PresentController extends \mf\control\AbstractController
 
         if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description')){
 
-            $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
-            $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
-            $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+            try{
+                $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+                $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+                $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
 
-            //recuperation de l'id de la personne connecté
-            $persCo = $_SESSION['user_login'];
-            $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
-            $idc = $requeteCrea->id;
+                //recuperation de l'id de la personne connecté
+                $persCo = $_SESSION['user_login'];
+                $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
+                $idc = $requeteCrea->id;
 
-            $l = new Liste();
-            $l->idpartage= uniqid();
-            $l->nom = $nomListe;
-            $l->date_final = $dateFinal;
-            $l->createur = $idc;
-            $l->description = $desc;
-            $l->save();
+                $l = new Liste();
+                $l->idpartage= uniqid();
+                $l->nom = $nomListe;
+                $l->date_final = $dateFinal;
+                $l->createur = $idc;
+                $l->description = $desc;
+                $l->save();
 
-            $this->viewListe();
+                $this->viewListe();
+            }catch(\Exception $e){
+                
+
+
+
+
+
+
+
+
+
+            }
+            
 
         } else {
 
-            $this->checkSignup();
+            $this->viewAddListe();
         }
     }
 
@@ -130,46 +148,47 @@ class PresentController extends \mf\control\AbstractController
 		$regexTarif='/[^0-9\.\,]/';
 		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
-            // regarder si ca existe
-			$prix=$_POST["tarif"];
+            
+            $prix=$_POST["tarif"];
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
             $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
             $urlImage = filter_input(INPUT_POST,'urlImage',FILTER_SANITIZE_SPECIAL_CHARS);
             $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+                
+            
+                
 
-			
-            if(preg_match($regexTarif, $prix)){
-                echo" le tarif n'est pas au bon format";
-            }else{
-				$tarifformatpoint = str_replace(',', '.', $tarif);
+                if(preg_match($regexTarif, $prix)){
+                    //echo" le chiffre n'est pas au bon format"; //pb ici
+                    $message = "Le tarif doit être un nombre ou un chiffre";
+                    $this->viewAddItem($message);
+                }else{
 
-				//Vérifier que chiffres !! ici
+                    $tarifformatpoint = str_replace(',', '.', $tarif);
+                    $tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
 
-				$tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
+                    $item=new Item();
 
-				$item=new Item();
+                    if(isset($_POST['url'])){
+                        $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+                        $item->url=$url;
+                    }
 
-				if(isset($_POST['url'])){
-					$url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
-					$item->url=$url;
-				}
-
-				$idListe = $this->request->get['idListe'];
-				$requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
-
-				$item->nom=$nom;
-				$item->description = $description;
-				$item->urlImage = $urlImage;
-				$item->tarif=$tarifformat;
-				$item->id_list = $requeteListe['id'];
+                    $idListe = $this->request->get['idListe'];
+                    $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
+                    
+                    $item->nom=$nom;
+                    $item->description = $description;
+                    $item->urlImage = $urlImage;
+                    $item->tarif=$tarifformat;
+                    $item->id_list = $requeteListe['id'];
+                    $item->save();
 
 
-				$item->save();
-				$message = "L'item à bien été ajouté";
-				$this->viewListeItem($message);
-			
-            }
+                    $message = "<div class='alert alert-success col-12'>L'item à bien été ajouté</div>";
+                    $this->viewListeItem($message);
+                }			
         }
     }
 
@@ -221,14 +240,14 @@ class PresentController extends \mf\control\AbstractController
         $regex1='/[^a-zA-Z \-éèêëçäà]/';
 		
 		// Politique de MDP
-      /*  $policyL = new \PasswordPolicy\Policy; // Lower
+      	$policyL = new \PasswordPolicy\Policy; // Lower
 		$policyU = new \PasswordPolicy\Policy; // Upper						// Policy
 		$policyD = new \PasswordPolicy\Policy; // Digit
 		$policyS = new \PasswordPolicy\Policy; // symnbole
 		$policyL->contains('lowercase', $policyL->atLeast(1));
 		$policyU->contains('uppercase', $policyU->atLeast(1));
 		$policyD->contains('digit', $policyD->atLeast(1));
-		$policyS->contains('symbol', $policyS->atLeast(1));*/
+		$policyS->contains('symbol', $policyS->atLeast(1));
 		
         if(filter_has_var(INPUT_POST,'fullname') AND filter_has_var(INPUT_POST,'username') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw') AND filter_has_var(INPUT_POST,'pw_repeat') AND filter_has_var(INPUT_POST, 'mail')){
 
@@ -255,14 +274,14 @@ class PresentController extends \mf\control\AbstractController
                             echo"mot de passe trop court";
                         }else{
 								
-							/*$resultL = $policyL->test($mdp);  
-							if($resultL->result == true){		// Verif minuscule
+							$resultL = $policyL->test($mdp);  
+							if($resultL->result){		// Verif minuscule
 								$resultU = $policyU->test($mdp);
-								if($resultU->result == true){		// Verif majuscule
+								if($resultU->result){		// Verif majuscule
 									$resultD = $policyD->test($mdp);
-									if($resultD->result == true){		// Verif Chiffre
+									if($resultD->result){		// Verif Chiffre
 										$resultS = $policyS->test($mdp);
-										if($resultS->result == true){   	// Verif Symbole */
+										if($resultS->result){   	// Verif Symbole 
 										  
 											if($pw === $pw_repeat){
 
@@ -289,7 +308,7 @@ class PresentController extends \mf\control\AbstractController
 												$this->viewSignUp();
 											}
 											}
-									/*	else{
+										else{
 											echo 'pas de symbole';
 										}
 									}
@@ -306,7 +325,7 @@ class PresentController extends \mf\control\AbstractController
 							else{
 								echo 'pas de minuscule';
 							}
-						}*/
+						}
                     } else {
 
                         echo "L'adresse email n'a pas le bon format";
@@ -329,7 +348,6 @@ class PresentController extends \mf\control\AbstractController
                 $id = $this->request->get['idListe'];        
                 $l= Liste::where('idPartage','=',$id)->first();
 
-                // c'est quoi $msg
                 if($msg != ''){
                     $l['msg']=$msg;
                 }
