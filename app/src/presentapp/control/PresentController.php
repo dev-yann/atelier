@@ -428,29 +428,48 @@ $message = "L'item à bien été ajouté";
 
     public function checkMessageItemPrivate(){
 
-        $idListe = $this->request->get['idListe'];
+        // on regarde si ca existe
+        if(isset($this->request->get['idListe']) && isset($this->request->get['idItem'])){
 
-        $requeteDate = Liste::select('date_final')->where('idPartage','=',$idListe)->first();
+            // si c'est pas vide
+            $idListe = $this->request->get['idListe'];
+            $idItem = $this->request->get['idItem'];
 
-        $dateFinal = $requeteDate['date_final'];
+            // On recupère la date
+            $requeteDate = Liste::select('date_final')->where('idPartage', '=', $idListe)->first();
 
-        $now = date('Y-m-d');
+            // si la date existe
+            if(isset($requeteDate->date_final)){
 
-        if($dateFinal <= $now){
+                $dateFinal = $requeteDate['date_final'];
+                $now = date('Y-m-d');
 
-            echo "dispo";
-           /* $vue = new PresentView();
-            $this->renderMessageItemPrivate();*/
+                // On compare les dates
+                if ($dateFinal <= $now) {
 
+
+                    $resultIdItem = Item::where('id', '=', $idItem)->first();
+                    /*->Item()->where('id_list','=',$idListe)->get();*/
+
+
+                    $vue = new \presentapp\view\PresentView($resultIdItem);
+                    $vue->render('renderMessageItemPrivate');
+
+                } else {
+
+                    $this->viewListeItem();
+
+                }
+            } else {
+
+                $this->viewListeItem();
+
+            }
         } else {
 
             $this->viewListeItem();
+
         }
-
-
-        /*$tab = $requeteDate->items()->where('id_list','=',$this->data->id)->get();
-        $vue = new \presentapp\view\PresentView($requeteDate);
-        $vue->render('renderViewMessagePrivate');*/
 
     }
 }
