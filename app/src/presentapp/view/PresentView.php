@@ -110,8 +110,8 @@ EOT;
     private  function renderViewListe(){
 
         $html ="<div class='container'>";
-        if(isset($this->data['msg'])){
-            $html .= $this->data['msg'];
+        if(isset($this->info)){
+            $html .= $this->info;
         }
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
@@ -172,23 +172,22 @@ EOT;
 
     public function renderLogin(){
         $html =
-        
-        <<<EOT
-                
-    <section>
-           <div class="container">
-      <div class="formulaire">
+        "<section>
+           <div class='container'>";
+           if($this->data !== null){
+            $html .= $this->data;
+            }
+      $html .= "<div class='formulaire'>
        <legend>Connexion</legend>
-        <form method="post" action="$this->script_name/check_login/">
-         <input type="email" name="email" placeholder="email" required> 
-         <input type="password" name="pw" placeholder="password" required>  
-         <input type="submit" value="login">
+        <form method='post' action='".$this->script_name."/check_login/'>
+         <input type='email' name='email' placeholder='email' required> 
+         <input type='password' name='pw' placeholder='password' required>  
+         <input type='submit' value='login'>
         </form>
        </div> 
      </div>
     
-    </section>  
-EOT;
+    </section>";
 
                 return $html;
     }

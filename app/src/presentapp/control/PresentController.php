@@ -44,8 +44,8 @@ class PresentController extends \mf\control\AbstractController
     }
 
     // Show login form
-    public function viewLogin(){
-        $vue = new \presentapp\view\PresentView('');
+    public function viewLogin($msg = null){
+        $vue = new \presentapp\view\PresentView($msg);
         $vue->render('renderLogin');
     }
 
@@ -86,13 +86,13 @@ class PresentController extends \mf\control\AbstractController
             $info = $msg;
         }*/
 
-        $vue = new \presentapp\view\PresentView($requeteListe, $info);
+        $vue = new \presentapp\view\PresentView($requeteListe, $msg);
         $vue->render('renderViewListe');
     }
 
     public function viewaddListe(){
 
-        $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView($msg);
         $vue->render('renderViewAddListe');
     }
 
@@ -118,20 +118,29 @@ class PresentController extends \mf\control\AbstractController
                 $l->description = $desc;
                 $l->save();
 
-                $message = "<div class='alert alert-success col-12'>La liste à bien été ajouté</div>";
+                $message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
                 $this->viewListe($message);
         } else {
-
-            $this->viewAddListe();
+            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été ajouté</div>";
+            $this->viewListe($message);
         }
     }
 
     public function viewSupprliste(){
         $idListe = $this->request->get['idListe'];
 
-        $affectedRows = Liste::where('id', '=', $idListe)->delete();
+        try{
+            $affectedRows = Liste::where('id', '=', $idListe)->delete();
+            $message = "<div class='alert alert-success col-12'>La liste a bien été supprimée</div>";
+            $this->viewListe($message);
+        }catch(\Exception $e){
+            $message = "<div class='alert alert-success col-12'>La liste n'a pas été supprimée</div>";
+            $this->viewListe($message);
+        }
 
-        $this->viewListe();
+        
+
+        
     }
 
     public function addItem(){
@@ -177,9 +186,12 @@ class PresentController extends \mf\control\AbstractController
                     $item->save();
 
 
-                    $message = "<div class='alert alert-success col-12'>L'item à bien été ajouté</div>";
+                    $message = "<div class='alert alert-success col-12'>L'item a bien été ajouté</div>";
                     $this->viewListeItem($message);
                 }			
+        }else{
+            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été ajouté</div>";
+            $this->viewListeItem($message);
         }
     }
 
@@ -189,14 +201,11 @@ class PresentController extends \mf\control\AbstractController
         $logout = new \mf\auth\Authentification();
         $logout->logout();
 
-        // SI DÉCO ALORS PEU PAS AFFICHER VIEWLISTE
-        /*$this->viewListe();*/
         $this->viewLogin();
     }
 
     public function check_login(){
 
-        // on recharge la vue dans le cas d'une error
         $vue = new \presentapp\view\PresentView('');
 
         if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
@@ -205,17 +214,14 @@ class PresentController extends \mf\control\AbstractController
 
             $connect = new PresentAuthentification();
 
-            // Si l'authentification retourne vrai
             try{
 
                 $connect->login($user,$pass);
                 $this->viewListe();
 
-            }catch(\mf\auth\exception\AuthentificationException $e){
-
-                $this->viewLogin();
-                echo $e->getMessage();
-
+            }catch(\Exception $e){
+                $message = "<div class='alert alert-danger col-12'>Problème d'authentification</div>";
+                $this->viewLogin($message);
             }
 
         } else {
@@ -335,16 +341,21 @@ class PresentController extends \mf\control\AbstractController
 
     // AFFICHE LA LISTE DES ITEMS D'UNE LISTE
     public function viewListeItem($msg = null){
+        try{
+            $id = $this->request->get['idListe'];        
+            $l= Liste::where('idPartage','=',$id)->first();
 
-                $id = $this->request->get['idListe'];        
-                $l= Liste::where('idPartage','=',$id)->first();
-
-                if($msg != ''){
-                    $l['msg']=$msg;
-                }
-       
-                $vue = new \presentapp\view\PresentView($l);
-                $vue->render('renderViewListeItem');
+            if($msg != ''){
+                $l['msg']=$msg;
+            }
+   
+            $vue = new \presentapp\view\PresentView($l);
+            $vue->render('renderViewListeItem');
+        }catch(\Exception $e){
+            $message = "La liste n'existe pas";
+            $this->viewListe($message);
+        }
+                
     }
 
     public function viewSupprItem(){
