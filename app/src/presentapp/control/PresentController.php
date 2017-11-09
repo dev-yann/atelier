@@ -185,18 +185,10 @@ class PresentController extends \mf\control\AbstractController
                     $item->id_list = $requeteListe['id'];
                     $item->save();
 
-<<<<<<< HEAD
 
                     $message = "<div class='alert alert-success col-12'>L'item à bien été ajouté</div>";
                     $this->viewListeItem($message);
                 }			
-=======
-				$item->save();
-				$message = "L'item à bien été ajouté";
-				$this->viewListeItem($message);
-			
-            }
->>>>>>> 562d30b536243341ac5c91bacb1f9f72ed7383bb
         }
     }
 
