@@ -82,9 +82,8 @@ EOT;
          <section>
         
         <div class="container">
-     <div class="col-8 offset-2">
       <div class="formulaire">
-       <legend>Inscription</legend>
+       <h3 class="centrar">Inscription</h3>
         <form method="post" action="$this->script_name/check_signup/">
                     <input type="text" name="fullname" placeholder="Prénom" required/>
                     <input type="text" name="username" placeholder="Nom" required/>
@@ -94,9 +93,8 @@ EOT;
                    
                     <input type="submit" value="Créer"/>
         </form>
-		<p>Pour le mdp : au moins une minuscule, une majuscule, un chiffre et un caractère spécial</p>
+		<h4 class="centrar">Indications mot de passe : au moins une minuscule, une majuscule, un chiffre, un caractère spécial et 8 caractères  </h4>
        </div> 
-     </div>
      </div>
                 
         </section>
@@ -152,9 +150,9 @@ EOT;
 			<<<EOT
       
 <div class="container">
-     <div class="col-8 offset-2">
+     
       <div class="formulaire">
-       <legend>Ajouter une nouvelle liste : </legend>
+       <h3 class="centrar">Ajouter une nouvelle liste : </h3>
         <form method="post" action="$this->script_name/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
@@ -162,8 +160,7 @@ EOT;
             
             <input type="submit" value="Ajouter"/>
         </form>
-        </div> 
-    </div>
+        </div>    
  </div>
 EOT;
         return $html;
@@ -172,13 +169,14 @@ EOT;
 
     public function renderLogin(){
         $html =
+
         "<section>
            <div class='container'>";
            if($this->data !== null){
             $html .= $this->data;
             }
       $html .= "<div class='formulaire'>
-       <legend>Connexion</legend>
+       <h3 class='centrar'>Connexion</h3>
         <form method='post' action='".$this->script_name."/check_login/'>
          <input type='email' name='email' placeholder='email' required> 
          <input type='password' name='pw' placeholder='password' required>  
@@ -212,13 +210,13 @@ EOT;
         }  
      $html .= "<div class='col-8 offset-2'>
       <div class='formulaire'>
-       <legend>Cadeau</legend>
+       <h3 class='centrar'>Ajouter un nouveau cadeau</h3>
        
        <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
-       <label for='nom'>Nom</label><input type='text' id='nom' name='nom' placeholder='Nom' required/>
+       <input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <label for='tarif'>Tarif</label><input id='tarif' name='tarif' type='number' placeholder='Tarif' step='0.01'/>
+       <input id='tarif' name='tarif' type='number' placeholder='Tarif' step='0.01'/>
          <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
          <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
          <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
