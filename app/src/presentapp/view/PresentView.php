@@ -280,10 +280,11 @@ EOT;
         }
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
-        $html .= "<div class='col-3 offset-9 sp'>
+        if(isset($_SESSION['user_login'])){
+            $html .= "<div class='col-3 offset-9 sp'>
                     <h3><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter Cadeau</a></h3><i class='fa fa-plus-circle fa-2x' aria-hidden='true'></i>
                     </div>";
-
+        }
         //$id_list = $this->data->id;
 
         $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
