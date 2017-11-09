@@ -345,6 +345,9 @@ $message = "L'item à bien été ajouté";
         $item['idListe'] = $idListe;
         $vue = new \presentapp\view\PresentView($item);
         $vue->render('renderViewModifierItem');
+
+        
+        
     }
 
     public function viewReserverItem(){
