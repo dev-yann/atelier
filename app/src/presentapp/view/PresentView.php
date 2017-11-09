@@ -263,9 +263,9 @@ EOT;
        <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$nom" required/>
          
        <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$tarif" step="0.01"/>
-         <input type="url" id="url" value="$url"> 
+         <input type="url" id="url" value="$url" name="url"> 
          <textarea rows="4" cols="15" name="description">$description</textarea>
-         <input type="text" name="image" id="urlimage" value="$urlImage"/>
+         <input type="text" name="urlImage" id="image" value="$urlImage"/>
          <input type="submit" value="Modifier">
         </form>
        </div> 
