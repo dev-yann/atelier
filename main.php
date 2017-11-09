@@ -33,6 +33,7 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('supprItem','/supprItem/','\presentapp\control\PresentController','viewsupprItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('modifierItem','/modifierItem/','\presentapp\control\PresentController','viewModifierItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    $router->addRoute('modifierItemBDD','/modifierItem/','\presentapp\control\PresentController','modifierItemBDD', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem');
     $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
