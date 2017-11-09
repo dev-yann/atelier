@@ -4,7 +4,7 @@ use mf\router\Router;
 use presentapp\auth\PresentAuthentification;
 // Require autoload
 require_once ("vendor/autoload.php");
-//require_once ("password-policy/vendor/autoload.php");
+require_once ("password-policy/vendor/autoload.php");
 require_once ("app/src/mf/utils/ClassLoader.php");
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
@@ -19,6 +19,7 @@ $db->bootEloquent();
 
 // Définition des routes
 $router = new Router();
+
 
 // ROUTE DE CONNECTION
 $router->addRoute('signup','/signup/','\presentapp\control\PresentController', 'viewSignUp',PresentAuthentification::ACCESS_LEVEL_NONE);
@@ -45,6 +46,7 @@ $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\con
 $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
+
 
 
 $router->run();

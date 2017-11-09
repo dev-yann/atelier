@@ -1,4 +1,15 @@
-/*cambie el width y el query de 1024 a 768*/
+@media (min-width: 480px) {
+  .container {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
+    .container div {
+      box-sizing: border-box; }
+
+  [class^=col] {
+    width: 46.7692307692%;
+    margin-left: 2.1538461538%; } }
 @media (min-width: 768px) {
   .container {
     width: 90%;

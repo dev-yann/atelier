@@ -21,7 +21,7 @@ $color5: greenforest;
     @extend .fa-pencil-square-o;
 }
 .fa-trash-o:hover{
-    @extend .fa-pencil-square-o:hover;
+    background-color: $color2;
 }
 .fa-plus-circle{
     @extend .fa-pencil-square-o;
@@ -32,5 +32,5 @@ $color5: greenforest;
     background-color: $color4;
 }
 .fa-minus-circle:hover{
-     @extend .fa-pencil-square-o:hover;
+     background-color: $color2;
 }
