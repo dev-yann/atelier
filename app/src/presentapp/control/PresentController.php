@@ -145,11 +145,7 @@ class PresentController extends \mf\control\AbstractController
 
     public function addItem(){
 
-<<<<<<< HEAD
-		$regexTarif='/[^0-9 \.\,]/';
-=======
 		$regexTarif='/[^0-9\.\,]/';
->>>>>>> 562d30b536243341ac5c91bacb1f9f72ed7383bb
 		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             
@@ -163,25 +159,11 @@ class PresentController extends \mf\control\AbstractController
             
                 
 
-<<<<<<< HEAD
                 if(preg_match($regexTarif, $prix)){
                     //echo" le chiffre n'est pas au bon format"; //pb ici
                     $message = "Le tarif doit être un nombre ou un chiffre";
                     $this->viewAddItem($message);
                 }else{
-=======
-			
-            if(preg_match($regexTarif, $prix)){
-                echo" le tarif n'est pas au bon format";
-            }else{
-				$tarifformatpoint = str_replace(',', '.', $tarif);
-
-				//Vérifier que chiffres !! ici
-
-				$tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
-
-				$item=new Item();
->>>>>>> 562d30b536243341ac5c91bacb1f9f72ed7383bb
 
                     $tarifformatpoint = str_replace(',', '.', $tarif);
                     $tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
