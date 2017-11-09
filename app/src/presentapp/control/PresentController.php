@@ -127,7 +127,7 @@ class PresentController extends \mf\control\AbstractController
 
     public function addItem(){
 
-		$regexTarif='/[^0-9 \.,]/';
+		$regexTarif='/[^0-9\.\,]/';
 		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             // regarder si ca existe
@@ -138,10 +138,10 @@ class PresentController extends \mf\control\AbstractController
             $urlImage = filter_input(INPUT_POST,'urlImage',FILTER_SANITIZE_SPECIAL_CHARS);
             $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
 
-			if(preg_match($regexTarif, $prix)){
-                echo" le chiffre n'est pas au bon format";
+			
+            if(preg_match($regexTarif, $prix)){
+                echo" le tarif n'est pas au bon format";
             }else{
-
 				$tarifformatpoint = str_replace(',', '.', $tarif);
 
 				//Vérifier que chiffres !! ici
@@ -168,8 +168,8 @@ class PresentController extends \mf\control\AbstractController
 				$item->save();
 				$message = "L'item à bien été ajouté";
 				$this->viewListeItem($message);
-			}
-
+			
+            }
         }
     }
 
