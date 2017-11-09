@@ -74,13 +74,18 @@ class PresentController extends \mf\control\AbstractController
 
     }
 
-    public function viewListe(){
+    public function viewListe($msg = null){
         //recuperation de l'id de la personne connecté
         $persCo = $_SESSION['user_login'];
         $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
         $idc = $requeteCrea->id;
 
         $requeteListe = Liste::select()->where('createur', '=', $idc)->get();
+
+        if(isset($msg)){
+            $requeteListe['msg'] = $msg;
+        }
+
         $vue = new \presentapp\view\PresentView($requeteListe);
         $vue->render('renderViewListe');
     }
@@ -96,7 +101,6 @@ class PresentController extends \mf\control\AbstractController
 
         if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description')){
 
-            try{
                 $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
                 $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
                 $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -114,21 +118,8 @@ class PresentController extends \mf\control\AbstractController
                 $l->description = $desc;
                 $l->save();
 
-                $this->viewListe();
-            }catch(\Exception $e){
-                
-
-
-
-
-
-
-
-
-
-            }
-            
-
+                $message = "<div class='alert alert-success col-12'>La liste à bien été ajouté</div>";
+                $this->viewListe($message);
         } else {
 
             $this->viewAddListe();
@@ -140,7 +131,7 @@ class PresentController extends \mf\control\AbstractController
 
         $affectedRows = Liste::where('id', '=', $idListe)->delete();
 
-        $this->viewItem();
+        $this->viewListe();
     }
 
     public function addItem(){

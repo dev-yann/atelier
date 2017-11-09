@@ -108,12 +108,20 @@ EOT;
     private  function renderViewListe(){
 
         $html ="<div class='container'>";
+        if(isset($this->data['msg'])){
+            $html .= $this->data['msg'];
+        }
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
         $html .= '<div class="col-12 sp centrar"><a href="'.$this->script_name.'/addliste/">
         <h3>Ajouter une liste</h3>
         </a></div>';
         }
+
+        //$tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
+
+        //$tab = \presentapp\model\Liste::where('idPartage', '=', $this->data->idPartage)->get();
+
 		foreach ($this->data as $value){
 
             $html .="<div class='col-3 sp'>
@@ -199,7 +207,7 @@ EOT;
         $idList = $this->data['idListe'];
         $html = "<div class='container'>";
         if(isset($this->data['msg'])){
-            $html .= "<div class='alert alert-danger col-12'>".$this->data['msg']."</div>";
+            $html .= $this->data['msg'];
         }  
      $html .= "<div class='col-8 offset-2'>
       <div class='formulaire'>
