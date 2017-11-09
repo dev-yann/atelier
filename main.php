@@ -44,6 +44,7 @@ $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentControll
 $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
 $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_INVIT);
 
+// AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
 
 
 $router->run();
