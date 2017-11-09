@@ -412,9 +412,10 @@ $message = "L'item à bien été ajouté";
             
             
             $item->save();
-$message = "L'item à bien été modifié";
+            $message = "L'item à bien été modifié";
             $this->viewListeItem($message);
-
+        } else {
+            echo "<div class='container'>nan dsl</div>";
         }
     }
 }
