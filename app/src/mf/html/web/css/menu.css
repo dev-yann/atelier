@@ -56,11 +56,10 @@ a {
   text-decoration: none;
   color: #fff;
   background-color: rgba(133, 193, 233, 0.8);
-  font-weight: bold; 
-}
+  font-weight: bold; }
 
 .menu_link:hover, .select {
-  background: #92d0cf;
+  background: #2d6968;
   color: #fff; }
 
 .icon-menu:hover {

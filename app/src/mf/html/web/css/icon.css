@@ -10,10 +10,16 @@
 .fa-pencil-square-o:hover, .fa-trash-o:hover, .fa-plus-circle:hover, .fa-minus-circle:hover {
   background-color: #2d6968; }
 
+.fa-trash-o:hover {
+  background-color: #2d6968; }
+
 .fa-plus-circle {
   background-color: green; }
 
 .fa-minus-circle {
   background-color: crimson; }
+
+.fa-minus-circle:hover {
+  background-color: #2d6968; }
 
 /*# sourceMappingURL=icon.css.map */
