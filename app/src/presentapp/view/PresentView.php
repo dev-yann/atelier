@@ -16,13 +16,15 @@ use mf\view\AbstractView;
 
 class PresentView extends AbstractView
 {
+    private $info;
 
     /* Constructeur
     *
     * Appelle le constructeur de la classe \mf\view\AbstractView
     */
-    public function __construct( $data ){
+    public function __construct( $data, $info = null ){
         parent::__construct($data);
+        $this->info = $info;
     }
 
     // HEADER

@@ -82,11 +82,11 @@ class PresentController extends \mf\control\AbstractController
 
         $requeteListe = Liste::select()->where('createur', '=', $idc)->get();
 
-        if(isset($msg)){
-            $requeteListe['msg'] = $msg;
-        }
+        /*if(isset($msg)){
+            $info = $msg;
+        }*/
 
-        $vue = new \presentapp\view\PresentView($requeteListe);
+        $vue = new \presentapp\view\PresentView($requeteListe, $info);
         $vue->render('renderViewListe');
     }
 
