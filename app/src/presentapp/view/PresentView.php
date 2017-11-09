@@ -144,7 +144,7 @@ EOT;
      <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Ajouter une nouvelle liste : </legend>
-        <form method="post" action="$this->script_name/checkaddliste/">
+        <form method="post" action="$this->script_name/check_addliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
@@ -321,8 +321,12 @@ EOT;
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
                 $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
             }
+
             $html .= '</div>';
         }
+
+        $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage.">Voir les messages déposer par vos invités</a></p></div>";
+
         return $html;
     }
 
@@ -343,6 +347,16 @@ EOT;
         </form>";
         return $html;        
     }
+
+
+
+
+    public function renderViewMessagePrivate(){
+
+
+    }
+
+
 
 
 
