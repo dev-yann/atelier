@@ -33,7 +33,7 @@ class PresentView extends AbstractView
                 
                 
                 <header class="header theme-backcolor1">
-        <h1 class="logo"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</h1>
+        <h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
@@ -109,9 +109,9 @@ EOT;
         $html ="<div class='container'>";
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
-        $html .= '<a href="'.$this->script_name.'/addliste/" class="col-3 offset-9 sp"><div>
+        $html .= '<div class="col-12 sp"><a href="'.$this->script_name.'/addliste/" class="  centrar"><div>
         <h3>Ajouter une liste</h3>
-        </div></a>';
+        </div></a></div>';
         }
 		foreach ($this->data as $value){
 
@@ -166,7 +166,6 @@ EOT;
                 
     <section>
            <div class="container">
-     <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Connexion</legend>
         <form method="post" action="$this->script_name/check_login/">
@@ -176,7 +175,7 @@ EOT;
         </form>
        </div> 
      </div>
-     </div>         
+    
     </section>  
 EOT;
 
@@ -263,9 +262,9 @@ EOT;
        <label for="nom">Nom</label><input type="text" id="nom" name="nom" value="$nom" required/>
          
        <label for="tarif">Tarif</label><input id="tarif" name="tarif" type="number" value="$tarif" step="0.01"/>
-         <input type="url" id="url" value="$url"> 
+         <input type="url" id="url" value="$url" name="url"> 
          <textarea rows="4" cols="15" name="description">$description</textarea>
-         <input type="text" name="image" id="urlimage" value="$urlImage"/>
+         <input type="text" name="urlImage" id="image" value="$urlImage"/>
          <input type="submit" value="Modifier">
         </form>
        </div> 
@@ -308,12 +307,13 @@ EOT;
             }
 
             $html .= '<div class="col-3 sp">';
-            $html .= '<h3 class="sp1">Nom : '.$value['nom'].'</h3>';
-            $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['nom'].'" class="cadeau"/>';
+            $html .= '<h3 class="sp1">'.$value['nom'].'</h3>';
+            $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['urlimage'].'" class="cadeau"/>';
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
-            $html .= '<h4>Tarif : '.$value['tarif'].'€</h4>';
-
-            if(!isset($_SESSION['user_login'])){
+            $html .= '<h4>'.$value['tarif'].'€</h4>';
+			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique</a></h4>';
+            
+			if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
                 $html .= "<a class='button' href=".$value['url'].">Plus d'information</a>";
             }

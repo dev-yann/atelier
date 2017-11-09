@@ -30,7 +30,7 @@ $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentControl
 $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // ROUTE DES LISTES
-$router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('checkaddliste',   '/checkaddliste/','\presentapp\control\PresentController','checkaddliste', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe',PresentAuthentification::ACCESS_LEVEL_USER);
@@ -45,6 +45,7 @@ $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentControll
 $router->addRoute('reserverMessageItem','/reserverMessageItem/','\presentapp\control\PresentController', 'viewReserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 $router->addRoute('modifierItem','/modifierItem/','\presentapp\control\PresentController', 'viewModifierItem',PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('modifierItemBDD','/modifierItemBDD/','\presentapp\control\PresentController', 'modifierItemBDD',PresentAuthentification::ACCESS_LEVEL_USER);
 //$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
