@@ -91,6 +91,7 @@ EOT;
                    
                     <input type="submit" value="Créer"/>
         </form>
+		<p>Pour le mdp : au moins une minuscule, une majuscule, un chiffre et un caractère spécial</p>
        </div> 
      </div>
      </div>
@@ -109,7 +110,7 @@ EOT;
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
         $html .= '<div class="col-3 offset-9 sp">
-        <h3><a href='.$this->script_name.'/addliste/>Ajouter une liste</a></h3><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+        <h3><a href='.$this->script_name.'/addliste/>Ajouter une liste</h3><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></a>
         </div>';
         }
 		foreach ($this->data as $value){
@@ -123,7 +124,7 @@ EOT;
                 $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-            $html .= '<a href=' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+            $html .= '<a href="' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
             $html .= "</div>";
             
         }

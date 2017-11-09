@@ -4,7 +4,7 @@ use mf\router\Router;
 
 // Require autoload
 require_once ("vendor/autoload.php");
-//require_once ("password-policy/vendor/autoload.php");
+require_once ("password-policy/vendor/autoload.php");
 require_once ("app/src/mf/utils/ClassLoader.php");
 $loader = new mf\utils\ClassLoader('app/src');
 $loader->register();
