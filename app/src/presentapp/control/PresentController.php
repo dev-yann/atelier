@@ -125,12 +125,12 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
-        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'image')){
+        if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             // regarder si ca existe
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
             $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
-            $image = filter_input(INPUT_POST,'image',FILTER_SANITIZE_SPECIAL_CHARS);
+            $urlImage = filter_input(INPUT_POST,'urlImage',FILTER_SANITIZE_SPECIAL_CHARS);
             $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
 
             //$tarifformat = number_format($tarif, 2, '.', ' '); problème avec les virgules
@@ -139,20 +139,22 @@ class PresentController extends \mf\control\AbstractController
 
             $item=new Item();
 
-            if(isset($_POST['url'])){
+            /*if(isset($_POST['url'])){
                 $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
                 $item->url=$url;
-            }
+            }*/
 
             $idListe = $this->request->get['idListe'];
             $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
 
             $item->nom=$nom;
-            $item->description=$description;
+            $item->description = $description;
+            $item->urlImage = $urlImage;
             $item->tarif=$tarifformat;
-            $item->id_list = $requeteListe['id'];
-            $item->urlImage = $image;
             $item->url = $url;
+            $item->id_list = $requeteListe['id'];
+            
+            
             $item->save();
 $message = "L'item à bien été ajouté";
             $this->viewListeItem($message);
@@ -298,6 +300,15 @@ $message = "L'item à bien été ajouté";
         $affectedRows = Item::where('id', '=', $idItem)->delete();
 
         $this->viewListeItem();
+    }
+
+    public function viewModifierItem(){
+        $idItem = $this->request->get['idItem'];
+        $idListe = $this->request->get['idListe'];
+
+        $item = Item::where('id', '=', $idItem)->first();
+        $vue = new \presentapp\view\PresentView($item);
+        $vue->render('renderViewModifierItem');
     }
 
     public function viewReserverItem(){
