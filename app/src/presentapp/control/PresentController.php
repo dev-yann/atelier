@@ -125,6 +125,9 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function addItem(){
+		
+		$regexTarif='/[^0-9 \.,]/';
+		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage')){
             // regarder si ca existe
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
