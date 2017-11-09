@@ -37,7 +37,7 @@ class PresentView extends AbstractView
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
-                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">logout</a></li>
+                        <li class="menu_item"><a class="menu_link select" href="$this->script_name/logout/">Deconnexion</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/addliste/">Ajouter une liste</a></li>
                         <li class="menu_item"><a class="menu_link" href="$this->script_name/liste/">Mes listes</a></li>
                     </ul>
@@ -288,9 +288,11 @@ EOT;
         }
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
         $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
+
         if(isset($_SESSION['user_login'])){
             $html .= "<div class='col-3 offset-9 sp'>
-                    <h3><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">Ajouter Cadeau</a></h3><i class='fa fa-plus-circle fa-2x' aria-hidden='true'></i>
+                    <h3>Ajouter Cadeau<a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage."><i class='fa fa-plus-circle fa-2x' aria-hidden='true'></i></a></h3>
+
                     </div>";
         }
         //$id_list = $this->data->id;
@@ -299,7 +301,8 @@ EOT;
 
         foreach ($tab as $key => $value){
             if($value['status']==0){
-                $status="<a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->idPartage."&idItem=".$value['id'].">reserver</a>";
+                $status= 'disponible </br>';
+				$status .= "<p><a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->idPartage."&idItem=".$value['id'].">je souhaite reserver ce cadeau</a></p>";
             }else{
                 $status="déjà pris";
             }
