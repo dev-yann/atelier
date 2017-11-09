@@ -144,7 +144,7 @@ EOT;
      <div class="col-8 offset-2">
       <div class="formulaire">
        <legend>Ajouter une nouvelle liste : </legend>
-        <form method="post" action="$this->script_name/check_addliste/">
+        <form method="post" action="$this->script_name/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
