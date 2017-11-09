@@ -335,6 +335,9 @@ class PresentController extends \mf\control\AbstractController
             $id = $this->request->get['idListe'];        
             $l= Liste::where('idPartage','=',$id)->first();
 
+            // ajout des donnée concernant les messages
+            $message = Message::where('id_list','=',$id)->get();
+            
             if(isset($l)){
                 if($msg != ''){
                     $l['msg']=$msg;
@@ -537,8 +540,9 @@ class PresentController extends \mf\control\AbstractController
 
                 $message->save();
 
-               /* $vue = new PresentView('');
-                $vue->renderViewListeItem();*/
+                // la sauvegarde est effectuée, je renvoie vers listitem
+                $vue = new PresentView('');
+                $vue->renderViewListeItem();
 
                // pour select après select m.contenu
               /*  from message m join Liste l
