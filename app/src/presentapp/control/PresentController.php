@@ -26,20 +26,10 @@ class PresentController extends \mf\control\AbstractController
         parent::__construct();
     }
 
-    public function viewPresent(){
-        /*$listTweet = tweet::get();
-
-        $vue = new \tweeterapp\view\TweeterView($listTweet);
-        return $vue->render('home');*/
-        $vue = new \presentapp\view\PresentView('');
-        return $vue->render('renderViewPresent');
-
-    }
-
     // VUE INSCRIPTION
-    public function viewSignUp(){
+    public function viewSignUp($msg = null){
 
-        $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView($msg);
         return $vue->render('renderViewSignUp');
     }
 
@@ -75,16 +65,12 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function viewListe($msg = null){
-        //recuperation de l'id de la personne connecté
+
         $persCo = $_SESSION['user_login'];
         $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
         $idc = $requeteCrea->id;
 
         $requeteListe = Liste::select()->where('createur', '=', $idc)->get();
-
-        /*if(isset($msg)){
-            $info = $msg;
-        }*/
 
         $vue = new \presentapp\view\PresentView($requeteListe, $msg);
         $vue->render('renderViewListe');
@@ -160,7 +146,6 @@ class PresentController extends \mf\control\AbstractController
                 
 
                 if(preg_match($regexTarif, $prix)){
-                    //echo" le chiffre n'est pas au bon format"; //pb ici
                     $message = "Le tarif doit être un nombre ou un chiffre";
                     $this->viewAddItem($message);
                 }else{
@@ -218,6 +203,7 @@ class PresentController extends \mf\control\AbstractController
 
                 $connect->login($user,$pass);
                 $this->viewListe();
+                
 
             }catch(\Exception $e){
                 $message = "<div class='alert alert-danger col-12'>Problème d'authentification</div>";
@@ -254,10 +240,12 @@ class PresentController extends \mf\control\AbstractController
             $mdp=$_POST["pw"];
             $longueur= strlen($mdp);
             if(preg_match($regex1, $prenom)){
-                echo" le prénom n'est pas au bon format";
+                $message = "<div class='alert alert-danger col-12'>Le prénom n'est pas au bon format</div>";
+                $this->viewSignUp($message);
             }else{
                 if(preg_match($regex1, $nom)){
-                    echo" le nom n'est pas au bon format";
+                    $message = "<div class='alert alert-danger col-12'>Le nom n'est pas au bon format</div>";
+                    $this->viewSignUp($message);
                 }
                 else{
                     if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
@@ -268,7 +256,8 @@ class PresentController extends \mf\control\AbstractController
                         $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
 
                         if($longueur < 8){  // Verif longueur mdp
-                            echo"mot de passe trop court";
+                            $message = "<div class='alert alert-danger col-12'>Le mot de passe est trop court, 8 caractères minimum</div>";
+                            $this->viewSignUp($message);
                         }else{
 								
 							$resultL = $policyL->test($mdp);  
