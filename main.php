@@ -22,7 +22,7 @@ $router = new Router();
 if(isset($_SESSION['user_login'])){
 
     // si la personne est connecter
-    $router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+    $router->addRoute('checkaddliste',   '/checkaddliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
     $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe');
