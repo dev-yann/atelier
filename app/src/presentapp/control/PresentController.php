@@ -534,6 +534,11 @@ class PresentController extends \mf\control\AbstractController
 
                /* $vue = new PresentView('');
                 $vue->renderViewListeItem();*/
+
+               // pour select après select m.contenu
+              /*  from message m join Liste l
+on m.id = l.id
+where l.id = 1;*/
             }
 
         }
