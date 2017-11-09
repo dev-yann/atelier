@@ -22,7 +22,6 @@ $router = new Router();
 if(isset($_SESSION['user_login'])){
 
     // si la personne est connecter
-    $router->addRoute('home','/home/','\presentapp\control\PresentController', 'viewPresent');
     $router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe');
@@ -30,10 +29,11 @@ if(isset($_SESSION['user_login'])){
     $router->addRoute('addItem','/addItem/','\presentapp\control\PresentController', 'addItem');
     $router->addRoute('viewAddItem','/ViewAddItem/','\presentapp\control\PresentController', 'viewAddItem');
     $router->addRoute('logout','/logout/','\presentapp\control\PresentController', 'logout');
-    $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
     $router->addRoute('listeItem','/listeItem/','\presentapp\control\PresentController', 'viewListeItem');
     $router->addRoute('item','/item/','\presentapp\control\PresentController','viewItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 	$router->addRoute('supprItem','/supprItem/','\presentapp\control\PresentController','viewsupprItem', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
+
+    $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentController', 'viewPresent', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 } else {
 

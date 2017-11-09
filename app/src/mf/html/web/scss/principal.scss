@@ -6,6 +6,8 @@
 @import "login";
 @import "grille";
 @import "icon";
+@import "alert";
+
 
 $hauteur: 50px;
 $color1: dimgray;
@@ -79,6 +81,10 @@ th, td{
     padding: 5px;
     color: $color1;
     font-size: 13px;
+}
+a{
+    text-decoration: none;
+    color: $color1;
 }
 .sp{
     background-color: lighten($color3,20%);
