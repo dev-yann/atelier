@@ -317,6 +317,9 @@ EOT;
             $html .= '</div>';
         }
 
+        $html .= "<div class='container'>";
+        $html .= "<div class ='col-12 sp centrar'><p>Ajouter un message pour tous les participants : </p>";
+        $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/">';
         // afficher les messages
 
         return $html;
