@@ -49,7 +49,7 @@ $router->addRoute('modifierItemBDD','/modifierItemBDD/','\presentapp\control\Pre
 //$router->addRoute('reserverItem','/reserverItem/','\presentapp\control\PresentController', 'reserverItem',PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // AFFICHAGE DES MESSAGE A LA FIN DE LA DATE
-//$router->addRoute('checkMessageItemPrivate','/listeItem/', 'presentapp\control\PresentController','checkMessageItemPrivate',PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('checkMessageItemPrivate','/messageItemPrivate/', 'presentapp\control\PresentController','checkMessageItemPrivate',PresentAuthentification::ACCESS_LEVEL_USER);
 
 
 $router->run();
