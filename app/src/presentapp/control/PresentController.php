@@ -126,42 +126,48 @@ class PresentController extends \mf\control\AbstractController
 
     public function addItem(){
 
+		$regexTarif='/[^0-9 \.,]/';
+		
         if(filter_has_var(INPUT_POST,'nom') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'tarif') AND filter_has_var(INPUT_POST,'urlImage') AND filter_has_var(INPUT_POST,'urlImage')){
             // regarder si ca existe
+			$prix=$_POST["tarif"];
             $nom = filter_input(INPUT_POST,'nom',FILTER_SANITIZE_SPECIAL_CHARS);
             $description = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
             $tarif = filter_input(INPUT_POST,'tarif',FILTER_SANITIZE_SPECIAL_CHARS);
             $urlImage = filter_input(INPUT_POST,'urlImage',FILTER_SANITIZE_SPECIAL_CHARS);
             $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
 
+			if(preg_match($regexTarif, $prix)){
+                echo" le chiffre n'est pas au bon format";
+            }else{
+
+				$tarifformatpoint = str_replace(',', '.', $tarif);
+
+				//Vérifier que chiffres !! ici
+
+				$tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
+
+				$item=new Item();
+
+				if(isset($_POST['url'])){
+					$url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
+					$item->url=$url;
+				}
+
+				$idListe = $this->request->get['idListe'];
+				$requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
+
+				$item->nom=$nom;
+				$item->description = $description;
+				$item->urlImage = $urlImage;
+				$item->tarif=$tarifformat;
+				$item->id_list = $requeteListe['id'];
 
 
-            $tarifformatpoint = str_replace(',', '.', $tarif);
-
-            //Vérifier que chiffres !! ici
-
-            $tarifformat = number_format($tarifformatpoint, 2, '.', ' ');
-
-            $item=new Item();
-
-            if(isset($_POST['url'])){
-                $url = filter_input(INPUT_POST,'url',FILTER_SANITIZE_SPECIAL_CHARS);
-                $item->url=$url;
-            }
-
-            $idListe = $this->request->get['idListe'];
-            $requeteListe = Liste::select('id')->where('idPartage', '=', $idListe)->first();
-
-            $item->nom=$nom;
-            $item->description = $description;
-            $item->urlImage = $urlImage;
-            $item->tarif=$tarifformat;
-            $item->id_list = $requeteListe['id'];
-            
-            
-            $item->save();
-$message = "L'item à bien été ajouté";
-            $this->viewListeItem($message);
+				$item->save();
+				$message = "L'item à bien été ajouté";
+				$this->viewListeItem($message);
+			}
 
         }
     }
