@@ -30,7 +30,7 @@ $router->addRoute('default', 'DEFAULT_ROUTE','\presentapp\control\PresentControl
 $router->addRoute('check_signup',   '/check_signup/','\presentapp\control\PresentController','checkSignup', presentapp\auth\PresentAuthentification::ACCESS_LEVEL_NONE);
 
 // ROUTE DES LISTES
-$router->addRoute('check_addliste',   '/check_addliste/','\presentapp\control\PresentController','checkaddliste', PresentAuthentification::ACCESS_LEVEL_USER);
+$router->addRoute('checkaddliste',   '/checkaddliste/','\presentapp\control\PresentController','checkaddliste', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('liste','/liste/','\presentapp\control\PresentController', 'viewListe', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('supprliste',   '/supprliste/','\presentapp\control\PresentController','viewSupprliste', PresentAuthentification::ACCESS_LEVEL_USER);
 $router->addRoute('addliste','/addliste/','\presentapp\control\PresentController', 'viewaddListe',PresentAuthentification::ACCESS_LEVEL_USER);
