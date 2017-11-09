@@ -300,9 +300,10 @@ EOT;
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
             $html .= '<h4>Tarif : '.$value['tarif'].'€</h4>';
 
-            //if(!isset($_SESSION['user_login'])){
+            if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
-            //}
+                $html .= "<a class='button' href=".$value['url'].">Plus d'information</a>";
+            }
             if(isset($_SESSION['user_login'])){
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
                 $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
