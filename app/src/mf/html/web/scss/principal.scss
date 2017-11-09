@@ -53,6 +53,7 @@ input{
     display: block;
     margin: auto;
     margin-top: 5px;
+    width: 50%;
 }
 input[type="radio"]{
     transform: scale(1.5);
@@ -60,9 +61,9 @@ input[type="radio"]{
 textarea{
     display: block;
     margin: auto;
-    width: 100%;
+    width: 50%;
     margin-top: 5px;
-    resize:none;
+    resize: none;
 }
 p{
     line-height: 15px;
@@ -84,6 +85,9 @@ th, td{
 a{
     text-decoration: none;
     color: $color1;
+}
+a:hover{
+    cursor: pointer;
 }
 .sp{
     background-color: lighten($color3,20%);
