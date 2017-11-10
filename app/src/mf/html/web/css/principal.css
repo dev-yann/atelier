@@ -62,7 +62,6 @@ a {
   background-color: rgba(133, 193, 233, 0.8);
   font-weight: bold; }
 
-
 .menu_link:hover, .select {
   background: #2d6968;
   color: #fff; }
@@ -370,5 +369,14 @@ a:hover {
   margin: auto;
   margin-bottom: 8px;
   border-radius: 5px; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; }
+
+footer {
+  background-color: #92d0cf;
+  width: 100%; }
 
 /*# sourceMappingURL=principal.css.map */
