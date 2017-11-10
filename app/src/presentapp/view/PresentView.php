@@ -302,25 +302,9 @@ EOT;
                 $html .= '<a href="' . $this->script_name . '/supprItem/?idListe=' . $this->data->idPartage . '&idItem=' . $value->id . '"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
                 $html .= '<a href="' . $this->script_name . '/modifierItem/?idListe=' . $this->data->idPartage . '&idItem=' . $value->id . '"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
 
-                if ($this->data->pourmoi == 'non') {
-                    $html .= "<div class='col-12'><p><a href=" . $this->script_name . "/messageItemPrivate/?idListe=" . $this->data->idPartage . "&idItem=" . $value->id . ">Voir les messages déposer par vos invités</a></p></div>";
-                }
-
                 $html .= "<div class='col-12'><p><a href=" . $this->script_name . "/messageItemPrivate/?idListe=" . $this->data->idPartage . "&idItem=" . $value->id . ">Voir les messages déposer par vos invités</a></p></div>";
 
-                /*$today = getDate();
-
-                $tJour = $today["mday"];
-                $tJour--;    //Pour accepter la date d'ajourd'hui
-                $tMois = $today["mon"];
-                $tAnnee = $today["year"];
-                $dateAuj = $tAnnee . "-" . $tMois . "-" . $tJour;
-
-                if (strtotime($this->data->date_final) == strtotime($dateAuj)) {
-
-                    $html .= "<div class='col-12'><p><a href=" . $this->script_name . "/messageItemPrivate/?idListe=" . $this->data->idPartage . "&idItem=" . $value->id . ">Voir les messages déposer par vos invités</a></p></div>";
-
-                }*/
+                
             }
 
 
