@@ -121,7 +121,7 @@ class PresentController extends \mf\control\AbstractController
                     $testListe = $requeteCrea->listes()->where('nom','=',$nomListe)->first();
 
                     // on voie si la liste existe déja
-                    if($nomListe == $testListe->nom){
+                    if(isset($testListe) && $nomListe == $testListe->nom){
 
 
                         $this->viewListe();
