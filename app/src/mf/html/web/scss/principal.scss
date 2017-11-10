@@ -63,6 +63,8 @@ input[type="radio"] {
     -ms-transform: scale(1); /* IE 9 */
     -webkit-transform: scale(1); /* Chrome, Safari, Opera */
     transform: scale(1);
+    display: block;
+    margin: auto;
 }
 textarea{
     display: block;
