@@ -23,12 +23,6 @@ create table Liste(
     constraint fk_liste FOREIGN KEY (createur) REFERENCES Createur (id)   
 );
 
-create table Participants(
-    id int not null AUTO_INCREMENT PRIMARY KEY,
-    nom varchar(50),
-    prenom varchar (50)
-);
-
 create table Item(
     id int not null AUTO_INCREMENT PRIMARY KEY,
     nom varchar (50) not null,
@@ -40,15 +34,6 @@ create table Item(
     url text not null,
     status boolean not null default 0,
     id_list int not null
-);
-
-create table participant_item(
-    id_item int not null,
-    id_participant int not null,
-    message varchar (300),
-    PRIMARY KEY (id_item, id_participant),
-    FOREIGN KEY (id_item) REFERENCES Item (id),
-    FOREIGN KEY (id_participant) REFERENCES Participants (id)
 );
 
 create table message(
