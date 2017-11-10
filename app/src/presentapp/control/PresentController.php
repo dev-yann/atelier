@@ -90,33 +90,52 @@ class PresentController extends \mf\control\AbstractController
     public function checkaddliste(){
 
 
-        if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description')){
-							//annee    // mois				// Jour
+        if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description') AND filter_has_var(INPUT_POST,'reponse')){
+			$dateEntrée = $_POST['dateFinale'];
+						//annee    // mois				// Jour
 			$regexDate = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/";  // VERIFIE LE FORMAT DE LA DATE
 			
-			if (preg_match($regexDate, $_POST['dateFinale']))
+			if (preg_match($regexDate, $dateEntrée))
 
 			{
+				
+				$today=getDate();
+				
+				$tJour=$today["mday"];
+				$tJour--;	//Pour accepter la date d'ajourd'hui
+				$tMois=$today["mon"];
+				$tAnnee=$today["year"];
+				$dateAuj = $tAnnee."-".$tMois."-".$tJour;
+				
+							//Date entrée 			//Aujourd'hui
+				if(strtotime($dateEntrée) > strtotime($dateAuj)){
+					$nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+					$dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
+					$desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+                    $reponse = filter_input(INPUT_POST,'reponse',FILTER_SANITIZE_SPECIAL_CHARS);
 
-        		$nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
-                $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
-                $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
+					//recuperation de l'id de la personne connecté
+					$persCo = $_SESSION['user_login'];
+					$requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
+					$idc = $requeteCrea->id;
 
-                //recuperation de l'id de la personne connecté
-                $persCo = $_SESSION['user_login'];
-                $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
-                $idc = $requeteCrea->id;
+					$l = new Liste();
+					$l->idpartage= uniqid();
+					$l->nom = $nomListe;
+					$l->date_final = $dateFinal;
+					$l->createur = $idc;
+					$l->description = $desc;
+                    $l->pourmoi = $reponse;
+					$l->save();
 
-                $l = new Liste();
-                $l->idpartage= uniqid();
-                $l->nom = $nomListe;
-                $l->date_final = $dateFinal;
-                $l->createur = $idc;
-                $l->description = $desc;
-                $l->save();
-
-                $message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
-                $this->viewListe($message);
+					$message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
+					$this->viewListe($message);
+				}
+				else{
+ 					$message = "<div class='alert alert-danger col-12'>C'est un peu tard pour organiser un évènement, la date est déjà passée</div>";
+            		$this->viewAddListe($message);	
+				}
+        	
 
     		}
 			else{
@@ -225,7 +244,7 @@ class PresentController extends \mf\control\AbstractController
                 
 
             }catch(\Exception $e){
-                $message = "<div class='alert alert-danger col-12'>Problème d'authentification</div>";
+                $message = "<div class='alert alert-danger col-12'>Problème d'authentification, votre email n'existe pas ou a été mal entrée</div>";
                 $this->viewLogin($message);
             }
 
@@ -498,6 +517,9 @@ class PresentController extends \mf\control\AbstractController
             // On recupère la date
             $requeteDate = Liste::select('date_final')->where('idPartage', '=', $idListe)->first();
 
+            // On recupère si la liste est pour lui
+            $requeteChoix = Liste::select('pourmoi')->where('idPartage', '=', $idListe)->first();
+
             // si la date existe
             if(isset($requeteDate->date_final)){
 
@@ -505,7 +527,7 @@ class PresentController extends \mf\control\AbstractController
                 $now = date('Y-m-d');
 
                 // On compare les dates
-                if ($dateFinal <= $now) {
+                if ($dateFinal <= $now || $requeteChoix='non') {
 
 
                     $resultIdItem = Item::where('id', '=', $idItem)->first();
@@ -517,8 +539,8 @@ class PresentController extends \mf\control\AbstractController
 
                 } else {
 
-                    $this->viewListeItem();
-
+                    $message = "<div class='alert alert-danger col-12'>Vous devez attendre la date de l'évenement pour voir les messages</div>";
+                    $this->viewListeItem($message);
                 }
             } else {
 
