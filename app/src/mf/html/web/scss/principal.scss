@@ -142,14 +142,13 @@ a:hover{
 }
 
 body {
-  bottom: 0;
+  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   
 }
 footer {
   background-color: lighten($color3,20%);
-  bottom: 0;
   width: 100%;
-  height: auto;
-  color: white;
 }
 
