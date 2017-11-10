@@ -143,12 +143,16 @@ a:hover{
 
 body {
   min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
 }
 footer {
   background-color: lighten($color3,20%);
   width: 100%;
+    .container{
+        margin-top: 5px;
+    }
 }
 
