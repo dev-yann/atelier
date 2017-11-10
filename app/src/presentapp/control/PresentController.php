@@ -544,9 +544,6 @@ class PresentController extends \mf\control\AbstractController
                 // On compare les dates
                 if ($dateFinal <= $now) {
 
-                    echo $dateFinal;
-                    echo $now;
-
                     $resultIdItem = Item::where('id', '=', $idItem)->first();
                     /*->Item()->where('id_list','=',$idListe)->get();*/
 
