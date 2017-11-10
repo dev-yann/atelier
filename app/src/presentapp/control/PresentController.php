@@ -404,7 +404,7 @@ class PresentController extends \mf\control\AbstractController
 
                 $vue->render('renderViewListeItem');
             }else{
-                $message = "<div class='alert alert-danger col-12'>La liste n'existe pas</div>";
+                $message = "<div class='alert alert-danger col-12'>La liste n'existe pas view</div>";
 
                 $this->viewListe($message);
             }            
@@ -587,7 +587,7 @@ class PresentController extends \mf\control\AbstractController
             if(is_null($requeteListe)){
 
                 // si le login est corrompus on renvoi vers la page de login
-                $this->ViewLogin();
+                $this->logout();
 
             } else {
 
