@@ -77,9 +77,11 @@ class PresentController extends \mf\control\AbstractController
         $vue->render('renderViewListe');
     }
 
-    public function viewaddListe(){
-
-        $vue = new \presentapp\view\PresentView($msg);// DÉFINIR MESSAGE
+    public function viewaddListe($msg = null){
+		if($msg != ''){
+			$message = $msg;
+		}
+        $vue = new \presentapp\view\PresentView($message);// DÉFINIR MESSAGE
         $vue->render('renderViewAddListe');
     }
 
@@ -87,8 +89,14 @@ class PresentController extends \mf\control\AbstractController
 
 
         if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description')){
+							//annee    // mois				// Jour
+			$regexDate = "/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])/";  // VERIFIE LE FORMAT DE LA DATE
+			
+			if (preg_match($regexDate, $_POST['dateFinale']))
 
-                $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
+			{
+
+        		$nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
                 $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
                 $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -107,6 +115,14 @@ class PresentController extends \mf\control\AbstractController
 
                 $message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
                 $this->viewListe($message);
+
+    		}
+			else{
+				$message = "<div class='alert alert-danger col-12'>La date n'est pas conforme : AAAA-MM-JJ</div>";
+            	$this->viewAddListe($message);	
+				
+			}
+			
         } else {
             $message = "<div class='alert alert-danger col-12'>L'item n'a pas été ajouté</div>";
             $this->viewListe($message);
