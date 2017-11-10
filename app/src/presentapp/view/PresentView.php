@@ -144,14 +144,12 @@ EOT;
 
 
     private  function renderViewAddListe(){
-        $html ="<h1>Liste</h1>";
-	
-		$html .=       
+		$html =       
 '<div class="container">';
      if($this->data !== null){
 			$html .= $this->data;
 		}
-      $html.='<div class="formulaire">
+      $html.='<h1>Liste</h1><div class="formulaire">
 	  	<h3 class="centrar">Ajouter une nouvelle liste : </h3>
         <form method="post" action="'.$this->script_name.'/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l\'évènement" required/>

@@ -78,11 +78,11 @@ class PresentController extends \mf\control\AbstractController
     }
 
     public function viewaddListe($msg = null){
-		if($msg != ''){
+		//if($msg != ''){
 			$message = $msg;
-		}else{
+		/*}else{
             $message = null;
-        }
+        }*/
         $vue = new \presentapp\view\PresentView($message);// DÉFINIR MESSAGE
         $vue->render('renderViewAddListe');
     }
