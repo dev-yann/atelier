@@ -146,23 +146,22 @@ EOT;
     private  function renderViewAddListe(){
         $html ="<h1>Liste</h1>";
 	
-		$html .= 
-			<<<EOT
-      
-<div class="container">
-     
-      <div class="formulaire">
-       <h3 class="centrar">Ajouter une nouvelle liste : </h3>
-        <form method="post" action="$this->script_name/checkaddliste/">
-            <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
+		$html .=       
+'<div class="container">';
+     if($this->data !== null){
+			$html .= $this->data;
+		}
+      $html.='<div class="formulaire">
+	  	<h3 class="centrar">Ajouter une nouvelle liste : </h3>
+        <form method="post" action="'.$this->script_name.'/checkaddliste/">
+            <input type="text" name="nomListe" placeholder="Nom de l\'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
-            <input type="date" id="date" name="dateFinale" placeholder="Date de l'évènement : AAAA-MM-JJ" required/>
+            <input type="date" id="date" name="dateFinale" placeholder="Date de l\'évènement : AAAA-MM-JJ" required/>
             
             <input type="submit" value="Ajouter"/>
         </form>
         </div>    
- </div>
-EOT;
+ </div>';
         return $html;
     }
 

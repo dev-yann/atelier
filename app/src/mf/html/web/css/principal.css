@@ -257,7 +257,9 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   font-family: 'Yanone Kaffeesatz', sans-serif;
   letter-spacing: 1.5px;
-  color: dimgray; }
+  color: dimgray;
+  margin-bottom: 5px;
+  margin-top: 5px; }
 
 .container {
   width: 100%;
@@ -320,10 +322,19 @@ a:hover {
 .centrar {
   text-align: center; }
 
+.right {
+  text-align: right; }
+
+.left {
+  text-align: left; }
+
+.justify {
+  text-align: justify; }
+
 .sp {
   background-color: #92d0cf;
   border-radius: 5px;
-  margin-top: 2.1538461538%;
+  margin-top: 4vh;
   padding: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
