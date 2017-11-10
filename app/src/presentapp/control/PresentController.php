@@ -542,7 +542,7 @@ class PresentController extends \mf\control\AbstractController
                 $now = date('Y-m-d');
 
                 // On compare les dates
-                if ($dateFinal <= $now || $requeteChoix='non') {
+                if ($dateFinal <= $now) {
 
                     echo $dateFinal;
                     echo $now;
