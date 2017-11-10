@@ -1,6 +1,4 @@
-create database mecado;
-
-use mecado;
+use ricklin1u;
 
 create table Createur(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
