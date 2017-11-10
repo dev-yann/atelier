@@ -204,13 +204,13 @@ EOT;
        
        <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
-       <input type='text' id='nom' name='nom' placeholder='Nom' required/>
+        <input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
-         <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
-         <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
-         <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
-         <input type='submit' value='ajouter'>
+        <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
+        <input type='text' id='url' placeholder='Url vers un autre site' name='url'/> 
+        <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
+        <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
+        <input type='submit' value='ajouter'>
         </form>
        </div> 
      </div>
