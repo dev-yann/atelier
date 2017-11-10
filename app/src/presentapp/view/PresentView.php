@@ -258,57 +258,57 @@ EOT;
         return $html;
     }
 
-    public function renderViewListeItem()
-    {
+    public function renderViewListeItem(){
 
         $html = '<div class="container">';
-        if ($this->data['msg'] !== null) {
+        if($this->data['msg'] !== null){
             $html .= $this->data['msg'];
         }
-        $html .= "<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
-        $html .= "<h1 class='col-12'>Date de l'évènement : " . $this->data->date_final . "</h1>";
+        $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
+        $html .= "<h1 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h1>";
 
-        if (isset($_SESSION['user_login'])) {
-            $html .= "<div class='col-12 sp centrar'><a href=" . $this->script_name . "/ViewAddItem/?idListe=" . $this->data->idPartage . ">
+        if(isset($_SESSION['user_login'])){
+            $html .= "<div class='col-12 sp centrar'><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">
                     <h1><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Ajouter Cadeau</h1></a></div>";
         }
 
-        $tab = $this->data->items()->where('id_list', '=', $this->data->id)->get();
+        $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
 
-        foreach ($tab as $key => $value) {
-            if ($value['status'] == 0) {
-                $status = 'disponible </br>';
-                $status .= "<p><a href=" . $this->script_name . "/reserverMessageItem/?idListe=" . $this->data->idPartage . "&idItem=" . $value['id'] . ">je souhaite reserver ce cadeau</a></p>";
-            } else {
-                $status = "déjà pris";
+        foreach ($tab as $key => $value){
+            if($value['status']==0){
+                $status= 'disponible </br>';
+				$status .= "<p><a href=".$this->script_name."/reserverMessageItem/?idListe=".$this->data->idPartage."&idItem=".$value['id'].">je souhaite reserver ce cadeau</a></p>";
+            }else{
+                $status="déjà pris";
             }
 
             $html .= '<div class="col-3 sp">';
-            $html .= '<h1 class="sp1">' . $value['nom'] . '</h1>';
-            $html .= '<img src="' . $value['urlImage'] . '" alt="' . $value['urlimage'] . '" class="cadeau"/>';
-            $html .= '<h4>Description : </h4><p>' . $value['description'] . '</p>';
-            $html .= '<h4>' . $value['tarif'] . '€</h4>';
+            $html .= '<h1 class="sp1">'.$value['nom'].'</h1>';
+            $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['urlimage'].'" class="cadeau"/>';
+            $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
+            $html .= '<h4>'.$value['tarif'].'€</h4>';
 
-            if (isset($value['url']) && !empty($value['url'])) {
+            if(isset($value['url']) && !empty($value['url'])){
 
-                $html .= '<h4><a href="' . $value['url'] . '">Lien vers la boutique (cliquer ici)</a></h4>';
+                $html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique (cliquer ici)</a></h4>';
             }
 
-            if (!isset($_SESSION['user_login'])) {
+			if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
-                $html .= "<a class='button' href=" . $value['url'] . ">Plus d'information</a>";
+                $html .= "<a class='button' href=".$value['url'].">Plus d'information</a>";
             }
-            if (isset($_SESSION['user_login'])) {
+            if(isset($_SESSION['user_login'])) {
 
                 $html .= '<a href="' . $this->script_name . '/supprItem/?idListe=' . $this->data->idPartage . '&idItem=' . $value->id . '"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
                 $html .= '<a href="' . $this->script_name . '/modifierItem/?idListe=' . $this->data->idPartage . '&idItem=' . $value->id . '"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
 
                 if ($this->data->pourmoi == 'non') {
-
                     $html .= "<div class='col-12'><p><a href=" . $this->script_name . "/messageItemPrivate/?idListe=" . $this->data->idPartage . "&idItem=" . $value->id . ">Voir les messages déposer par vos invités</a></p></div>";
                 }
 
-                $today = getDate();
+                $html .= "<div class='col-12'><p><a href=" . $this->script_name . "/messageItemPrivate/?idListe=" . $this->data->idPartage . "&idItem=" . $value->id . ">Voir les messages déposer par vos invités</a></p></div>";
+
+                /*$today = getDate();
 
                 $tJour = $today["mday"];
                 $tJour--;    //Pour accepter la date d'ajourd'hui
@@ -320,40 +320,40 @@ EOT;
 
                     $html .= "<div class='col-12'><p><a href=" . $this->script_name . "/messageItemPrivate/?idListe=" . $this->data->idPartage . "&idItem=" . $value->id . ">Voir les messages déposer par vos invités</a></p></div>";
 
-                }
-
-
-                $html .= '</div>';
+                }*/
             }
 
-            $html .= "<div class='container'>";
-            $html .= "<section class ='col-12 sp centrar'><h1 class='centrar'>Ajouter un message pour tous les participants : </h1>";
-            $html .= '<form method="post" action="' . $this->script_name . '/messageItemAll/?idListe=' . $this->data->idPartage . '">';
-            $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
-            $html .= '<input type="hidden" name="id_list" value="' . $this->data->idPartage . '">';
-            $html .= '<input type="submit" value="poster">';
-            $html .= '</form>';
-            $html .= '</section>';
 
-
-            // afficher les messages
-
-            // je récupere les données du message
-            $mess = $this->message;
-
-            $html .= "<section class ='col-12 sp centrar'>";
-            $html .= "<h1>Message adressé au groupe</h1>";
-            foreach ($mess as $key => $value) {
-
-                $html .= '<p><i class="fa fa-commenting" aria-hidden="true"></i> ' . $value["contenu"] . '</p>';
-
-            }
-            $html .= '</section>';
             $html .= '</div>';
-
-
-            return $html;
         }
+
+        $html .= "<div class='container'>";
+        $html .= "<section class ='col-12 sp centrar'><h1 class='centrar'>Ajouter un message pour tous les participants : </h1>";
+        $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/?idListe='.$this->data->idPartage.'">';
+        $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
+        $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
+        $html .= '<input type="submit" value="poster">';
+        $html .= '</form>';
+        $html .= '</section>';
+
+
+        // afficher les messages
+
+        // je récupere les données du message
+        $mess = $this->message;
+
+        $html .= "<section class ='col-12 sp centrar'>";
+        $html .= "<h1>Message adressé au groupe</h1>";
+        foreach ($mess as $key => $value){
+
+            $html .= '<p><i class="fa fa-commenting" aria-hidden="true"></i> '.$value["contenu"].'</p>';
+
+        }
+        $html .= '</section>';
+        $html .= '</div>';
+
+
+        return $html;
     }
 
     public function renderViewReserverItem(){
