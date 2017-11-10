@@ -389,7 +389,7 @@ class PresentController extends \mf\control\AbstractController
     // AFFICHE LA LISTE DES ITEMS D'UNE LISTE
     public function viewListeItem($msg = null){
 
-            $id = $this->request->get['idListe'];        
+            $id = $this->request->get['idListe'];
             $l= Liste::where('idPartage','=',$id)->first();
 
             // ajout des donnée concernant les messages
@@ -608,9 +608,7 @@ class PresentController extends \mf\control\AbstractController
                 $this->viewListeItem();
 
                // pour select après select m.contenu
-              /*  from message m join Liste l
-on m.id = l.id
-where l.id = 1;*/
+              
             }
 
         }

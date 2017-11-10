@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7140a29b-7536-4246-ae3f-a334d1e32443" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" afterPath="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/conf/config.ini" afterPath="$PROJECT_DIR$/conf/config.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" afterPath="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PresentController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="123" column="44" lean-forward="false" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
+            <state relative-caret-position="424">
+              <caret line="610" column="14" lean-forward="false" selection-start-line="610" selection-start-column="14" selection-end-line="610" selection-end-column="14" />
               <folding>
                 <element signature="e#6#84#0#PHP" expanded="true" />
                 <element signature="e#116#153#0#PHP" expanded="true" />
@@ -90,7 +89,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PresentView.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/presentapp/view/PresentView.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="434">
@@ -179,9 +178,9 @@
         <option value="$PROJECT_DIR$/app/src/mf/view/AbstractView.php" />
         <option value="$PROJECT_DIR$/app/src/mf/html/web/css/principal.css" />
         <option value="$PROJECT_DIR$/app/src/mf/html/web/scss/principal.scss" />
-        <option value="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
         <option value="$PROJECT_DIR$/conf/config.ini" />
         <option value="$PROJECT_DIR$/app/src/presentapp/view/PresentView.php" />
+        <option value="$PROJECT_DIR$/app/src/presentapp/control/PresentController.php" />
       </list>
     </option>
   </component>
@@ -281,12 +280,12 @@
       <workItem from="1510232476320" duration="8153000" />
       <workItem from="1510242356160" duration="7026000" />
       <workItem from="1510252506345" duration="4621000" />
-      <workItem from="1510318649902" duration="3709000" />
+      <workItem from="1510318649902" duration="4513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96311000" />
+    <option name="totallyTimeSpent" value="97115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="447" y="-4" width="1303" height="780" extended-state="6" />
@@ -353,6 +352,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2060">
           <caret line="103" column="6" lean-forward="false" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -444,6 +444,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2060">
           <caret line="103" column="6" lean-forward="false" selection-start-line="103" selection-start-column="6" selection-end-line="103" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -600,6 +601,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2180">
           <caret line="109" column="24" lean-forward="false" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -615,6 +617,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -703,17 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="123" column="44" lean-forward="false" selection-start-line="123" selection-start-column="44" selection-end-line="123" selection-end-column="44" />
-          <folding>
-            <element signature="e#6#84#0#PHP" expanded="true" />
-            <element signature="e#116#153#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/conf/config.ini">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -758,6 +750,17 @@
             <marker date="1510322356258" expanded="true" signature="12940:13347" ph="..." />
             <marker date="1510322356258" expanded="true" signature="13044:13341" ph="..." />
             <marker date="1510322356258" expanded="true" signature="14387:14426" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/presentapp/control/PresentController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="610" column="14" lean-forward="false" selection-start-line="610" selection-start-column="14" selection-end-line="610" selection-end-column="14" />
+          <folding>
+            <element signature="e#6#84#0#PHP" expanded="true" />
+            <element signature="e#116#153#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
