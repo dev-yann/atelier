@@ -141,6 +141,15 @@ a:hover{
     border-radius: 5px;
 }
 
-@media(min-width:480px){
-
+body {
+  bottom: 0;
+  
 }
+footer {
+  background-color: lighten($color3,20%);
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  color: white;
+}
+

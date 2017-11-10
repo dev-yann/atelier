@@ -370,4 +370,14 @@ a:hover {
   margin-bottom: 8px;
   border-radius: 5px; }
 
+body {
+  bottom: 0; }
+
+footer {
+  background-color: #92d0cf;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  color: white; }
+
 /*# sourceMappingURL=principal.css.map */
