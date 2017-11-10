@@ -31,7 +31,8 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     letter-spacing: 1.5px;
     color: $color1;
-//    margin: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .container{
@@ -95,10 +96,19 @@ a:hover{
 .centrar{
     text-align: center;
 }
+.right{
+   text-align: right; 
+}
+.left{
+    text-align: left;
+}
+.justify{
+    text-align: justify;
+}
 .sp{
     background-color: lighten($color3,20%);
     border-radius: 5px;
-    margin-top: 2.1538461538%;
+    margin-top: 4vh;
     padding: 15px;
     box-shadow: $shadow;
 }
