@@ -321,7 +321,7 @@ class PresentController extends \mf\control\AbstractController
 								}
 									
 							}
-							
+
 							else{
 								echo 'pas de minuscule';
 							}
