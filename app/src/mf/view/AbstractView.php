@@ -13,6 +13,7 @@ abstract class AbstractView {
     protected $script_name = null; /* le chemin vers le script principal */
     
     protected $data        = null; /* le modèle de données nécessaire */
+
     
     /* Constructeur 
      * 
@@ -34,6 +35,7 @@ abstract class AbstractView {
         $this->app_root     = $http->root;
 
         $this->data         = $data;
+
     }
     
     /* pour stocker des chemins vers des feuille de sytles */

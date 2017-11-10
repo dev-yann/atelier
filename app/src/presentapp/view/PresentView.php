@@ -16,13 +16,17 @@ use mf\view\AbstractView;
 
 class PresentView extends AbstractView
 {
+    private $info;
+    protected $message     = null;
 
     /* Constructeur
     *
     * Appelle le constructeur de la classe \mf\view\AbstractView
     */
-    public function __construct( $data ){
+    public function __construct( $data, $info = null, $message = null ){
         parent::__construct($data);
+        $this->info = $info;
+        $this->message = $message;
     }
 
     // HEADER
@@ -64,7 +68,7 @@ EOT;
         }
 
 
-        return $html;//<a href="$this->script_name//"></a>
+        return $html;
     }
 
     // FOOTER
@@ -76,29 +80,30 @@ EOT;
 
     // FORM
     private  function renderViewSignUp(){
-        $html = <<<EOT
-         <section>
+        $html = "<section>
         
-        <div class="container">
-     <div class="col-8 offset-2">
-      <div class="formulaire">
-       <legend>Inscription</legend>
-        <form method="post" action="$this->script_name/check_signup/">
-                    <input type="text" name="fullname" placeholder="Prénom" required/>
-                    <input type="text" name="username" placeholder="Nom" required/>
-                    <input type="email" name="mail" placeholder="mail" required/>
-                    <input type="password" name="pw" placeholder="password" required/>
-                    <input type="password" name="pw_repeat" placeholder="Repeat password" required/>
+        <div class='container'>";
+
+        if(isset($this->data)){
+            $html .= $this->data;
+        }
+      
+      $html.=  "<div class='formulaire'>
+       <h3 class='centrar'>Inscription</h3>
+        <form method='post' action='".$this->script_name."/check_signup/'>
+                    <input type='text' name='fullname' placeholder='Prénom' required/>
+                    <input type='text' name='username' placeholder='Nom' required/>
+                    <input type='email' name='mail' placeholder='mail' required/>
+                    <input type='password' name='pw' placeholder='password' required/>
+                    <input type='password' name='pw_repeat' placeholder='Repeat password' required/>
                    
-                    <input type="submit" value="Créer"/>
+                    <input type='submit' value='Créer'/>
         </form>
-		<p>Pour le mdp : au moins une minuscule, une majuscule, un chiffre et un caractère spécial</p>
+		<h4 class='centrar'>Indications mot de passe : au moins une minuscule, une majuscule, un chiffre, un caractère spécial et 8 caractères  </h4>
        </div> 
      </div>
-     </div>
                 
-        </section>
-EOT;
+        </section>";
         return $html;
 
 
@@ -108,17 +113,20 @@ EOT;
     private  function renderViewListe(){
 
         $html ="<div class='container'>";
+        if(isset($this->info)){
+            $html .= $this->info;
+        }
         $html .= "<h1>Mes Listes</h1>";
         if(isset($_SESSION['user_login'])){
         $html .= '<div class="col-12 sp centrar"><a href="'.$this->script_name.'/addliste/">
         <h3>Ajouter une liste</h3>
         </a></div>';
         }
+
 		foreach ($this->data as $value){
 
             $html .="<div class='col-3 sp'>
             <h2>".$value->nom."</h2>";
-			//$html .= "Commence le : " . $value->date_debut . "</br>";
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
@@ -134,7 +142,7 @@ EOT;
         return $html;
     }
 
-	// ADD LISTE
+
     private  function renderViewAddListe(){
         $html ="<h1>Liste</h1>";
 	
@@ -142,9 +150,9 @@ EOT;
 			<<<EOT
       
 <div class="container">
-     <div class="col-8 offset-2">
+     
       <div class="formulaire">
-       <legend>Ajouter une nouvelle liste : </legend>
+       <h3 class="centrar">Ajouter une nouvelle liste : </h3>
         <form method="post" action="$this->script_name/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
@@ -152,64 +160,52 @@ EOT;
             
             <input type="submit" value="Ajouter"/>
         </form>
-        </div> 
-    </div>
+        </div>    
  </div>
 EOT;
         return $html;
     }
-	// SUPPR LISTE
+
 
     public function renderLogin(){
         $html =
-        
-        <<<EOT
-                
-    <section>
-           <div class="container">
-      <div class="formulaire">
-       <legend>Connexion</legend>
-        <form method="post" action="$this->script_name/check_login/">
-         <input type="email" name="email" placeholder="email" required> 
-         <input type="password" name="pw" placeholder="password" required>  
-         <input type="submit" value="login">
+
+        "<section>
+           <div class='container'>";
+           if($this->data !== null){
+            $html .= $this->data;
+            }
+      $html .= "<div class='formulaire'>
+       <h3 class='centrar'>Connexion</h3>
+        <form method='post' action='".$this->script_name."/check_login/'>
+         <input type='email' name='email' placeholder='email' required> 
+         <input type='password' name='pw' placeholder='password' required>  
+         <input type='submit' value='login'>
         </form>
        </div> 
      </div>
     
-    </section>  
-EOT;
+    </section>";
 
                 return $html;
     }
-    
-    // DEFAULT										 // SUPPRIMER CETTE METHODE PAGE DEFAUTL VA SUR CONNEXION OU VIEWLIST
-    private function renderViewPresent(){
-        /*echo $_SESSION['user_login'];
-        echo $_SESSION['access_level'];*/
-        $html = <<<EOT
-<h1 class="container">Défaut</h1>
-EOT;
-        return $html;
 
-    }
 
-    // RENDER ADD ITEM
     private function renderViewAddItem(){
         $idList = $this->data['idListe'];
         $html = "<div class='container'>";
         if(isset($this->data['msg'])){
-            $html .= "<div class='alert alert-danger col-12'>".$this->data['msg']."</div>";
+            $html .= $this->data['msg'];
         }  
      $html .= "<div class='col-8 offset-2'>
       <div class='formulaire'>
-       <legend>Cadeau</legend>
+       <h3 class='centrar'>Ajouter un nouveau cadeau</h3>
        
        <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
-       <label for='nom'>Nom</label><input type='text' id='nom' name='nom' placeholder='Nom' required/>
+       <input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <label for='tarif'>Tarif</label><input id='tarif' name='tarif' type='number' placeholder='Tarif' step='0.01'/>
+       <input id='tarif' name='tarif' type='number' placeholder='Tarif' step='0.01'/>
          <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
          <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
          <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
@@ -283,7 +279,6 @@ EOT;
 
                     </a></div>";
         }
-        //$id_list = $this->data->id;
 
         $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
 
@@ -308,17 +303,39 @@ EOT;
             }
             if(isset($_SESSION['user_login'])){
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
-                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'">modifier item</a>';
+                $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
+                $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
             }
 
-            $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
+            
             $html .= '</div>';
         }
 
         $html .= "<div class='container'>";
         $html .= "<div class ='col-12 sp centrar'><p>Ajouter un message pour tous les participants : </p>";
         $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/">';
+        $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
+        $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
+        $html .= '<input type="submit" value="poster">';
+        $html .= '</form>';
+        $html .= '</div>';
+
+
         // afficher les messages
+
+        // je récupere les donnée message
+        $mess = $this->message;
+
+        $html .= "<section class ='col-12 sp centrar'>";
+        $html .= "<h1>Message adressé au groupe</h1>";
+        foreach ($mess as $key => $value){
+
+            $html .= '<p><i class="fa fa-commenting" aria-hidden="true"></i> '.$value["contenu"].'</p>';
+
+        }
+        $html .= '</section>';
+        $html .= '</div>';
+
 
         return $html;
     }

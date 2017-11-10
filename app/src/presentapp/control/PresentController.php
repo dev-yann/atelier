@@ -11,6 +11,7 @@ use \presentapp\model\Liste as Liste;
 use \presentapp\model\Item as Item;
 use \presentapp\model\Createur as Createur;
 use presentapp\auth\PresentAuthentification;
+use presentapp\model\Message;
 use presentapp\view\PresentView;
 
 
@@ -26,26 +27,16 @@ class PresentController extends \mf\control\AbstractController
         parent::__construct();
     }
 
-    public function viewPresent(){
-        /*$listTweet = tweet::get();
-
-        $vue = new \tweeterapp\view\TweeterView($listTweet);
-        return $vue->render('home');*/
-        $vue = new \presentapp\view\PresentView('');
-        return $vue->render('renderViewPresent');
-
-    }
-
     // VUE INSCRIPTION
-    public function viewSignUp(){
+    public function viewSignUp($msg = null){
 
-        $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView($msg);
         return $vue->render('renderViewSignUp');
     }
 
     // Show login form
-    public function viewLogin(){
-        $vue = new \presentapp\view\PresentView('');
+    public function viewLogin($msg = null){
+        $vue = new \presentapp\view\PresentView($msg);
         $vue->render('renderLogin');
     }
 
@@ -74,20 +65,21 @@ class PresentController extends \mf\control\AbstractController
 
     }
 
-    public function viewListe(){
-        //recuperation de l'id de la personne connecté
+    public function viewListe($msg = null){
+
         $persCo = $_SESSION['user_login'];
         $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
         $idc = $requeteCrea->id;
 
         $requeteListe = Liste::select()->where('createur', '=', $idc)->get();
-        $vue = new \presentapp\view\PresentView($requeteListe);
+
+        $vue = new \presentapp\view\PresentView($requeteListe, $msg);
         $vue->render('renderViewListe');
     }
 
     public function viewaddListe(){
 
-        $vue = new \presentapp\view\PresentView('');
+        $vue = new \presentapp\view\PresentView($msg);// DÉFINIR MESSAGE
         $vue->render('renderViewAddListe');
     }
 
@@ -96,7 +88,6 @@ class PresentController extends \mf\control\AbstractController
 
         if(filter_has_var(INPUT_POST,'nomListe') AND filter_has_var(INPUT_POST,'dateFinale') AND filter_has_var(INPUT_POST,'description')){
 
-            try{
                 $nomListe = filter_input(INPUT_POST,'nomListe',FILTER_SANITIZE_SPECIAL_CHARS);
                 $dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
                 $desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
@@ -114,33 +105,29 @@ class PresentController extends \mf\control\AbstractController
                 $l->description = $desc;
                 $l->save();
 
-                $this->viewListe();
-            }catch(\Exception $e){
-                
-
-
-
-
-
-
-
-
-
-            }
-            
-
+                $message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
+                $this->viewListe($message);
         } else {
-
-            $this->viewAddListe();
+            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été ajouté</div>";
+            $this->viewListe($message);
         }
     }
 
     public function viewSupprliste(){
         $idListe = $this->request->get['idListe'];
 
-        $affectedRows = Liste::where('id', '=', $idListe)->delete();
+        try{
+            $affectedRows = Liste::where('id', '=', $idListe)->delete();
+            $message = "<div class='alert alert-success col-12'>La liste a bien été supprimée</div>";
+            $this->viewListe($message);
+        }catch(\Exception $e){
+            $message = "<div class='alert alert-success col-12'>La liste n'a pas été supprimée</div>";
+            $this->viewListe($message);
+        }
 
-        $this->viewItem();
+        
+
+        
     }
 
     public function addItem(){
@@ -160,7 +147,6 @@ class PresentController extends \mf\control\AbstractController
                 
 
                 if(preg_match($regexTarif, $prix)){
-                    //echo" le chiffre n'est pas au bon format"; //pb ici
                     $message = "Le tarif doit être un nombre ou un chiffre";
                     $this->viewAddItem($message);
                 }else{
@@ -186,9 +172,12 @@ class PresentController extends \mf\control\AbstractController
                     $item->save();
 
 
-                    $message = "<div class='alert alert-success col-12'>L'item à bien été ajouté</div>";
+                    $message = "<div class='alert alert-success col-12'>L'item a bien été ajouté</div>";
                     $this->viewListeItem($message);
                 }			
+        }else{
+            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été ajouté</div>";
+            $this->viewListeItem($message);
         }
     }
 
@@ -198,14 +187,11 @@ class PresentController extends \mf\control\AbstractController
         $logout = new \mf\auth\Authentification();
         $logout->logout();
 
-        // SI DÉCO ALORS PEU PAS AFFICHER VIEWLISTE
-        /*$this->viewListe();*/
         $this->viewLogin();
     }
 
     public function check_login(){
 
-        // on recharge la vue dans le cas d'une error
         $vue = new \presentapp\view\PresentView('');
 
         if(isset($_POST['email'], $_POST['pw']) AND !empty($_POST['email']) AND !empty($_POST['pw'])){
@@ -214,17 +200,15 @@ class PresentController extends \mf\control\AbstractController
 
             $connect = new PresentAuthentification();
 
-            // Si l'authentification retourne vrai
             try{
 
                 $connect->login($user,$pass);
                 $this->viewListe();
+                
 
-            }catch(\mf\auth\exception\AuthentificationException $e){
-
-                $this->viewLogin();
-                echo $e->getMessage();
-
+            }catch(\Exception $e){
+                $message = "<div class='alert alert-danger col-12'>Problème d'authentification</div>";
+                $this->viewLogin($message);
             }
 
         } else {
@@ -257,10 +241,12 @@ class PresentController extends \mf\control\AbstractController
             $mdp=$_POST["pw"];
             $longueur= strlen($mdp);
             if(preg_match($regex1, $prenom)){
-                echo" le prénom n'est pas au bon format";
+                $message = "<div class='alert alert-danger col-12'>Le prénom n'est pas au bon format</div>";
+                $this->viewSignUp($message);
             }else{
                 if(preg_match($regex1, $nom)){
-                    echo" le nom n'est pas au bon format";
+                    $message = "<div class='alert alert-danger col-12'>Le nom n'est pas au bon format</div>";
+                    $this->viewSignUp($message);
                 }
                 else{
                     if(filter_var($email_a, FILTER_VALIDATE_EMAIL)){
@@ -271,7 +257,8 @@ class PresentController extends \mf\control\AbstractController
                         $pw_repeat = filter_input(INPUT_POST,'pw_repeat',FILTER_SANITIZE_SPECIAL_CHARS);
 
                         if($longueur < 8){  // Verif longueur mdp
-                            echo"mot de passe trop court";
+                            $message = "<div class='alert alert-danger col-12'>Le mot de passe est trop court, 8 caractères minimum</div>";
+                            $this->viewSignUp($message);
                         }else{
 								
 							$resultL = $policyL->test($mdp);  
@@ -291,52 +278,57 @@ class PresentController extends \mf\control\AbstractController
 
 													$signUp->createUser($username, $pw, $fullname,$email_a);
 
-													// Si tous se passe bien on renvoie sur les listes
-													$this->viewListe();
+                                                    // Si tous se passe bien on renvoie sur les listes
+                                                    
+                                                    $message = "<div class='alert alert-success col-12'>Vous êtes maintenant authentifié</div>";
+													$this->viewListe($message);
 
 												}catch (\Exception $e){
 
-													// si la création du user à échouée
-													$this->viewSignUp();
-													echo $e->getMessage();
+                                                    // si la création du user à échouée
+                                                    $message = "<div class='alert alert-danger col-12'>La création du compte a échouée</div>";
+                                                    $this->viewSignUp($message);
 
 												}
 											}
 
 											else {
-												echo "Les mots de passes ne sont pas les mêmes";
-												$this->viewSignUp();
+                                                $message = "<div class='alert alert-danger col-12'>Les mots de passes ne sont pas les mêmes</div>";
+                                                $this->viewSignUp($message);
 											}
 											}
 										else{
-											echo 'pas de symbole';
+                                            $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins un symbole dans votre mot de passe</div>";
+                                            $this->viewSignUp($message);
+                                            
 										}
 									}
 									else{
-										echo 'pas de chiffre';
+                                        $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins un chiffre dans votre mot de passe</div>";
+                                        $this->viewSignUp($message);
 									}
 								}
 								else{
-									echo 'pas de masjucule';
+                                    $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins une majuscule dans votre mot de passe</div>";
+                                    $this->viewSignUp($message);
 								}
 									
 							}
 
 							else{
-								echo 'pas de minuscule';
+                                $message = "<div class='alert alert-danger col-12'>Vous devez mettre au moins une minuscule dans votre mot de passe</div>";
+                                $this->viewSignUp($message);
 							}
 						}
                     } else {
-
-                        echo "L'adresse email n'a pas le bon format";
-                        $this->viewSignUp();
+                        $message = "<div class='alert alert-danger col-12'>Saisisser une vrai adresse email</div>";
+                        $this->viewSignUp($message);
                     }
                 }
             }
         } else {
-
-            echo "Certaines données sont manquantes";
-            $this->viewSignup();
+            $message = "<div class='alert alert-danger col-12'>Veuillez remplir tous les champs</div>";
+            $this->viewSignUp($message);
         }
 	}
 
@@ -345,24 +337,40 @@ class PresentController extends \mf\control\AbstractController
     // AFFICHE LA LISTE DES ITEMS D'UNE LISTE
     public function viewListeItem($msg = null){
 
-                $id = $this->request->get['idListe'];        
-                $l= Liste::where('idPartage','=',$id)->first();
+            $id = $this->request->get['idListe'];        
+            $l= Liste::where('idPartage','=',$id)->first();
 
+            // ajout des donnée concernant les messages
+            $message = Message::where('id_list','=',$id)->get();
+            
+            if(isset($l)){
                 if($msg != ''){
                     $l['msg']=$msg;
                 }
-       
-                $vue = new \presentapp\view\PresentView($l);
+                // je sais pas comment tu utilise info du coup je me suis créer mon propre data -> message
+                $vue = new \presentapp\view\PresentView($l,null,$message);
+
                 $vue->render('renderViewListeItem');
+            }else{
+                $message = "<div class='alert alert-danger col-12'>La liste n'existe pas</div>";
+
+                $this->viewListe($message);
+            }            
     }
 
     public function viewSupprItem(){
         $idItem = $this->request->get['idItem'];
         $idListe = $this->request->get['idListe'];
 
-        $affectedRows = Item::where('id', '=', $idItem)->delete();
+        
 
-        $this->viewListeItem();
+        if(Item::where('id', '=', $idItem)->delete()){
+            $message = "<div class='alert alert-success col-12'>Le cadeau a bien été supprimé</div>";
+            $this->viewListeItem($message);
+        }else{
+            $message = "<div class='alert alert-danger col-12'>Le cadeau n'a pas été supprimé</div>";
+            $this->viewListeItem($message);
+        }
     }
 
     public function viewModifierItem(){
@@ -370,12 +378,14 @@ class PresentController extends \mf\control\AbstractController
         $idListe = $this->request->get['idListe'];
 
         $item = Item::where('id', '=', $idItem)->first();
-        $item['idListe'] = $idListe;
-        $vue = new \presentapp\view\PresentView($item);
-        $vue->render('renderViewModifierItem');
-
-        
-        
+        if(isset($item)){
+            $item['idListe'] = $idListe;
+            $vue = new \presentapp\view\PresentView($item);
+            $vue->render('renderViewModifierItem');
+        }else{
+            $message = "<div class='alert alert-danger col-12'>Le cadeau n'existe pas</div>";
+            $this->viewListeItem($message);
+        } 
     }
 
     public function viewReserverItem(){
@@ -385,10 +395,17 @@ class PresentController extends \mf\control\AbstractController
         $item = new Item();
         $nomItem = $item->select('nom')->where('id', '=', $tab['idItem'])->first();
 
-        $tab['nom'] = $nomItem;
+        if(isset($nomItem)){
+            $tab['nom'] = $nomItem;
 
-        $vue = new \presentapp\view\PresentView($tab);
-        $vue->render('renderViewReserverItem');
+            $vue = new \presentapp\view\PresentView($tab);
+            $vue->render('renderViewReserverItem');
+        }else{
+            $message = "<div class='alert alert-danger col-12'>Le cadeau n'existe pas</div>";
+            $this->viewListeItem($message);
+        }
+
+        
     }
 
     public function reserverItem(){
@@ -441,10 +458,12 @@ class PresentController extends \mf\control\AbstractController
             
             
             $item->save();
-            $message = "L'item à bien été modifié";
+
+            $message = "<div class='alert alert-success col-12'>L'item a bien été modifié</div>";
             $this->viewListeItem($message);
         } else {
-            echo "<div class='container'>nan dsl</div>";
+            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été modifié</div>";
+            $this->viewListeItem($message);
         }
     }
 
@@ -498,5 +517,48 @@ class PresentController extends \mf\control\AbstractController
 
 
 
-    public function checkMessageItemAll(){}
+    public function checkMessageItemAll(){
+
+        // si la variable existe
+        if(isset($_POST['textall']) && !empty($_POST['textall']) && isset($_POST['id_list']) && !empty($_POST['id_list'])){
+
+            $idSend = $_POST['id_list'];
+
+            // tester l'id reçu
+            $requeteListe = Liste::select('id')->where('idPartage', '=', $idSend)->first();
+
+            // si l'id est la bonne alors je devrais recevoir un résultat
+
+            if(is_null($requeteListe)){
+
+                // si le login est corrompus on renvoi vers la page de login
+                $this->ViewLogin();
+
+            } else {
+
+                // si il y a correspondance c'est que la donnée est bonne
+                $text = filter_input(INPUT_POST,'textall',FILTER_SANITIZE_SPECIAL_CHARS);
+                $id = filter_input(INPUT_POST,'id_list',FILTER_SANITIZE_SPECIAL_CHARS);
+
+                // ajoute le text à la table message
+                $message = new Message();
+
+                $message->contenu = $text;
+                $message->id_list = $id;
+
+                $message->save();
+
+                // la sauvegarde est effectuée, je renvoie vers listitem
+
+                $this->viewListeItem();
+
+               // pour select après select m.contenu
+              /*  from message m join Liste l
+on m.id = l.id
+where l.id = 1;*/
+            }
+
+        }
+
+    }
 }

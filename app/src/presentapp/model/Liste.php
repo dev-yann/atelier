@@ -26,4 +26,9 @@ class Liste extends \Illuminate\Database\Eloquent\Model
         return $this->hasMany('presentapp\model\Item', 'id_list');
     }
 
+    public function messages(){
+
+        return $this->hasMany('presentapp\model\Message','id_list');
+    }
+
 }

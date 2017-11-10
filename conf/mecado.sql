@@ -51,6 +51,13 @@ create table participant_item(
     FOREIGN KEY (id_participant) REFERENCES Participants (id)
 );
 
+create table message(
+	id int not null AUTO_INCREMENT PRIMARY KEY,
+	contenu text,
+	id_list VARCHAR (20) not null
+);
+
+
 
 
 
