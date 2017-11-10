@@ -296,7 +296,7 @@ EOT;
             $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['urlimage'].'" class="cadeau"/>';
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
             $html .= '<h4>'.$value['tarif'].'€</h4>';
-			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique</a></h4>';
+			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique (cliquer ici)</a></h4>';
             
 			if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
