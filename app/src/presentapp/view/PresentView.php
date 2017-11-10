@@ -74,7 +74,7 @@ EOT;
     // FOOTER
     private function renderFooter(){
 
-       return '<p>LP Cisiie 2017/2018 - Alexandra MARTIN - Daniel RICKLIN - Faustin RASSU - Yann DUMAS - Gerardo GUTIERREZ - Atelier 1</p>';
+       return '<footer><div class="container"><h2 class="centrar">Mecado</h2><h3 class="centrar">LP Cisiie 2017/2018</h3><h3 class="centrar">- Alexandra MARTIN - Daniel RICKLIN - Faustin RASSU - Yann DUMAS - Gerardo GUTIERREZ - Atelier 1</h3> </div></footer>';
 
     }
 
@@ -116,10 +116,10 @@ EOT;
         if(isset($this->info)){
             $html .= $this->info;
         }
-        $html .= "<h1>Mes Listes</h1>";
+
         if(isset($_SESSION['user_login'])){
         $html .= '<div class="col-12 sp centrar"><a href="'.$this->script_name.'/addliste/">
-        <h3>Ajouter une liste</h3>
+        <h1><i class="fa fa-plus" aria-hidden="true"></i>Ajouter une liste</h1>
         </a></div>';
         }
 
@@ -147,12 +147,12 @@ EOT;
         
 	
 		$html =       
-'<div class="container">';
+'<section class="container">';
      if($this->data !== null){
 			$html .= $this->data;
 		}
-      $html.='<h1>Liste</h1><div class="formulaire">
-	  	<h3 class="centrar">Ajouter une nouvelle liste : </h3>
+      $html.='<div class="formulaire">
+	  	<h1 class="centrar">Ajouter une nouvelle liste : </h1>
         <form method="post" action="'.$this->script_name.'/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l\'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
@@ -163,7 +163,7 @@ EOT;
             <input type="submit" value="Ajouter"/>
         </form>
         </div>    
- </div>';
+ </section>';
         return $html;
     }
 
