@@ -144,9 +144,9 @@ EOT;
 
 
     private  function renderViewAddListe(){
-        $html ="<h1>Liste</h1>";
+        
 	
-		$html .=       
+		$html =       
 '<div class="container">';
      if($this->data !== null){
 			$html .= $this->data;
@@ -204,7 +204,7 @@ EOT;
        
        <input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <input id='tarif' name='tarif' type='number' placeholder='Tarif' step='0.01'/>
+       <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
          <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
          <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
          <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
