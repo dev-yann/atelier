@@ -373,10 +373,13 @@ a:hover {
 body {
   min-height: 100vh;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  justify-content: space-between; }
 
 footer {
   background-color: #92d0cf;
   width: 100%; }
+  footer .container {
+    margin-top: 5px; }
 
 /*# sourceMappingURL=principal.css.map */
