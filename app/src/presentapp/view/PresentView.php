@@ -157,9 +157,9 @@ EOT;
             <input type="text" name="nomListe" placeholder="Nom de l\'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l\'évènement : AAAA-MM-JJ" required/>
-            <h3 class="left">La liste est pour vous ?</h3>
-            <h4 class="left">Oui : </h4><input type="radio" name="reponse" value="oui" checked/>
-            <h4 class="left">Non : </h4><input type="radio" name="reponse" value="non"/>
+            <h3 class="centrar">La liste est pour vous ?</h3>
+            <h4 class="centrar">Oui : </h4><input type="radio" name="reponse" value="oui" checked/>
+            <h4 class="centrar">Non : </h4><input type="radio" name="reponse" value="non"/>
             <input type="submit" value="Ajouter"/>
         </form>
         </div>    
