@@ -1,4 +1,6 @@
-use ricklin1u;
+create database mecado;
+
+use mecado;
 
 create table Createur(
     id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -17,6 +19,7 @@ create table Liste(
     date_final date,
     createur int not null,
     description varchar (150) not null,
+    pourmoi varchar (3) not null,
     idPartage varchar (20) not null,
     constraint fk_liste FOREIGN KEY (createur) REFERENCES Createur (id)   
 );

@@ -38,7 +38,7 @@ class PresentView extends AbstractView
                 
                 
                 <header class="header theme-backcolor1">
-        <h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
+        		<h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
@@ -58,7 +58,7 @@ EOT;
                 <nav class="nav" id="nav">
                     <ul class="menu">
                         <li class="menu_item"><a  class="menu_link" href="$this->script_name/signup/">inscription</a></li>
-                        <li class="menu_item"><a  class="menu_link" href="$this->script_name/login/">connection</a></li>
+                        <li class="menu_item"><a  class="menu_link" href="$this->script_name/login/">connexion</a></li>
                     </ul>
                 </nav> 
         </header>
@@ -74,7 +74,7 @@ EOT;
     // FOOTER
     private function renderFooter(){
 
-/*        return '<h1>footer</h1>';*/
+       return '<p>LP Cisiie 2017/2018 - Alexandra MARTIN - Daniel RICKLIN - Faustin RASSU - Yann DUMAS - Gerardo GUTIERREZ - Atelier 1</p>';
 
     }
 
@@ -305,7 +305,9 @@ EOT;
             if(isset($_SESSION['user_login'])){
 			    $html .= '<a href="'.$this->script_name.'/supprItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
                 $html .= '<a href="'.$this->script_name.'/modifierItem/?idListe='.$this->data->idPartage.'&idItem='.$value->id.'"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
-                $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
+                if($this->data->pourmoi == 'non'){
+                    $html .= "<div class='col-12'><p><a href=".$this->script_name."/messageItemPrivate/?idListe=".$this->data->idPartage."&idItem=".$value->id.">Voir les messages déposer par vos invités</a></p></div>";
+                }
             }
 
             
@@ -313,7 +315,7 @@ EOT;
         }
 
         $html .= "<div class='container'>";
-        $html .= "<div class ='col-12 sp centrar'><p>Ajouter un message pour tous les participants : </p>";
+        $html .= "<div class ='col-12 sp centrar'><h4 class='centrar'>Ajouter un message pour tous les participants : </h4>";
         $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/">';
         $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
         $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
@@ -324,7 +326,7 @@ EOT;
 
         // afficher les messages
 
-        // je récupere les donnée message
+        // je récupere les données du message
         $mess = $this->message;
 
         $html .= "<section class ='col-12 sp centrar'>";
@@ -347,15 +349,16 @@ EOT;
         $idListe = $this->data['idListe'];
         $nom = $this->data['nom']->nom;
         
-        $html = "<h1>Reserver : ". $nom."</h1>";
+        $html = "<div class='container'><h1>Reserver : ". $nom."</h1>";
         $html .= "
-        <form method='post' action=".$this->script_name."/reserverItem/?idItem=".$idItem."&idListe=".$idListe.">
+        <div class='col-8 offset-2'>
+        <div class='formulaire'><form method='post' action=".$this->script_name."/reserverItem/?idItem=".$idItem."&idListe=".$idListe.">
             <label for='nom'>Nom</label>
             <input type='text' placeholder='Votre nom' name='nom'/>
             <label for='message'>Message</label>
             <textarea placeholder='Message' name='message'></textarea>
             <input type='submit' value='Reserver'/>
-        </form>";
+        </form></div></div></div>";
         return $html;        
     }
 
@@ -372,6 +375,8 @@ EOT;
             $html .= '<h3 class="sp1">'.$this->data->nom.'</h3>';
 
             $html .= '<h4>Description : </h4><p>'.$this->data->description.'</p>';
+
+            $html .= '<h4>Offert par : </h4><p>'.$this->data->reservePart.'</p>';
 
             $html .= '<h4>Message déposé par l\'invité :</h4><p>'.$this->data->message.'</p>';
             $html .= '</div></div>';
