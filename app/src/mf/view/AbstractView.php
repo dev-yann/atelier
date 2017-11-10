@@ -7,7 +7,7 @@ abstract class AbstractView {
     // comportement étrange des styles faires attention
     static protected $style_sheets = ['web/css/principal.css','web/icon/css/font-awesome.min.css','web/icomoon/style.css']; /* un tableau de fichiers style */
     static protected $tabJs = ['web/js/menu.js'];
-    static protected $app_title    = "MF app Title"; /* un titre de document */
+    static protected $app_title    = "Mecado"; /* un titre de document */
     
     protected $app_root    = null; /* répertoire racine de l'application */
     protected $script_name = null; /* le chemin vers le script principal */
@@ -108,10 +108,11 @@ abstract class AbstractView {
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Mecado</title>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	
+        <link rel="icon" type="image/png" href="html/img/png/003-gift.redimensionado.png" />
 
-        
+
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">        
         <title>${title}</title>
 	    ${styles}
     </head>

@@ -38,7 +38,7 @@ class PresentView extends AbstractView
                 
                 
                 <header class="header theme-backcolor1">
-        <h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
+        		<h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
@@ -74,7 +74,7 @@ EOT;
     // FOOTER
     private function renderFooter(){
 
-/*        return '<h1>footer</h1>';*/
+       return '<p>LP Cisiie 2017/2018 - Alexandra MARTIN - Daniel RICKLIN - Faustin RASSU - Yann DUMAS - Gerardo GUTIERREZ - Atelier 1</p>';
 
     }
 
@@ -313,7 +313,7 @@ EOT;
         }
 
         $html .= "<div class='container'>";
-        $html .= "<div class ='col-12 sp centrar'><p>Ajouter un message pour tous les participants : </p>";
+        $html .= "<div class ='col-12 sp centrar'><h4 class='centrar'>Ajouter un message pour tous les participants : </h4>";
         $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/">';
         $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
         $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
@@ -324,7 +324,7 @@ EOT;
 
         // afficher les messages
 
-        // je récupere les donnée message
+        // je récupere les données du message
         $mess = $this->message;
 
         $html .= "<section class ='col-12 sp centrar'>";
