@@ -79,7 +79,7 @@ class PresentController extends \mf\control\AbstractController
 
     public function viewaddListe(){
 
-        $vue = new \presentapp\view\PresentView($msg);// DÉFINIR MESSAGE
+        $vue = new \presentapp\view\PresentView('');// DÉFINIR MESSAGE
         $vue->render('renderViewAddListe');
     }
 
