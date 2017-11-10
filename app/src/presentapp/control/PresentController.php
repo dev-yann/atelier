@@ -154,7 +154,8 @@ class PresentController extends \mf\control\AbstractController
         $idListe = $this->request->get['idListe'];
 
         try{
-            $affectedRows = Liste::where('id', '=', $idListe)->delete();
+            Liste::where('id', '=', $idListe)->delete();
+            Item::where('id_list', '=', $idListe)->delete();
             $message = "<div class='alert alert-success col-12'>La liste a bien été supprimée</div>";
             $this->viewListe($message);
         }catch(\Exception $e){
