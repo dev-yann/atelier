@@ -74,7 +74,7 @@ EOT;
     // FOOTER
     private function renderFooter(){
 
-       return '<footer><div class="container"><h2 class="centrar">Mecado</h2><h3 class="centrar">LP Cisiie 2017/2018</h3><h3 class="centrar">- Alexandra MARTIN - Daniel RICKLIN - Faustin RASSU - Yann DUMAS - Gerardo GUTIERREZ - Atelier 1</h3> </div></footer>';
+       return '<div class="container"><h1 class="centrar">Mecado</h1><h2 class="centrar">LP Cisiie 2017/2018</h2><h2 class="centrar">Alexandra MARTIN - Daniel RICKLIN - Faustin RASSU - Yann DUMAS - Gerardo GUTIERREZ - Atelier 1</h2></div>';
 
     }
 
