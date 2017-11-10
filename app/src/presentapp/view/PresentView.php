@@ -58,7 +58,7 @@ EOT;
                 <nav class="nav" id="nav">
                     <ul class="menu">
                         <li class="menu_item"><a  class="menu_link" href="$this->script_name/signup/">inscription</a></li>
-                        <li class="menu_item"><a  class="menu_link" href="$this->script_name/login/">connection</a></li>
+                        <li class="menu_item"><a  class="menu_link" href="$this->script_name/login/">connexion</a></li>
                     </ul>
                 </nav> 
         </header>
