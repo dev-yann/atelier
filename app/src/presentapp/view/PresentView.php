@@ -313,16 +313,15 @@ EOT;
             
             $html .= '</div>';
         }
-        if(isset($_SESSION['user_login'])){
-            $html .= "<div class='container'>";
-            $html .= "<div class ='col-12 sp centrar'><h4 class='centrar'>Ajouter un message pour tous les participants : </h4>";
-            $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/?idListe='.$this->data->idPartage.'">';
-            $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
-            $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
-            $html .= '<input type="submit" value="poster">';
-            $html .= '</form>';
-            $html .= '</div>';
-        }
+
+        $html .= "<div class='container'>";
+        $html .= "<div class ='col-12 sp centrar'><h4 class='centrar'>Ajouter un message pour tous les participants : </h4>";
+        $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/?idListe='.$this->data->idPartage.'">';
+        $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
+        $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
+        $html .= '<input type="submit" value="poster">';
+        $html .= '</form>';
+        $html .= '</div>';
 
 
         // afficher les messages
