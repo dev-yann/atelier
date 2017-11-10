@@ -130,7 +130,7 @@ EOT;
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
+                $html .= "<h4>Lien de partage : </h4><p>https://".$this->name.$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
             $html .= '<a href="' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
@@ -151,15 +151,15 @@ EOT;
      if($this->data !== null){
 			$html .= $this->data;
 		}
-      $html.='<div class="formulaire">
+      $html.='<h1>Liste</h1><div class="formulaire">
 	  	<h3 class="centrar">Ajouter une nouvelle liste : </h3>
         <form method="post" action="'.$this->script_name.'/checkaddliste/">
             <input type="text" name="nomListe" placeholder="Nom de l\'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l\'évènement : AAAA-MM-JJ" required/>
-            <h3 class="left">La liste est pour vous ?</h3>
-            <h4 class="left">Oui : </h4><input type="radio" name="reponse" value="oui" checked/>
-            <h4 class="left">Non : </h4><input type="radio" name="reponse" value="non"/>
+            <h3 class="centrar">La liste est pour vous ?</h3>
+            <h4 class="centrar">Oui : </h4><input type="radio" name="reponse" value="oui" checked/>
+            <h4 class="centrar">Non : </h4><input type="radio" name="reponse" value="non"/>
             <input type="submit" value="Ajouter"/>
         </form>
         </div>    
@@ -204,13 +204,13 @@ EOT;
        
        <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
-       <input type='text' id='nom' name='nom' placeholder='Nom' required/>
+        <input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
-         <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
-         <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
-         <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
-         <input type='submit' value='ajouter'>
+        <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
+        <input type='text' id='url' placeholder='Url vers un autre site' name='url'/> 
+        <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
+        <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
+        <input type='submit' value='ajouter'>
         </form>
        </div> 
      </div>
@@ -296,7 +296,7 @@ EOT;
             $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['urlimage'].'" class="cadeau"/>';
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
             $html .= '<h4>'.$value['tarif'].'€</h4>';
-			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique</a></h4>';
+			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique (cliquer ici)</a></h4>';
             
 			if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";

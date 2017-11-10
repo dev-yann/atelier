@@ -11,6 +11,7 @@ abstract class AbstractView {
     
     protected $app_root    = null; /* répertoire racine de l'application */
     protected $script_name = null; /* le chemin vers le script principal */
+    protected $name = null;
     
     protected $data        = null; /* le modèle de données nécessaire */
 
@@ -33,6 +34,7 @@ abstract class AbstractView {
         
         $this->script_name  = $http->script_name;
         $this->app_root     = $http->root;
+        $this->name = $http->name;
 
         $this->data         = $data;
 
