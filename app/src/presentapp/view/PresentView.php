@@ -89,7 +89,7 @@ EOT;
         }
       
       $html.=  "<div class='formulaire'>
-       <h3 class='centrar'>Inscription</h3>
+       <h1 class='centrar'>Inscription</h1>
         <form method='post' action='".$this->script_name."/check_signup/'>
                     <input type='text' name='fullname' placeholder='Prénom' required/>
                     <input type='text' name='username' placeholder='Nom' required/>
@@ -99,7 +99,7 @@ EOT;
                    
                     <input type='submit' value='Créer'/>
         </form>
-		<h4 class='centrar'>Indications mot de passe : au moins une minuscule, une majuscule, un chiffre, un caractère spécial et 8 caractères  </h4>
+		<p class='centrar'>Indications mot de passe : au moins une minuscule, une majuscule, un chiffre, un caractère spécial et 8 caractères  </p>
        </div> 
      </div>
                 
@@ -127,10 +127,10 @@ EOT;
 
             $html .="<div class='col-3 sp'>
             <h2>".$value->nom."</h2>";
-            $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
+            $html .= "<h3>Reservation possible jusqu'au: </h3><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<h4>Lien de partage : </h4><p>https://".$this->name.$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
+                $html .= "<h3>Lien de partage : </h3><p>https://".$this->name.$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
             $html .= '<a href="' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';
@@ -198,9 +198,9 @@ EOT;
         if(isset($this->data['msg'])){
             $html .= $this->data['msg'];
         }  
-     $html .= "<div class='col-8 offset-2'>
+     $html .= "<section class='col-8 offset-2'>
       <div class='formulaire'>
-       <h3 class='centrar'>Ajouter un nouveau cadeau</h3>
+       <h1 class='centrar'>Ajouter un nouveau cadeau</h1>
        
        <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
@@ -211,14 +211,10 @@ EOT;
         <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
         <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
         <input type='submit' value='ajouter'>
-        </form>
+       </form>
        </div> 
-     </div>
-     </div>
-             
-</form>
-</section>
-</div>";
+     </section>
+     </div>";
 
         return $html;
 
@@ -238,8 +234,8 @@ EOT;
 
         $html = <<<EOT
         
-        <div class="container">
-     <div class="col-8 offset-2">
+    <div class="container">
+     <section class="col-8 offset-2">
       <div class="formulaire">
        <legend>Modifier le cadeau</legend>
        
@@ -254,12 +250,9 @@ EOT;
          <input type="submit" value="Modifier">
         </form>
        </div> 
-     </div>
-     </div>
-             
-</form>
-</section>
-</div>
+     </section>
+    </div>
+
 EOT;
 
         return $html;
@@ -272,13 +265,11 @@ EOT;
             $html .= $this->data['msg'];
         }
         $html .="<h1 class='col-12'>Liste pour l'évenement: " . $this->data->nom . "</h1><br>";
-        $html .= "<h4 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h4>";
+        $html .= "<h1 class='col-12'>Date de l'évènement : ".$this->data->date_final . "</h1>";
 
         if(isset($_SESSION['user_login'])){
             $html .= "<div class='col-12 sp centrar'><a href=".$this->script_name."/ViewAddItem/?idListe=".$this->data->idPartage.">
-                    <h3>Ajouter Cadeau</h3>
-
-                    </a></div>";
+                    <h1><i class=\"fa fa-plus\" aria-hidden=\"true\"></i> Ajouter Cadeau</h1></a></div>";
         }
 
         $tab = $this->data->items()->where('id_list','=',$this->data->id)->get();
@@ -315,13 +306,13 @@ EOT;
         }
 
         $html .= "<div class='container'>";
-        $html .= "<div class ='col-12 sp centrar'><h4 class='centrar'>Ajouter un message pour tous les participants : </h4>";
+        $html .= "<section class ='col-12 sp centrar'><h1 class='centrar'>Ajouter un message pour tous les participants : </h1>";
         $html .= '<form method="post" action="'.$this->script_name.'/messageItemAll/?idListe='.$this->data->idPartage.'">';
         $html .= '<textarea placeholder="votre message" name="textall"></textarea>';
         $html .= '<input type="hidden" name="id_list" value="'.$this->data->idPartage.'">';
         $html .= '<input type="submit" value="poster">';
         $html .= '</form>';
-        $html .= '</div>';
+        $html .= '</section>';
 
 
         // afficher les messages
