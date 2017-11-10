@@ -113,23 +113,37 @@ class PresentController extends \mf\control\AbstractController
 					$dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
 					$desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
                     $reponse = filter_input(INPUT_POST,'reponse',FILTER_SANITIZE_SPECIAL_CHARS);
-                    
-					//recuperation de l'id de la personne connecté
-					$persCo = $_SESSION['user_login'];
-					$requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
-					$idc = $requeteCrea->id;
 
-					$l = new Liste();
-					$l->idpartage= uniqid();
-					$l->nom = $nomListe;
-					$l->date_final = $dateFinal;
-					$l->createur = $idc;
-					$l->description = $desc;
-                    $l->pourmoi = $reponse;
-					$l->save();
 
-					$message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
-					$this->viewListe($message);
+                //recuperation de l'id de la personne connecté
+                                    $persCo = $_SESSION['user_login'];
+                    $requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
+                    $testListe = $requeteCrea->listes()->where('nom','=',$nomListe)->first();
+
+                    // on voie si la liste existe déja
+                    if($nomListe == $testListe->nom){
+
+
+                        $this->viewListe();
+
+                    } else{
+
+                        $idc = $requeteCrea->id;
+
+                        $l = new Liste();
+                        $l->idpartage= uniqid();
+                        $l->nom = $nomListe;
+                        $l->date_final = $dateFinal;
+                        $l->createur = $idc;
+                        $l->description = $desc;
+                        $l->pourmoi = $reponse;
+                        $l->save();
+
+                        $message = "<div class='alert alert-success col-12'>La liste a bien été ajouté</div>";
+                        $this->viewListe($message);
+                    }
+
+
 				}
 				else{
  					$message = "<div class='alert alert-danger col-12'>C'est un peu tard pour organiser un évènement, la date est déjà passée</div>";
