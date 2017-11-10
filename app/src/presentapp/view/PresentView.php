@@ -157,9 +157,9 @@ EOT;
             <input type="text" name="nomListe" placeholder="Nom de l\'évènement" required/>
             <textarea placeholder="description" name="description"></textarea>
             <input type="date" id="date" name="dateFinale" placeholder="Date de l\'évènement : AAAA-MM-JJ" required/>
-            <h3 class="left">La liste est pour vous ?</h3>
-            <h4 class="left">Oui : </h4><input type="radio" name="reponse" value="oui" checked/>
-            <h4 class="left">Non : </h4><input type="radio" name="reponse" value="non"/>
+            <h3 class="centrar">La liste est pour vous ?</h3>
+            <h4 class="centrar">Oui : </h4><input type="radio" name="reponse" value="oui" checked/>
+            <h4 class="centrar">Non : </h4><input type="radio" name="reponse" value="non"/>
             <input type="submit" value="Ajouter"/>
         </form>
         </div>    
@@ -204,13 +204,13 @@ EOT;
        
        <form method='post' enctype='multipart/form-data' action=".$this->script_name."/addItem/?idListe=".$idList.">
        
-       <input type='text' id='nom' name='nom' placeholder='Nom' required/>
+        <input type='text' id='nom' name='nom' placeholder='Nom' required/>
          
-       <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
-         <input type='url' id='url' placeholder='Url vers un autre site' name='url'> 
-         <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
-         <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
-         <input type='submit' value='ajouter'>
+        <input id='tarif' name='tarif' type='text' placeholder='Tarif' step='0.01'/>
+        <input type='text' id='url' placeholder='Url vers un autre site' name='url'/> 
+        <Textarea rows='4' cols='15' placeholder='Description' name='description'></Textarea>
+        <input type='text' name='urlImage' id='urlimage' placeholder='Ajouter le lien d une image'/>
+        <input type='submit' value='ajouter'>
         </form>
        </div> 
      </div>
