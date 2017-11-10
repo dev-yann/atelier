@@ -26,7 +26,7 @@ create table Liste(
 create table Item(
     id int not null AUTO_INCREMENT PRIMARY KEY,
     nom varchar (50) not null,
-    description varchar (50) not null,
+    description text not null,
     message varchar(255) default null,
     reservePart varchar(255) default null,
     urlImage text not null,
