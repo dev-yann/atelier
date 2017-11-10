@@ -54,9 +54,9 @@ create table participant_item(
 create table message(
 	id int not null AUTO_INCREMENT PRIMARY KEY,
 	contenu text,
-	id_list varchar (20) not null,
-	FOREIGN KEY (id) REFERENCES Liste (id)
+	id_list VARCHAR (20) not null
 );
+
 
 
 
