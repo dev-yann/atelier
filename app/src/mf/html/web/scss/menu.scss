@@ -70,6 +70,10 @@ a{
     background: darken($cl_header1,20%);
     color: #fff;
 }
+header > h1 > a {
+    margin-left: 5px;
+    color: $cl_1;
+}
 .icon-menu:hover{
     background: lighten($cl_header1,20%);
 }
