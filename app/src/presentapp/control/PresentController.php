@@ -404,7 +404,7 @@ class PresentController extends \mf\control\AbstractController
 
                 $vue->render('renderViewListeItem');
             }else{
-                $message = "<div class='alert alert-danger col-12'>La liste n'existe pas view</div>";
+                $message = "<div class='alert alert-danger col-12'>La liste n'existe pas</div>";
 
                 $this->viewListe($message);
             }            
