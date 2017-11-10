@@ -283,12 +283,16 @@ EOT;
             }
 
             $html .= '<div class="col-3 sp">';
-            $html .= '<h3 class="sp1">'.$value['nom'].'</h3>';
+            $html .= '<h1 class="sp1">'.$value['nom'].'</h1>';
             $html .= '<img src="'.$value['urlImage'].'" alt="'.$value['urlimage'].'" class="cadeau"/>';
             $html .= '<h4>Description : </h4><p>'.$value['description'].'</p>';
             $html .= '<h4>'.$value['tarif'].'€</h4>';
-			$html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique (cliquer ici)</a></h4>';
-            
+
+            if(isset($value['url']) && !empty($value['url'])){
+
+                $html .= '<h4><a href="'.$value['url'].'">Lien vers la boutique (cliquer ici)</a></h4>';
+            }
+
 			if(!isset($_SESSION['user_login'])){
                 $html .= "<p>Status : $status</p>";
                 $html .= "<a class='button' href=".$value['url'].">Plus d'information</a>";

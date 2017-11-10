@@ -611,6 +611,9 @@ class PresentController extends \mf\control\AbstractController
               
             }
 
+        } else if(empty($_POST['textall'])){
+
+            $this->viewListeItem();
         }
 
     }
