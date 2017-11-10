@@ -5,7 +5,7 @@ namespace mf\utils;
 abstract class AbstractHttpRequest {
 
     protected $script_name=null, $path_info=null, $root=null;
-    protected $method=null, $get=null, $post=null;
+    protected $method=null, $get=null, $post=null, $name=null;
         
     public function __get($attr_name) {
         if (property_exists( $this, $attr_name)) 

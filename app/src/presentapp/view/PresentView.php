@@ -38,7 +38,7 @@ class PresentView extends AbstractView
                 
                 
                 <header class="header theme-backcolor1">
-        		<h1 class="logo"><a class="menu_link" href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
+        		<h1 class="logo"><a href="$this->script_name/liste/"><img src="$this->app_root/app/src/mf/html/web/img/png/003-gift.png" alt="icon" class="icon">Mecado</a></h1>
                 <span class="icon-menu" id="btn-menu"></span>
                 <nav class="nav" id="nav">
                     <ul class="menu">
@@ -130,7 +130,7 @@ EOT;
             $html .= "<h4>Reservation possible jusqu'au: </h4><p>".$value->date_final."</p>";
 		
             if(isset($_SESSION['user_login'])){
-                $html .= "<h4>Lien de partage : </h4><p>http://localhost".$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
+                $html .= "<h4>Lien de partage : </h4><p>https://".$this->name.$this->script_name."/listeItem/?idListe=".$value->idPartage."</p>";
             }
             $html .= '<a href="'.$this->script_name.'/supprliste/?idListe='.$value->id.'"><i class="fa fa-trash-o fa-2x" aria-hidden="true"></i></a>';
             $html .= '<a href="' . $this->script_name. '/listeItem/?idListe=' . $value->idPartage . '"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i></a>';

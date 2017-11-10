@@ -113,7 +113,7 @@ class PresentController extends \mf\control\AbstractController
 					$dateFinal = filter_input(INPUT_POST,'dateFinale',FILTER_SANITIZE_SPECIAL_CHARS);
 					$desc = filter_input(INPUT_POST,'description',FILTER_SANITIZE_SPECIAL_CHARS);
                     $reponse = filter_input(INPUT_POST,'reponse',FILTER_SANITIZE_SPECIAL_CHARS);
-
+                    
 					//recuperation de l'id de la personne connecté
 					$persCo = $_SESSION['user_login'];
 					$requeteCrea = Createur::select()->where('email', '=', $persCo)->first();
@@ -145,7 +145,7 @@ class PresentController extends \mf\control\AbstractController
 			}
 			
         } else {
-            $message = "<div class='alert alert-danger col-12'>L'item n'a pas été ajouté</div>";
+            $message = "<div class='alert alert-danger col-12'>La liste n'a pas été ajouté</div>";
             $this->viewListe($message);
         }
     }
@@ -184,7 +184,7 @@ class PresentController extends \mf\control\AbstractController
                 
 
                 if(preg_match($regexTarif, $prix)){
-                    $message = "Le tarif doit être un nombre ou un chiffre";
+                    $message = "<div class='alert alert-danger col-12'>Le tarif doit être un nombre ou un chiffre</div>";
                     $this->viewAddItem($message);
                 }else{
 
